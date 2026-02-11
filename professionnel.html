@@ -40,7 +40,8 @@
             box-sizing: border-box;
         }
 
-        .main-logo { height: 40px; width: auto; cursor: pointer; }
+        .main-logo { height: 40px; width: auto; cursor: pointer; transition: transform 0.3s cubic-bezier(.68,-0.55,.27,1.55); }
+        .main-logo:hover { transform: scale(1.15) rotate(-8deg); }
 
         nav { display: flex; align-items: center; gap: 25px; }
         nav a { color: #ccc; text-decoration: none; text-transform: uppercase; font-size: 13px; font-weight: bold; transition: 0.3s; }
@@ -183,18 +184,7 @@
             position: relative;
         }
 
-        /* L'effet de fondu au-dessus du footer */
-        footer::before {
-            content: "";
-            position: absolute;
-            top: -100px; /* Hauteur du fondu */
-            left: 0;
-            width: 100%;
-            height: 100px;
-            /* Remplace #f4f6f8 par la couleur de fond de ta page (ex: #0a0a0a pour l'accueil) */
-            background: linear-gradient(to bottom, transparent, #333);
-            pointer-events: none;
-        }
+       
 
         .footer-column h3 {
             text-transform: uppercase;
