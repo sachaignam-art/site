@@ -45,40 +45,76 @@
         .main-logo:hover { transform: scale(1.15) rotate(-8deg); }
 
         nav { display: flex; align-items: center; gap: 25px; }
-                .dropdown {
-                    position: relative;
-                    display: inline-block;
-                }
-                .dropdown-content {
-                    display: none;
-                    position: absolute;
-                    background-color: #333;
-                    min-width: 180px;
-                    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-                    z-index: 1001;
-                    border-radius: 0 0 14px 14px;
-                    overflow: hidden;
-                    top: calc(100% + 6px);
-                    left: 0;
-                    border: 2px solid #444;
-                    border-top: none;
-                }
-                .dropdown-content a {
-                    color: #a259ff;
-                    padding: 12px 16px;
-                    text-decoration: none;
-                    display: block;
-                    background: none;
-                    font-size: 14px;
-                    transition: background 0.2s, color 0.2s;
-                }
-                .dropdown-content a:hover {
-                    background: #444;
-                    color: #fff;
-                }
-                .dropdown:hover .dropdown-content {
-                    display: block;
-                }
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        .dropdown-content {
+            display: block;
+            opacity: 0;
+            pointer-events: none;
+            position: absolute;
+            background-color: #333;
+            min-width: 140px;
+            max-width: 180px;
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+            z-index: 1001;
+            border-radius: 0 0 14px 14px;
+            overflow: hidden;
+            top: 100%;
+            left: 0;
+            border: 2px solid #444;
+            border-top: none;
+            transform: translateY(10px) scaleY(0.98);
+            transition: opacity 0.25s cubic-bezier(.68,-0.55,.27,1.55), transform 0.25s cubic-bezier(.68,-0.55,.27,1.55);
+        }
+        .dropdown:hover .dropdown-content,
+        .dropdown:focus-within .dropdown-content {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0) scaleY(1);
+        }
+        .dropdown-content:before {
+            content: '';
+            display: block;
+            position: absolute;
+            top: -12px;
+            left: 0;
+            width: 100%;
+            height: 14px;
+            background: transparent;
+        }
+        .dropdown-content a {
+            color: #a259ff;
+            padding: 9px 12px;
+            text-decoration: none;
+            display: block;
+            background: none;
+            font-size: 15px;
+            transition: background 0.18s, color 0.18s;
+            outline: none;
+            border: none;
+            cursor: pointer;
+            position: relative;
+        }
+        .dropdown-content a::after {
+            content: '';
+            position: absolute;
+            left: 0; right: 0; bottom: 6px;
+            height: 2px;
+            background: linear-gradient(90deg, #7d7aff, #a259ff 50%, #7d7aff);
+            transform: scaleX(0);
+            transition: transform 0.3s cubic-bezier(.68,-0.55,.27,1.55);
+            transform-origin: left;
+        }
+        .dropdown-content a:hover::after, .dropdown-content a:focus::after {
+            transform: scaleX(1);
+        }
+        .dropdown-content a:hover,
+        .dropdown-content a:focus {
+            background: #444;
+            color: #fff;
+        }
                 nav a {
                     color: #ccc;
                     text-decoration: none;
@@ -294,20 +330,51 @@
         <nav>
             <a href="index.html">Accueil</a>
             <div class="dropdown">
-                <a href="professionnel.html" class="dropbtn">Professionnel</a>
-                <div class="dropdown-content">
-                    <a href="media.html">Media</a>
-                    <a href="rehabilitation.html">Réhabilitation</a>
+                <a href="professionnel.html" class="dropbtn" style="position:relative;z-index:2;" tabindex="0" aria-haspopup="true" aria-expanded="false">Professionnel</a>
+                <div class="dropdown-content" role="menu">
+                    <a href="media.html" role="menuitem" tabindex="0">Media</a>
+                    <a href="rehabilitation.html" role="menuitem" tabindex="0">Réhabilitation</a>
                 </div>
             </div>
             <div class="dropdown">
-                <a href="educatif.html" class="dropbtn active">Éducatif</a>
-                <div class="dropdown-content">
-                    <a href="media.html">Media</a>
-                    <a href="rehabilitation.html">Réhabilitation</a>
+                <a href="educatif.html" class="dropbtn active" style="position:relative;z-index:2;" tabindex="0" aria-haspopup="true" aria-expanded="false">Éducatif</a>
+                <div class="dropdown-content" role="menu">
+                    <a href="but.html" role="menuitem" tabindex="0">BUT</a>
                 </div>
             </div>
             <a href="apropos.html">À propos</a>
+                <script>
+                    // Accessibilité clavier pour le menu déroulant
+                    document.addEventListener('DOMContentLoaded', function() {
+                        document.querySelectorAll('.dropdown .dropbtn').forEach(function(btn) {
+                            btn.addEventListener('keydown', function(e) {
+                                if (e.key === 'ArrowDown' || e.key === 'Enter' || e.key === ' ') {
+                                    e.preventDefault();
+                                    var menu = btn.nextElementSibling;
+                                    if (menu) {
+                                        menu.querySelector('a').focus();
+                                    }
+                                }
+                            });
+                        });
+                        document.querySelectorAll('.dropdown-content a').forEach(function(link, idx, arr) {
+                            link.addEventListener('keydown', function(e) {
+                                if (e.key === 'ArrowDown') {
+                                    e.preventDefault();
+                                    if (arr[idx+1]) arr[idx+1].focus();
+                                    else arr[0].focus();
+                                } else if (e.key === 'ArrowUp') {
+                                    e.preventDefault();
+                                    if (arr[idx-1]) arr[idx-1].focus();
+                                    else arr[arr.length-1].focus();
+                                } else if (e.key === 'Escape') {
+                                    e.preventDefault();
+                                    link.closest('.dropdown').querySelector('.dropbtn').focus();
+                                }
+                            });
+                        });
+                    });
+                </script>
             <div class="social-icons">
                 <a href="https://www.instagram.com/sacha.ignm" target="_blank" class="icon-btn insta"><i class="fab fa-instagram"></i></a>
                 <a href="https://www.linkedin.com/in/sacha-ignam-a9bb04300/" target="_blank" class="icon-btn linkedin"><i class="fab fa-linkedin-in"></i></a>
