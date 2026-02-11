@@ -40,6 +40,41 @@
         .main-logo:hover { transform: scale(1.15) rotate(-8deg); }
 
         nav { display: flex; align-items: center; gap: 25px; }
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #333; /* Match header color */
+            min-width: 180px;
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+            z-index: 1001;
+            border-radius: 0 0 14px 14px;
+            overflow: hidden;
+            top: calc(100% + 6px); /* More offset for border */
+            left: 0;
+            border: 2px solid #444;
+            border-top: none;
+            /* Remove transform for left alignment */
+        }
+        .dropdown-content a {
+            color: #a259ff;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            background: none;
+            font-size: 14px;
+            transition: background 0.2s, color 0.2s;
+        }
+        .dropdown-content a:hover {
+            background: #444;
+            color: #fff;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
         nav a {
             color: #ccc;
             text-decoration: none;
@@ -285,8 +320,20 @@
         </div>
         <nav>
             <a href="index.html" class="active">Accueil</a>
-            <a href="professionnel.html">Professionnel</a>
-            <a href="educatif.html">Éducatif</a>
+            <div class="dropdown">
+                <a href="professionnel.html" class="dropbtn" style="position:relative;z-index:2;">Professionnel</a>
+                <div class="dropdown-content">
+                    <a href="media.html">Media</a>
+                    <a href="rehabilitation.html">Réhabilitation</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <a href="educatif.html" class="dropbtn" style="position:relative;z-index:2;">Éducatif</a>
+                <div class="dropdown-content">
+                    <a href="media.html">Media</a>
+                    <a href="rehabilitation.html">Réhabilitation</a>
+                </div>
+            </div>
             <a href="apropos.html">À propos</a>
             <div class="social-icons">
                 <a href="https://www.instagram.com/sacha.ignm" target="_blank" class="icon-btn insta"><i class="fab fa-instagram"></i></a>
