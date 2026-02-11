@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SI - À Propos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* --- STYLE COMMUN --- */
+        body { margin: 0; padding: 0; background-color: #f4f6f8; font-family: 'Roboto', sans-serif; color: #333; }
+        
+        /* --- HEADER UNIFIÉ (PIXEL PERFECT) --- */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px; /* Strictement identique partout */
+    background-color: #333;
+    color: white;
+    height: 60px; /* On fixe la hauteur pour éviter les sauts */
+}
+
+.logo-container {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.main-logo {
+    height: 50px; /* Taille fixe */
+    width: auto;
+    display: block;
+    object-fit: contain;
+    transition: transform 0.3s;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    height: 100%;
+}
+
+nav a {
+    text-decoration: none;
+    color: #ccc;
+    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    line-height: 1; /* Évite les décalages de hauteur de texte */
+    transition: 0.3s;
+}
+
+nav a:hover, nav a.active {
+    color: white;
+    text-decoration: underline;
+}
+
+
+
+        .social-icons { display: flex; gap: 10px; margin-left: 20px; align-items: center; }
+        .icon-btn { width: 30px; height: 30px; border-radius: 50%; display: flex; justify-content: center; align-items: center; color: white; text-decoration: none; font-size: 14px; }
+        .insta { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+        .linkedin { background-color: #0077b5; }
+
+        /* --- STYLE SPÉCIFIQUE À PROPOS --- */
+        .container { max-width: 900px; margin: 60px auto; padding: 0 20px; display: flex; gap: 40px; flex-wrap: wrap; }
+        
+        .profile-info { flex: 2; min-width: 300px; }
+        .profile-info h1 { font-family: 'Playfair Display', serif; text-transform: uppercase; font-size: 32px; margin-bottom: 20px; color: #111; }
+        .profile-info p { line-height: 1.8; font-size: 16px; color: #555; }
+
+        .documents-sidebar { flex: 1; min-width: 250px; background: white; padding: 30px; border-radius: 4px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); height: fit-content; }
+        .documents-sidebar h3 { font-family: 'Playfair Display', serif; margin-top: 0; border-bottom: 2px solid #f4f6f8; padding-bottom: 10px; color: #111; }
+
+        /* BOUTONS DE TÉLÉCHARGEMENT */
+        .btn-download {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background-color: #333;
+            color: white;
+            text-decoration: none;
+            padding: 12px;
+            margin-top: 15px;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 14px;
+            transition: background 0.3s;
+        }
+        .btn-download:hover { background-color: #000; }
+        .btn-download i { font-size: 18px; }
+
+        .info-contact { margin-top: 25px; font-size: 14px; color: #777; }
+        .info-contact div { margin-bottom: 8px; }
+        .info-contact i { width: 20px; color: #333; }
+
+       footer {
+            background-color: #333;
+            color: #ddd;
+            padding: 40px 60px;
+            margin-top: 80px;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr;
+            gap: 40px;
+            font-size: 14px;
+        }
+
+        .footer-column h3 {
+            text-transform: uppercase;
+            font-size: 16px;
+            letter-spacing: 2px;
+            margin-bottom: 25px;
+            font-weight: 500;
+            color: white;
+        }
+
+        .footer-column p { line-height: 1.6; margin: 0; white-space: pre-line; }
+        .footer-socials { display: flex; gap: 15px; margin-top: 20px; }
+
+        @media (max-width: 768px) {
+            footer { grid-template-columns: 1fr; padding: 40px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+    <div class="logo-container" onclick="window.location.href='index.html'">
+        <img src="SI.png" alt="Logo SI" class="main-logo">
+    </div>
+    
+    <nav>
+        <a href="index.html" >Accueil</a>
+        <a href="professionnel.html">Professionnel</a>
+        <a href="educatif.html">Éducatif</a>
+        <a href="apropos.html" class="active">À propos</a>
+
+        <div class="social-icons">
+            <a href="https://www.instagram.com/sacha.ignm" target="_blank" class="icon-btn insta"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/in/sacha-ignam-a9bb04300/" target="_blank" class="icon-btn linkedin"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+    </nav>
+</header>
+
+    <div class="container">
+        <div class="profile-info">
+            <h1>À propos de moi</h1>
+            <p>
+                Bonjour ! Je m'appelle <strong>Sacha Ignam</strong>. Je suis actuellement étudiant en troisième année d'un BUT GEII à l'Université d'Aix-Marseille, sur le site de Salon de Provence.
+                Passionné par l'industrie du futur et l'automatisme, je développe mes compétences à travers des projets concrets que vous pourrez découvrir sur ce site.
+            </p>
+            <p>
+                Mon objectif est de mettre mon savoir-faire technique au service de l'industrie, tout en continuant 
+                à apprendre les nouvelles technologies de demain. Je suis rigoureux, curieux et toujours prêt à relever 
+                de nouveaux défis techniques.
+            </p>
+            
+            <div class="info-contact">
+                <div><i class="fas fa-envelope"></i> sacha.ignam@gmail.com</div>
+                <div><i class="fas fa-phone"></i> 06 29 45 62 53</div>
+                <div><i class="fas fa-map-marker-alt"></i> Toulon, France</div>
+            </div>
+        </div>
+
+        <div class="documents-sidebar">
+            <h3>Mes Documents</h3>
+            
+            <a href="cv.pdf" class="btn-download" target="_blank">
+                <i class="far fa-file-pdf"></i> Mon Curriculum Vitae
+            </a>
+
+            <a href="lettre-motivation.pdf" class="btn-download" target="_blank">
+                <i class="far fa-file-alt"></i> Lettre de Motivation
+            </a>
+            
+            <p style="font-size: 12px; color: #999; margin-top: 15px; text-align: center;">
+                Cliquez pour ouvrir ou télécharger.
+            </p>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-column">
+            <h3>About Me</h3>
+            <p>Bonjour ! Je m'appelle <strong>Sacha Ignam</strong>. Je suis actuellement étudiant en troisième année d'un BUT GEII à l'Université d'Aix-Marseille, sur le site de Salon de Provence.
+            Passionné par l'industrie du futur et l'automatisme, je développe mes compétences à travers des projets concrets.</p>
+        </div>
+
+        <div class="footer-column">
+            <h3>Localisation</h3>
+            <p>France, Provence-Alpes-Côte d'Azur, Var
+            83000 - Toulon </p>
+        </div>
+
+        <div class="footer-column">
+            <h3>Contact</h3>
+            <div class="footer-contact">
+                <p>sacha.ignam@gmail.com</p>
+                <p>+33 6 29 45 62 53</p>
+            </div>
+            <div class="footer-socials">
+                <a href="https://www.instagram.com/sacha.ignm" target="_blank" class="icon-btn insta"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/in/sacha-ignam-a9bb04300/" target="_blank" class="icon-btn linkedin"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
