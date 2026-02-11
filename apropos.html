@@ -4,24 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SI - À Propos</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
     <style>
-        /* --- STYLE COMMUN --- */
-        html { background-color: #333; } /* Pour éviter le blanc tout en bas sur très grands écrans */
-        
-        body { 
-            margin: 0; 
-            padding: 0; 
-            background-color: #f4f6f8; 
-            font-family: 'Roboto', sans-serif; 
-            color: #333; 
+        /* --- 1. BASE (FOND UNIFIÉ COMME LES AUTRES PAGES) --- */
+        html, body {
+            margin: 0;
+            padding: 0;
+            background-color: #0a0a0a;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(125, 122, 255, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(61, 74, 93, 0.2) 0%, transparent 40%),
+                #0a0a0a;
+            background-attachment: fixed;
+            font-family: 'Roboto', sans-serif;
+            color: white;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
         }
-        
-       /* --- 2. HEADER (Fixe à 60px) --- */
+
+        /* --- 2. HEADER (COPIE STRICTE DE INDEX.HTML) --- */
         header {
             display: flex;
             justify-content: space-between;
@@ -37,7 +42,7 @@
             box-sizing: border-box;
         }
 
-        .main-logo { height: 40px; width: auto; }
+        .main-logo { height: 40px; width: auto; cursor: pointer; }
 
         nav { display: flex; align-items: center; gap: 25px; }
         nav a { color: #ccc; text-decoration: none; text-transform: uppercase; font-size: 13px; font-weight: bold; transition: 0.3s; }
@@ -48,81 +53,126 @@
         .insta { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
         .linkedin { background-color: #0077b5; }
 
-
-        /* --- STYLE SPÉCIFIQUE À PROPOS --- */
+        /* --- 3. CONTENEUR PRINCIPAL --- */
         .container { 
-            max-width: 900px; 
-            margin: 120px auto 40px auto; /* Descendu à 120px pour décoller du header fixe */
-            padding: 0 20px; 
+            max-width: 1000px; 
+            margin: 120px auto 60px auto; 
+            padding: 0 40px; 
             display: flex; 
-            gap: 40px; 
+            gap: 50px; 
             flex-wrap: wrap;
-            flex: 1; /* Pousse le footer vers le bas */
+            flex: 1;
         }
         
-        .profile-info { flex: 2; min-width: 300px; }
-        .profile-info h1 { font-family: 'Playfair Display', serif; text-transform: uppercase; font-size: 32px; margin-bottom: 20px; color: #111; }
-        .profile-info p { line-height: 1.8; font-size: 16px; color: #555; }
+        .profile-info { 
+            flex: 2; 
+            min-width: 300px;
+            animation: fadeIn 1.2s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-        .documents-sidebar { flex: 1; min-width: 250px; background: white; padding: 30px; border-radius: 4px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); height: fit-content; }
-        .documents-sidebar h3 { font-family: 'Playfair Display', serif; margin-top: 0; border-bottom: 2px solid #f4f6f8; padding-bottom: 10px; color: #111; }
+        .profile-info h1 { 
+            font-family: 'Playfair Display', serif; 
+            text-transform: uppercase; 
+            font-size: 3rem; 
+            margin-bottom: 30px; 
+            background: linear-gradient(to right, #ffffff, #7d7aff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 4px;
+        }
+        
+        .profile-info p { 
+            line-height: 1.8; 
+            font-size: 17px; 
+            color: #ccc; 
+            font-weight: 300;
+            margin-bottom: 20px;
+        }
 
-        /* BOUTONS DE TÉLÉCHARGEMENT */
+        /* --- 4. SIDEBAR DOCUMENTS (STYLE GLASSMORPHISM) --- */
+        .documents-sidebar { 
+            flex: 1; 
+            min-width: 280px; 
+            background: rgba(255, 255, 255, 0.03); 
+            padding: 30px; 
+            border-radius: 4px; 
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(125, 122, 255, 0.1);
+            height: fit-content;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .documents-sidebar h3 { 
+            font-family: 'Playfair Display', serif; 
+            margin-top: 0; 
+            border-bottom: 1px solid rgba(125, 122, 255, 0.2); 
+            padding-bottom: 15px; 
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 18px;
+        }
+
+        /* BOUTONS TÉLÉCHARGEMENT */
         .btn-download {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
-            background-color: #333;
+            gap: 12px;
+            background-color: rgba(125, 122, 255, 0.1);
             color: white;
             text-decoration: none;
-            padding: 12px;
+            padding: 15px;
             margin-top: 15px;
-            border-radius: 4px;
-            font-weight: bold;
-            font-size: 14px;
-            transition: background 0.3s;
+            border-radius: 2px;
+            font-weight: 500;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 1px solid rgba(125, 122, 255, 0.3);
+            transition: all 0.3s ease;
         }
-        .btn-download:hover { background-color: #000; }
-        .btn-download i { font-size: 18px; }
+        
+        .btn-download:hover { 
+            background-color: rgba(125, 122, 255, 0.25);
+            border-color: #7d7aff;
+            transform: translateY(-2px);
+        }
 
-        .info-contact { margin-top: 25px; font-size: 14px; color: #777; }
-        .info-contact div { margin-bottom: 8px; }
-        .info-contact i { width: 20px; color: #333; }
+        .info-contact { margin-top: 35px; font-size: 14px; color: #aaa; }
+        .info-contact div { margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+        .info-contact i { color: #7d7aff; font-size: 16px; width: 20px; text-align: center; }
 
-        /* TRANSITION VERS FOOTER */
-        .transition-about {
+        /* --- 5. FOOTER --- */
+        .transition-zone {
             height: 100px;
-            background: linear-gradient(to bottom, #f4f6f8, #333);
+            background: linear-gradient(to bottom, transparent, #333);
             width: 100%;
         }
 
-       footer {
+        footer {
             background-color: #333;
             color: #ddd;
             padding: 60px 40px;
-            margin-top: 0; /* Suppression de la marge blanche */
             display: grid;
             grid-template-columns: 1.5fr 1fr 1fr;
             gap: 40px;
             font-size: 14px;
         }
 
-        .footer-column h3 {
-            text-transform: uppercase;
-            font-size: 16px;
-            letter-spacing: 2px;
-            margin-bottom: 25px;
-            font-weight: 500;
-            color: white;
-        }
-
+        .footer-column h3 { color: white; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 25px; }
         .footer-column p { line-height: 1.6; margin: 0; white-space: pre-line; }
-        .footer-socials { display: flex; gap: 15px; margin-top: 20px; }
 
         @media (max-width: 768px) {
-            footer { grid-template-columns: 1fr; padding: 40px 20px; }
-            .container { margin-top: 100px; }
+            .container { padding: 0 20px; margin-top: 100px; }
+            .profile-info h1 { font-size: 2.2rem; }
+            footer { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -132,13 +182,11 @@
         <div class="logo-container" onclick="window.location.href='index.html'">
             <img src="SI.png" alt="Logo SI" class="main-logo">
         </div>
-        
         <nav>
             <a href="index.html">Accueil</a>
             <a href="professionnel.html">Professionnel</a>
             <a href="educatif.html">Éducatif</a>
             <a href="apropos.html" class="active">À propos</a>
-
             <div class="social-icons">
                 <a href="https://www.instagram.com/sacha.ignm" target="_blank" class="icon-btn insta"><i class="fab fa-instagram"></i></a>
                 <a href="https://www.linkedin.com/in/sacha-ignam-a9bb04300/" target="_blank" class="icon-btn linkedin"><i class="fab fa-linkedin-in"></i></a>
@@ -150,18 +198,18 @@
         <div class="profile-info">
             <h1>À propos de moi</h1>
             <p>
-                Bonjour ! Je m'appelle <strong>Sacha Ignam</strong>. Je suis actuellement étudiant en troisième année d'un BUT GEII à l'Université d'Aix-Marseille, sur le site de Salon de Provence.
-                Passionné par l'industrie du futur et l'automatisme, je développe mes compétences à travers des projets concrets que vous pourrez découvrir sur ce site.
+                Bonjour ! Je m'appelle <strong>Sacha Ignam</strong>. Je suis actuellement étudiant en troisième année d'un BUT GEII à l'Université d'Aix-Marseille.
             </p>
             <p>
-                Mon objectif est de mettre mon savoir-faire technique au service de l'industrie, tout en continuant 
-                à apprendre les nouvelles technologies de demain. Je suis rigoureux, curieux et toujours prêt à relever 
-                de nouveaux défis techniques.
+                Passionné par l'industrie du futur et l'automatisme, je développe mes compétences à travers des projets concrets. Mon parcours m'a permis d'acquérir une solide base technique en programmation d'automates, en électronique et en gestion d'énergie.
+            </p>
+            <p>
+                Mon objectif est de mettre mon savoir-faire technique au service de l'industrie, tout en continuant à explorer les innovations de demain. Je suis reconnu pour ma rigueur, ma curiosité technologique et ma capacité à résoudre des problèmes complexes.
             </p>
             
             <div class="info-contact">
                 <div><i class="fas fa-envelope"></i> sacha.ignam@gmail.com</div>
-                <div><i class="fas fa-phone"></i> 06 29 45 62 53</div>
+                <div><i class="fas fa-phone"></i> +33 6 29 45 62 53</div>
                 <div><i class="fas fa-map-marker-alt"></i> Toulon, France</div>
             </div>
         </div>
@@ -170,30 +218,32 @@
             <h3>Mes Documents</h3>
             
             <a href="cv.pdf" class="btn-download" target="_blank">
-                <i class="far fa-file-pdf"></i> Mon Curriculum Vitae
+                <i class="far fa-file-pdf"></i> Curriculum Vitae
             </a>
 
             <a href="lettre-motivation.pdf" class="btn-download" target="_blank">
                 <i class="far fa-file-alt"></i> Lettre de Motivation
             </a>
             
-            <p style="font-size: 12px; color: #999; margin-top: 15px; text-align: center;">
-                Cliquez pour ouvrir ou télécharger.
+            <p style="font-size: 11px; color: #777; margin-top: 20px; text-align: center; font-style: italic;">
+                Formats PDF compatibles pour lecture immédiate.
             </p>
         </div>
     </div>
 
-    
+    <div class="transition-zone"></div>
 
-    <footer>
+   <footer>
         <div class="footer-column">
             <h3>About Me</h3>
-            <p>Sacha Ignam, étudiant en BUT GEII. Passionné par l'industrie du futur et l'automatisme.</p>
+            <p>Bonjour ! Je m'appelle <strong>Sacha Ignam</strong>. Je suis actuellement étudiant en troisième année d'un BUT GEII à l'Université d'Aix-Marseille, sur le site de Salon de Provence.
+            Passionné par l'industrie du futur et l'automatisme, je développe mes compétences à travers des projets concrets.</p>
         </div>
 
         <div class="footer-column">
             <h3>Localisation</h3>
-            <p>France, Var<br>83000 - Toulon </p>
+            <p>France, Provence-Alpes-Côte d'Azur, Var
+            83000 - Toulon </p>
         </div>
 
         <div class="footer-column">

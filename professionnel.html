@@ -4,13 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SI - Professionnel</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
     <style>
-        /* --- STYLE GÉNÉRAL --- */
-        body { margin: 0; padding: 0; background-color: #f4f6f8; font-family: 'Roboto', sans-serif; color: #333; }
+        /* --- 1. BASE (FOND UNIFIÉ COMME SUR INDEX) --- */
+        html, body {
+            margin: 0;
+            padding: 0;
+            background-color: #0a0a0a;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(125, 122, 255, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(61, 74, 93, 0.2) 0%, transparent 40%),
+                #0a0a0a;
+            background-attachment: fixed;
+            font-family: 'Roboto', sans-serif;
+            overflow-x: hidden;
+            color: white;
+        }
 
-         /* --- 2. HEADER (Fixe à 60px) --- */
+        /* --- 2. HEADER (COPIE STRICTE DE INDEX.HTML) --- */
         header {
             display: flex;
             justify-content: space-between;
@@ -26,7 +40,7 @@
             box-sizing: border-box;
         }
 
-        .main-logo { height: 40px; width: auto; }
+        .main-logo { height: 40px; width: auto; cursor: pointer; }
 
         nav { display: flex; align-items: center; gap: 25px; }
         nav a { color: #ccc; text-decoration: none; text-transform: uppercase; font-size: 13px; font-weight: bold; transition: 0.3s; }
@@ -37,108 +51,198 @@
         .insta { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
         .linkedin { background-color: #0077b5; }
 
-
-        /* --- CONTENU --- */
-        .hero-title { text-align: center; margin-top: 60px; margin-bottom: 60px; }
-        h1 { font-family: 'Playfair Display', serif; font-size: 40px; text-transform: uppercase; color: #111; }
-
-        .gallery-container { display: flex; justify-content: center; flex-wrap: wrap; gap: 30px; padding: 0 20px; max-width: 1200px; margin: 0 auto 50px auto; }
-        .gallery-item { flex: 1; min-width: 280px; max-width: 350px; text-align: center; }
-        
-        .gallery-item img { 
-            width: 100%; 
-            height: 250px; 
-            object-fit: cover; 
-            border-radius: 4px; 
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1); 
-            cursor: zoom-in;
-            transition: transform 0.3s ease;
+        /* --- 3. HERO SECTION --- */
+        .hero-section {
+            height: 55vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            background: transparent;
         }
-        .gallery-item img:hover { transform: scale(1.03); }
 
-        h3 { margin-top: 15px; font-family: 'Playfair Display', serif; font-size: 20px; color: #111; }
-
-        /* --- MODAL (AGRANDISSEMENT) --- */
-        #imageModal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0; top: 0; width: 100%; height: 100%;
-            background-color: rgba(0,0,0,0.9);
-            justify-content: center; align-items: center;
+        .hero-box {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 40px 60px;
+            border-radius: 2px;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: fadeIn 1.5s ease-out;
         }
-        #modalImg { max-width: 90%; max-height: 80%; border-radius: 4px; }
-        #closeBtn { position: absolute; top: 30px; right: 40px; color: white; font-size: 40px; font-weight: bold; cursor: pointer; }
 
-        /* --- PIED DE PAGE (FOOTER) --- */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-box h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            letter-spacing: 6px;
+            margin: 0;
+            background: linear-gradient(to right, #ffffff, #7d7aff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent; 
+            background-clip: text;
+            color: transparent;
+            text-transform: uppercase;
+        }
+
+        .hero-box p {
+            font-weight: 300;
+            letter-spacing: 4px;
+            color: #aaa;
+            margin-top: 15px;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+        }
+
+        /* --- 4. GALERIE --- */
+        .main-content {
+            background: transparent;
+            padding: 20px 0 100px 0;
+            width: 100%;
+        }
+
+        .gallery-container {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .gallery-item {
+            position: relative;
+            flex: 1; 
+            aspect-ratio: 1 / 1.1;
+            overflow: hidden;
+            border-radius: 4px;
+            background: #000;
+            border: 1px solid rgba(125, 122, 255, 0.15);
+            transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .gallery-item::after {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at center, transparent 30%, rgba(125, 122, 255, 0.15) 100%);
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            border: 1px solid rgba(125, 122, 255, 0.6);
+            box-shadow: 0 20px 40px rgba(125, 122, 255, 0.2);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(100%) brightness(0.7);
+            transition: all 0.7s ease;
+            cursor: pointer;
+        }
+
+        .gallery-item:hover img {
+            filter: grayscale(0%) brightness(1);
+            transform: scale(1.1);
+        }
+
+        .gallery-item h3 {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.9));
+            color: white;
+            font-size: 13px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-align: center;
+            z-index: 10;
+        }
+
+        /* --- 5. FOOTER (COMME SUR INDEX) --- */
+        .transition-zone {
+            height: 100px;
+            background: linear-gradient(to bottom, transparent, #333);
+        }
+
         footer {
             background-color: #333;
             color: #ddd;
-            padding: 40px 60px;
-            margin-top: 80px;
+            padding: 60px 40px;
             display: grid;
             grid-template-columns: 1.5fr 1fr 1fr;
             gap: 40px;
             font-size: 14px;
+            position: relative;
         }
 
-        .footer-column h3 {
-            text-transform: uppercase;
-            font-size: 16px;
-            letter-spacing: 2px;
-            margin-bottom: 25px;
-            font-weight: 500;
-            color: white;
-        }
-
+        .footer-column h3 { color: white; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 25px; }
         .footer-column p { line-height: 1.6; margin: 0; white-space: pre-line; }
-        .footer-socials { display: flex; gap: 15px; margin-top: 20px; }
+
+        #imageModal {
+            display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.95); justify-content: center; align-items: center;
+            backdrop-filter: blur(10px);
+        }
+        #modalImg { max-width: 80%; max-height: 80%; border: 1px solid rgba(255,255,255,0.1); border-radius: 4px; }
 
         @media (max-width: 768px) {
-            footer { grid-template-columns: 1fr; padding: 40px 20px; }
+            .gallery-container { flex-direction: column; align-items: center; }
+            .gallery-item { width: 100%; max-width: 320px; }
+            footer { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
     <header>
-    <div class="logo-container" onclick="window.location.href='index.html'">
-        <img src="SI.png" alt="Logo SI" class="main-logo">
-    </div>
-    
-    <nav>
-        <a href="index.html" >Accueil</a>
-        <a href="professionnel.html" class="active">Professionnel</a>
-        <a href="educatif.html">Éducatif</a>
-        <a href="apropos.html">À propos</a>
-
-        <div class="social-icons">
-            <a href="https://www.instagram.com/sacha.ignm" target="_blank" class="icon-btn insta"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.linkedin.com/in/sacha-ignam-a9bb04300/" target="_blank" class="icon-btn linkedin"><i class="fab fa-linkedin-in"></i></a>
+        <div class="logo-container" onclick="window.location.href='index.html'">
+            <img src="SI.png" alt="Logo SI" class="main-logo">
         </div>
-    </nav>
-</header>
+        <nav>
+            <a href="index.html">Accueil</a>
+            <a href="professionnel.html" class="active">Professionnel</a>
+            <a href="educatif.html">Éducatif</a>
+            <a href="apropos.html">À propos</a>
+            <div class="social-icons">
+                <a href="https://www.instagram.com/sacha.ignm" target="_blank" class="icon-btn insta"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/in/sacha-ignam-a9bb04300/" target="_blank" class="icon-btn linkedin"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </nav>
+    </header>
 
-    <div class="hero-title">
-        <h1>Mon Parcours Professionnel</h1>
-    </div>
-
-    <div class="gallery-container">
-        <div class="gallery-item">
-            <img src="https://via.placeholder.com/400x300?text=Maintenance" alt="Maintenance" onclick="openModal(this)">
-            <h3>Maintenance Industrielle</h3>
+    <section class="hero-section">
+        <div class="hero-box">
+            <h1>Parcours Professionnel</h1>
+            <p>Découvrez mes réalisations</p>
         </div>
-        <div class="gallery-item">
-            <div class="gallery-item"><img src="boitiercommande.jpg" alt="Automatisation" onclick="openModal(this)"></div>
+    </section>
 
-            <h3>Automatisation</h3>
+    <div class="main-content">
+        <div class="gallery-container">
+            <div class="gallery-item">
+                <img src="var.jpg" alt="Maintenance" onclick="openModal(this)">
+                <h3>Maintenance</h3>
+            </div>
+            <div class="gallery-item">
+                <img src="boitiercommande.jpg" alt="Automatisation" onclick="openModal(this)">
+                <h3>Automatisation</h3>
+            </div>
         </div>
     </div>
 
-    <div id="imageModal">
-        <span id="closeBtn" onclick="closeModal()">&times;</span>
-        <img id="modalImg" src="">
-    </div>
+    <div class="transition-zone"></div>
 
     <footer>
         <div class="footer-column">
@@ -166,6 +270,10 @@
         </div>
     </footer>
 
+    <div id="imageModal" onclick="closeModal()">
+        <img id="modalImg">
+    </div>
+
     <script>
         function openModal(element) {
             document.getElementById("imageModal").style.display = "flex";
@@ -174,11 +282,6 @@
         function closeModal() {
             document.getElementById("imageModal").style.display = "none";
         }
-        window.onclick = function(event) {
-            let modal = document.getElementById("imageModal");
-            if (event.target == modal) { closeModal(); }
-        }
     </script>
-
 </body>
 </html>

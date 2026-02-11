@@ -5,24 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SI - Éducatif</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
-        /* --- 1. BASE --- */
-        html {
+        /* --- 1. BASE (FOND UNIFIÉ) --- */
+        html, body {
+            margin: 0;
+            padding: 0;
+            background-color: #0a0a0a;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(125, 122, 255, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(61, 74, 93, 0.2) 0%, transparent 40%),
+                #0a0a0a;
+            background-attachment: fixed;
+            font-family: 'Roboto', sans-serif;
+            overflow-x: hidden;
+            color: white;
             scroll-behavior: smooth;
         }
 
-        body { 
-            margin: 0; 
-            padding: 0; 
-            background-color: #f4f6f8; 
-            font-family: 'Roboto', sans-serif; 
-            color: #333; 
-        }
-
-         /* --- 2. HEADER (Fixe à 60px) --- */
+        /* --- 2. HEADER (COPIE STRICTE DE INDEX.HTML) --- */
         header {
             display: flex;
             justify-content: space-between;
@@ -38,7 +41,7 @@
             box-sizing: border-box;
         }
 
-        .main-logo { height: 40px; width: auto; }
+        .main-logo { height: 40px; width: auto; cursor: pointer; }
 
         nav { display: flex; align-items: center; gap: 25px; }
         nav a { color: #ccc; text-decoration: none; text-transform: uppercase; font-size: 13px; font-weight: bold; transition: 0.3s; }
@@ -49,79 +52,128 @@
         .insta { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
         .linkedin { background-color: #0077b5; }
 
-
-        /* --- 3. CONTENU (AJUSTÉ POUR HEADER FIXE) --- */
-        .hero-title { 
-            text-align: center; 
-            padding-top: 120px; /* Espace pour ne pas être sous le header */
-            margin-bottom: 60px; 
+        /* --- 3. HERO SECTION --- */
+        .hero-section {
+            height: 50vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            background: transparent;
         }
 
-        h1 { 
-            font-family: 'Playfair Display', serif; 
-            font-size: 40px; 
-            text-transform: uppercase; 
-            color: #111; 
+        .hero-box {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 40px 60px;
+            border-radius: 2px;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-box h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            letter-spacing: 6px;
             margin: 0;
+            background: linear-gradient(to right, #ffffff, #7d7aff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent; 
+            background-clip: text;
+            color: transparent;
+            text-transform: uppercase;
         }
-        
+
+        .hero-box p {
+            font-weight: 300;
+            letter-spacing: 4px;
+            color: #aaa;
+            margin-top: 15px;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+        }
+
+        /* --- 4. CONTENT SECTION (STYLE ÉPURÉ SOMBRE) --- */
+        .main-content {
+            background: transparent;
+            padding: 40px 0 100px 0;
+        }
+
         .content-section { 
-            max-width: 800px; 
+            max-width: 850px; 
             margin: 0 auto; 
             padding: 0 20px; 
-            min-height: 500px; 
         }
         
         .edu-item { 
-            background: white; 
-            padding: 30px; 
-            border-radius: 8px; 
-            margin-bottom: 30px; 
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05); 
-            border-left: 5px solid #333; 
+            background: rgba(255, 255, 255, 0.03); 
+            padding: 40px; 
+            border-radius: 4px; 
+            margin-bottom: 40px; 
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(125, 122, 255, 0.1); 
+            transition: all 0.4s ease;
+        }
+
+        .edu-item:hover {
+            border: 1px solid rgba(125, 122, 255, 0.4);
+            transform: translateX(10px);
+            background: rgba(255, 255, 255, 0.05);
         }
         
         .edu-item h2 { 
             margin-top: 0; 
             font-family: 'Playfair Display', serif; 
-            color: #111; 
-            font-size: 22px;
+            color: #7d7aff; 
+            font-size: 24px;
+            letter-spacing: 1px;
         }
 
-        /* --- 4. ZONE DE TRANSITION (DÉGRADÉ) --- */
-        .transition-edu {
-            height: 150px;
-            background: linear-gradient(to bottom, #f4f6f8, #333); /* Du gris clair au gris footer */
-            width: 100%;
+        .edu-item p {
+            line-height: 1.8;
+            color: #ccc;
+            font-weight: 300;
         }
 
-        /* --- 5. FOOTER (SANS LIGNE BLANCHE) --- */
+        .date-location {
+            color: #fff;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        /* --- 5. FOOTER --- */
+        .transition-zone {
+            height: 100px;
+            background: linear-gradient(to bottom, transparent, #333);
+        }
+
         footer {
             background-color: #333;
             color: #ddd;
             padding: 60px 40px;
-            margin-top: 0; /* Plus de ligne blanche */
             display: grid;
             grid-template-columns: 1.5fr 1fr 1fr;
             gap: 40px;
             font-size: 14px;
+            position: relative;
         }
 
-        .footer-column h3 {
-            text-transform: uppercase;
-            font-size: 16px;
-            letter-spacing: 2px;
-            margin-bottom: 25px;
-            font-weight: 500;
-            color: white;
-        }
-
-        .footer-column p { line-height: 1.6; margin: 0; }
-        .footer-socials { display: flex; gap: 15px; margin-top: 20px; }
+        .footer-column h3 { color: white; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 25px; }
+        .footer-column p { line-height: 1.6; margin: 0; white-space: pre-line; }
 
         @media (max-width: 768px) {
-            footer { grid-template-columns: 1fr; padding: 40px 20px; }
-            .hero-title { padding-top: 100px; }
+            .hero-box h1 { font-size: 2rem; padding: 20px; }
+            footer { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -131,13 +183,11 @@
         <div class="logo-container" onclick="window.location.href='index.html'">
             <img src="SI.png" alt="Logo SI" class="main-logo">
         </div>
-        
         <nav>
             <a href="index.html">Accueil</a>
             <a href="professionnel.html">Professionnel</a>
             <a href="educatif.html" class="active">Éducatif</a>
             <a href="apropos.html">À propos</a>
-
             <div class="social-icons">
                 <a href="https://www.instagram.com/sacha.ignm" target="_blank" class="icon-btn insta"><i class="fab fa-instagram"></i></a>
                 <a href="https://www.linkedin.com/in/sacha-ignam-a9bb04300/" target="_blank" class="icon-btn linkedin"><i class="fab fa-linkedin-in"></i></a>
@@ -145,41 +195,50 @@
         </nav>
     </header>
 
-    <div class="hero-title">
-        <h1>Ma Formation & Éducation</h1>
+    <section class="hero-section">
+        <div class="hero-box">
+            <h1>Formation & Éducation</h1>
+            <p>Mon parcours académique et réalisations </p>
+        </div>
+    </section>
+
+    <div class="main-content">
+        <div class="content-section">
+            <div class="edu-item">
+                <span class="date-location">IUT d'Aix-Marseille, Salon-de-Provence | 2023 - 2026</span>
+                <h2>Bachelor Universitaire Technologique (BUT) GEII</h2>
+                <p>Parcours <strong>Automatisme et Informatique Industrielle</strong>. Apprentissage approfondi des systèmes embarqués, de la programmation industrielle (API) et de la distribution d'énergie.</p>
+            </div>
+
+            <div class="edu-item">
+                <span class="date-location">Lycée du Coudon | 2020 - 2023</span>
+                <h2>Baccalauréat Général</h2>
+                <p>Spécialités : <strong>Mathématiques et Sciences de l'Ingénieur</strong>.
+            </div>
+        </div>
     </div>
 
-    <div class="content-section">
-        <div class="edu-item">
-            <h2>Bachelor Universitaire Technologique (BUT) GEII</h2>
-            <p><strong>IUT d'Aix-Marseille, site de Salon-de-Provence</strong> | 2023 - 2026</p>
-            <p>Parcours Automatisme et Informatique Industrielle. Apprentissage des systèmes embarqués, de la programmation industrielle et de la distribution d'énergie.</p>
-        </div>
-
-        <div class="edu-item">
-            <h2>Baccalauréat Général</h2>
-            <p><strong>Lycée du Coudon</strong> | 2020 - 2023</p>
-            <p>Spécialités : Mathématiques et Sciences de l'Ingénieur. Mention Bien.</p>
-        </div>
-    </div>
-
-   
+    <div class="transition-zone"></div>
 
     <footer>
         <div class="footer-column">
             <h3>About Me</h3>
-            <p>Bonjour ! Je m'appelle <strong>Sacha Ignam</strong>. Je suis actuellement étudiant en troisième année d'un BUT GEII à l'Université d'Aix-Marseille.</p>
+            <p>Bonjour ! Je m'appelle <strong>Sacha Ignam</strong>. Je suis actuellement étudiant en troisième année d'un BUT GEII à l'Université d'Aix-Marseille, sur le site de Salon de Provence.
+            Passionné par l'industrie du futur et l'automatisme, je développe mes compétences à travers des projets concrets.</p>
         </div>
 
         <div class="footer-column">
             <h3>Localisation</h3>
-            <p>France, Var<br>83000 - Toulon</p>
+            <p>France, Provence-Alpes-Côte d'Azur, Var
+            83000 - Toulon </p>
         </div>
 
         <div class="footer-column">
             <h3>Contact</h3>
-            <p>sacha.ignam@gmail.com</p>
-            <p>+33 6 29 45 62 53</p>
+            <div class="footer-contact">
+                <p>sacha.ignam@gmail.com</p>
+                <p>+33 6 29 45 62 53</p>
+            </div>
             <div class="footer-socials">
                 <a href="https://www.instagram.com/sacha.ignm" target="_blank" class="icon-btn insta"><i class="fab fa-instagram"></i></a>
                 <a href="https://www.linkedin.com/in/sacha-ignam-a9bb04300/" target="_blank" class="icon-btn linkedin"><i class="fab fa-linkedin-in"></i></a>
