@@ -8,7 +8,18 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         /* --- STYLE COMMUN --- */
-        body { margin: 0; padding: 0; background-color: #f4f6f8; font-family: 'Roboto', sans-serif; color: #333; }
+        html { background-color: #333; } /* Pour éviter le blanc tout en bas sur très grands écrans */
+        
+        body { 
+            margin: 0; 
+            padding: 0; 
+            background-color: #f4f6f8; 
+            font-family: 'Roboto', sans-serif; 
+            color: #333; 
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
         
        /* --- 2. HEADER (Fixe à 60px) --- */
         header {
@@ -39,7 +50,15 @@
 
 
         /* --- STYLE SPÉCIFIQUE À PROPOS --- */
-        .container { max-width: 900px; margin: 60px auto; padding: 0 20px; display: flex; gap: 40px; flex-wrap: wrap; }
+        .container { 
+            max-width: 900px; 
+            margin: 120px auto 40px auto; /* Descendu à 120px pour décoller du header fixe */
+            padding: 0 20px; 
+            display: flex; 
+            gap: 40px; 
+            flex-wrap: wrap;
+            flex: 1; /* Pousse le footer vers le bas */
+        }
         
         .profile-info { flex: 2; min-width: 300px; }
         .profile-info h1 { font-family: 'Playfair Display', serif; text-transform: uppercase; font-size: 32px; margin-bottom: 20px; color: #111; }
@@ -71,11 +90,18 @@
         .info-contact div { margin-bottom: 8px; }
         .info-contact i { width: 20px; color: #333; }
 
+        /* TRANSITION VERS FOOTER */
+        .transition-about {
+            height: 100px;
+            background: linear-gradient(to bottom, #f4f6f8, #333);
+            width: 100%;
+        }
+
        footer {
             background-color: #333;
             color: #ddd;
-            padding: 40px 60px;
-            margin-top: 80px;
+            padding: 60px 40px;
+            margin-top: 0; /* Suppression de la marge blanche */
             display: grid;
             grid-template-columns: 1.5fr 1fr 1fr;
             gap: 40px;
@@ -96,28 +122,29 @@
 
         @media (max-width: 768px) {
             footer { grid-template-columns: 1fr; padding: 40px 20px; }
+            .container { margin-top: 100px; }
         }
     </style>
 </head>
 <body>
 
     <header>
-    <div class="logo-container" onclick="window.location.href='index.html'">
-        <img src="SI.png" alt="Logo SI" class="main-logo">
-    </div>
-    
-    <nav>
-        <a href="index.html" >Accueil</a>
-        <a href="professionnel.html">Professionnel</a>
-        <a href="educatif.html">Éducatif</a>
-        <a href="apropos.html" class="active">À propos</a>
-
-        <div class="social-icons">
-            <a href="https://www.instagram.com/sacha.ignm" target="_blank" class="icon-btn insta"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.linkedin.com/in/sacha-ignam-a9bb04300/" target="_blank" class="icon-btn linkedin"><i class="fab fa-linkedin-in"></i></a>
+        <div class="logo-container" onclick="window.location.href='index.html'">
+            <img src="SI.png" alt="Logo SI" class="main-logo">
         </div>
-    </nav>
-</header>
+        
+        <nav>
+            <a href="index.html">Accueil</a>
+            <a href="professionnel.html">Professionnel</a>
+            <a href="educatif.html">Éducatif</a>
+            <a href="apropos.html" class="active">À propos</a>
+
+            <div class="social-icons">
+                <a href="https://www.instagram.com/sacha.ignm" target="_blank" class="icon-btn insta"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/in/sacha-ignam-a9bb04300/" target="_blank" class="icon-btn linkedin"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </nav>
+    </header>
 
     <div class="container">
         <div class="profile-info">
@@ -156,17 +183,17 @@
         </div>
     </div>
 
+    
+
     <footer>
         <div class="footer-column">
             <h3>About Me</h3>
-            <p>Bonjour ! Je m'appelle <strong>Sacha Ignam</strong>. Je suis actuellement étudiant en troisième année d'un BUT GEII à l'Université d'Aix-Marseille, sur le site de Salon de Provence.
-            Passionné par l'industrie du futur et l'automatisme, je développe mes compétences à travers des projets concrets.</p>
+            <p>Sacha Ignam, étudiant en BUT GEII. Passionné par l'industrie du futur et l'automatisme.</p>
         </div>
 
         <div class="footer-column">
             <h3>Localisation</h3>
-            <p>France, Provence-Alpes-Côte d'Azur, Var
-            83000 - Toulon </p>
+            <p>France, Var<br>83000 - Toulon </p>
         </div>
 
         <div class="footer-column">
