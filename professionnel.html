@@ -170,16 +170,12 @@
             z-index: 10;
         }
 
-        /* --- 5. FOOTER (COMME SUR INDEX) --- */
-        .transition-zone {
-            height: 100px;
-            background: linear-gradient(to bottom, transparent, #333);
-        }
-
+       /* --- PIED DE PAGE (FOOTER) --- */
         footer {
             background-color: #333;
             color: #ddd;
-            padding: 60px 40px;
+            padding: 60px 60px 40px 60px; /* Ajustement du padding haut */
+            margin-top: 0; /* On retire la marge pour que le fondu colle au contenu */
             display: grid;
             grid-template-columns: 1.5fr 1fr 1fr;
             gap: 40px;
@@ -187,8 +183,42 @@
             position: relative;
         }
 
-        .footer-column h3 { color: white; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 25px; }
+        /* L'effet de fondu au-dessus du footer */
+        footer::before {
+            content: "";
+            position: absolute;
+            top: -100px; /* Hauteur du fondu */
+            left: 0;
+            width: 100%;
+            height: 100px;
+            /* Remplace #f4f6f8 par la couleur de fond de ta page (ex: #0a0a0a pour l'accueil) */
+            background: linear-gradient(to bottom, transparent, #333);
+            pointer-events: none;
+        }
+
+        .footer-column h3 {
+            text-transform: uppercase;
+            font-size: 16px;
+            letter-spacing: 2px;
+            margin-bottom: 25px;
+            font-weight: 500;
+            color: white;
+        }
+
         .footer-column p { line-height: 1.6; margin: 0; white-space: pre-line; }
+        .footer-contact { display: flex; flex-direction: column; gap: 10px; }
+        .footer-socials { display: flex; gap: 15px; margin-top: 20px; }
+
+        @media (max-width: 768px) {
+            footer { 
+                grid-template-columns: 1fr; 
+                padding: 40px 20px; 
+            }
+            footer::before {
+                top: -60px;
+                height: 60px;
+            }
+        }
 
         #imageModal {
             display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%;
