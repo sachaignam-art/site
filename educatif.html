@@ -391,11 +391,21 @@
 
     <div class="main-content">
         <div class="content-section">
-            <div class="edu-item">
+            <a href="but.html" class="edu-item clickable-edu-item" style="display:block;text-decoration:none;color:inherit;cursor:pointer;">
                 <span class="date-location">IUT d'Aix-Marseille, Salon-de-Provence | 2023 - 2026</span>
-                <h2>Bachelor Universitaire Technologique (BUT) GEII</h2>
+                <h2 style="margin:0;">Bachelor Universitaire Technologique (BUT) GEII</h2>
                 <p>Parcours <strong>Automatisme et Informatique Industrielle</strong>. Apprentissage approfondi des systèmes embarqués, de la programmation industrielle (API) et de la distribution d'énergie.</p>
-            </div>
+            </a>
+        <style>
+        .clickable-edu-item:hover {
+            background: rgba(125,122,255,0.08);
+            box-shadow: 0 2px 12px 0 rgba(125,122,255,0.10);
+            transition: background 0.18s, box-shadow 0.18s;
+        }
+        .clickable-edu-item {
+            border-radius: 8px;
+        }
+        </style>
 
             <div class="edu-item">
                 <span class="date-location">Lycée du Coudon | 2020 - 2023</span>
