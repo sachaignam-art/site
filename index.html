@@ -9,7 +9,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
-        /* --- STYLE GÉNÉRAL --- */
+        /* --- 1. BASE & SCROLL --- */
+        html {
+            overflow-y: scroll; /* Force la scrollbar à droite */
+            scroll-behavior: smooth;
+        }
+
         body {
             margin: 0;
             padding: 0;
@@ -18,8 +23,7 @@
             color: #333;
         }
 
-        /* --- EN-TÊTE (HEADER) --- */
-       /* --- HEADER UNIFIÉ (PIXEL PERFECT) --- */
+              /* --- HEADER UNIFIÉ (PIXEL PERFECT) --- */
 header {
     display: flex;
     justify-content: space-between;
@@ -30,47 +34,43 @@ header {
     height: 60px; /* On fixe la hauteur pour éviter les sauts */
 }
 
-.logo-container {
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    height: 100%;
-}
+        .logo-container {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            height: 100%;
+        }
 
-.main-logo {
-    height: 50px; /* Taille fixe */
-    width: auto;
-    display: block;
-    object-fit: contain;
-    transition: transform 0.3s;
-}
+        .main-logo {
+            height: 45px; /* Ajusté pour tenir parfaitement dans les 60px */
+            width: auto;
+            display: block;
+            object-fit: contain;
+        }
 
-nav {
-    display: flex;
-    align-items: center;
-    gap: 25px;
-    height: 100%;
-}
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            height: 100%;
+        }
 
-nav a {
-    text-decoration: none;
-    color: #ccc;
-    text-transform: uppercase;
-    font-size: 13px;
-    font-weight: bold;
-    letter-spacing: 1px;
-    line-height: 1; /* Évite les décalages de hauteur de texte */
-    transition: 0.3s;
-}
+        nav a {
+            text-decoration: none;
+            color: #ccc;
+            text-transform: uppercase;
+            font-size: 13px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            line-height: 1;
+            transition: 0.3s;
+        }
 
-nav a:hover, nav a.active {
-    color: white;
-    text-decoration: underline;
-}
+        nav a:hover, nav a.active {
+            color: white;
+            text-decoration: underline;
+        }
 
-
-
-        /* --- ICÔNES RÉSEAUX --- */
         .social-icons {
             display: flex;
             gap: 10px;
@@ -88,40 +88,70 @@ nav a:hover, nav a.active {
             color: white;
             text-decoration: none;
             font-size: 14px;
-            transition: transform 0.2s;
+            transition: 0.2s;
         }
 
         .icon-btn:hover { transform: scale(1.1); }
         .insta { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
         .linkedin { background-color: #0077b5; }
 
-        /* --- TITRE PRINCIPAL --- */
-        .hero-title {
+        /* --- 3. SECTION HERO (LOOK IMAGE 1) --- */
+        .hero-section {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: radial-gradient(circle, #3d4a5d 0%, #111 100%);
+            color: white;
             text-align: center;
-            margin-top: 60px;
-            margin-bottom: 60px;
+            margin-top: 0; /* Pas besoin de marge car le header est en fixed */
         }
 
-        h1 {
+        .hero-box {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 40px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .hero-box h1 {
             font-family: 'Playfair Display', serif;
             font-size: 40px;
             text-transform: uppercase;
-            color: #111;
-            line-height: 1.2;
+            margin: 0 0 20px 0;
+            color: white;
         }
 
-        /* --- GALERIE D'IMAGES --- */
+        .cv-button {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: white;
+            color: #111;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            box-shadow: 0 0 15px rgba(255,255,255,0.3);
+        }
+
+        /* --- 4. GALERIE ALIGNÉE (L'ORDRE DES 4 PHOTOS) --- */
+        .main-content {
+            background-color: #111;
+            padding: 80px 20px;
+        }
+
         .gallery-container {
-            display: flex;
+            display: flex; /* Aligne sur une seule ligne */
             justify-content: center;
-            flex-wrap: wrap;
+            flex-wrap: wrap; /* Permet de passer à la ligne sur mobile seulement */
             gap: 20px;
-            padding: 0 20px;
-            max-width: 1200px;
-            margin: 0 auto 50px auto;
+            max-width: 1300px;
+            margin: 0 auto;
         }
 
         .gallery-item {
+            position: relative;
             flex: 1;
             min-width: 250px;
             max-width: 300px;
@@ -132,121 +162,93 @@ nav a:hover, nav a.active {
             height: 250px;
             object-fit: cover;
             border-radius: 4px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
             cursor: zoom-in;
+            transition: 0.3s;
         }
 
-        .gallery-item img:hover {
-            transform: scale(1.03);
-        }
+        .gallery-item img:hover { transform: scale(1.03); }
 
-        /* --- MODAL --- */
-        #imageModal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.9);
-            justify-content: center;
-            align-items: center;
-        }
-
-        #modalImg {
-            max-width: 90%;
-            max-height: 80%;
-            border-radius: 4px;
-        }
-
-        #closeBtn {
+        .badge {
             position: absolute;
-            top: 30px;
-            right: 40px;
+            top: 10px;
+            left: 10px;
+            background-color: #7d7aff;
             color: white;
-            font-size: 40px;
+            padding: 4px 10px;
+            font-size: 10px;
             font-weight: bold;
-            cursor: pointer;
-        } 
+            border-radius: 3px;
+            z-index: 5;
+        }
 
-   
-    
+        /* --- 5. MODAL ET FOOTER --- */
+        #imageModal {
+            display: none; position: fixed; z-index: 2000; left: 0; top: 0;
+            width: 100%; height: 100%; background-color: rgba(0,0,0,0.9);
+            justify-content: center; align-items: center;
+        }
+        #modalImg { max-width: 90%; max-height: 80%; }
+        #closeBtn { position: absolute; top: 30px; right: 40px; color: white; font-size: 40px; cursor: pointer; }
 
-        /* --- PIED DE PAGE (FOOTER) --- */
         footer {
-            background-color: #333; /* Gris anthracite identique au header */
+            background-color: #333;
             color: #ddd;
             padding: 40px 60px;
-            margin-top: 50px;
             display: grid;
             grid-template-columns: 1.5fr 1fr 1fr;
             gap: 40px;
-            font-size: 14px;
         }
 
-        .footer-column h3 {
-            text-transform: uppercase;
-            font-size: 16px;
-            letter-spacing: 2px;
-            margin-bottom: 25px;
-            font-weight: 500;
-            color: white;
-        }
-
-        .footer-column p {
-            line-height: 1.6;
-            margin: 0;
-            white-space: pre-line;
-        }
-
-        .footer-contact {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .footer-socials {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        @media (max-width: 768px) {
-            footer { grid-template-columns: 1fr; padding: 40px 20px; }
-        }
+        .extra-space { height: 400px; background-color: #111; }
     </style>
 </head>
 <body>
 
     <header>
-    <div class="logo-container" onclick="window.location.href='index.html'">
-        <img src="SI.png" alt="Logo SI" class="main-logo">
-    </div>
-    
-    <nav>
-        <a href="index.html" class="active">Accueil</a>
-        <a href="professionnel.html">Professionnel</a>
-        <a href="educatif.html">Éducatif</a>
-        <a href="apropos.html">À propos</a>
-
-        <div class="social-icons">
-            <a href="https://www.instagram.com/sacha.ignm" target="_blank" class="icon-btn insta"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.linkedin.com/in/sacha-ignam-a9bb04300/" target="_blank" class="icon-btn linkedin"><i class="fab fa-linkedin-in"></i></a>
+        <div class="logo-container" onclick="window.location.href='index.html'">
+            <img src="SI.png" alt="Logo SI" class="main-logo">
         </div>
-    </nav>
-</header>
+        <nav>
+            <a href="index.html" class="active">Accueil</a>
+            <a href="professionnel.html">Professionnel</a>
+            <a href="educatif.html">Éducatif</a>
+            <a href="apropos.html">À propos</a>
+            <div class="social-icons">
+                <a href="https://www.instagram.com/sacha.ignm" target="_blank" class="icon-btn insta"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/in/sacha-ignam-a9bb04300/" target="_blank" class="icon-btn linkedin"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </nav>
+    </header>
 
-    <div class="hero-title">
-        <h1>Découvrez mes services <br> et compétences</h1>
-    </div>
+    <section class="hero-section">
+        <div class="hero-box">
+            <h1>MON PORTFOLIO</h1>
+            <p>Je suis ravi de vous accueillir. Découvrez mes services et mes compétences.</p>
+            <a href="curriculum_vitae.pdf" class="cv-button" target="_blank">curriculum_vitae.pdf</a>
+        </div>
+        <i class="fas fa-chevron-down" style="margin-top: 40px; font-size: 24px;"></i>
+    </section>
 
-    <div class="gallery-container">
-        <div class="gallery-item"><img src="boitiercommande.jpg" alt="Tableau de commande" onclick="openModal(this)"></div>
-        <div class="gallery-item"><img src="handling.jpg" alt="Robotique" onclick="openModal(this)"></div>
-        <div class="gallery-item"><img src="var.jpg" alt="Variateur" onclick="openModal(this)"></div>
-        <div class="gallery-item"><img src="carteson.jpg" alt="Electronique" onclick="openModal(this)"></div>
+    <div class="main-content">
+        <div class="gallery-container">
+            <div class="gallery-item">
+                <span class="badge">COURS</span>
+                <img src="boitiercommande.jpg" alt="Projet 1" onclick="openModal(this)">
+            </div>
+            <div class="gallery-item">
+                <span class="badge">COURS</span>
+                <img src="handling.jpg" alt="Projet 2" onclick="openModal(this)">
+            </div>
+            <div class="gallery-item">
+                <span class="badge">HORS-COURS</span>
+                <img src="var.jpg" alt="Projet 3" onclick="openModal(this)">
+            </div>
+            <div class="gallery-item">
+                <span class="badge">HORS-COURS</span>
+                <img src="carteson.jpg" alt="Projet 4" onclick="openModal(this)">
+            </div>
+        </div>
+        <div class="extra-space"></div>
     </div>
 
     <div id="imageModal">
@@ -257,26 +259,16 @@ nav a:hover, nav a.active {
     <footer>
         <div class="footer-column">
             <h3>About Me</h3>
-            <p>Bonjour ! Je m'appelle <strong>Sacha Ignam</strong>. Je suis actuellement étudiant en troisième année d'un BUT GEII à l'Université d'Aix-Marseille, sur le site de Salon de Provence.
-                Passionné par l'industrie du futur et l'automatisme, je développe mes compétences à travers des projets concrets.</p>
+            <p>Je m'appelle <strong>Sacha Ignam</strong>, étudiant en BUT GEII à l'Université d'Aix-Marseille.</p>
         </div>
-
         <div class="footer-column">
             <h3>Localisation</h3>
-            <p>France, Provence-Alpes-Côte d'Azur, Var
-            83000 - Toulon </p>
+            <p>83000 - Toulon, France</p>
         </div>
-
         <div class="footer-column">
             <h3>Contact</h3>
-            <div class="footer-contact">
-                <p>sacha.ignam@gmail.com</p>
-                <p>+33 6 29 45 62 53</p>
-            </div>
-            <div class="footer-socials">
-                <a href="https://www.instagram.com/sacha.ignm" target="_blank" class="icon-btn insta"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.linkedin.com/in/sacha-ignam-a9bb04300/" target="_blank" class="icon-btn linkedin"><i class="fab fa-linkedin-in"></i></a>
-            </div>
+            <p>sacha.ignam@gmail.com</p>
+            <p>+33 6 29 45 62 53</p>
         </div>
     </footer>
 
@@ -285,18 +277,9 @@ nav a:hover, nav a.active {
             document.getElementById("imageModal").style.display = "flex";
             document.getElementById("modalImg").src = element.src;
         }
-
         function closeModal() {
             document.getElementById("imageModal").style.display = "none";
         }
-
-        window.onclick = function(event) {
-            let modal = document.getElementById("imageModal");
-            if (event.target == modal) {
-                closeModal();
-            }
-        }
     </script>
-
 </body>
 </html>
