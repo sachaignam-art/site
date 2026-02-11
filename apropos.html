@@ -237,12 +237,34 @@
             border-bottom: 1px solid rgba(125,122,255,0.2); padding-bottom: 10px; margin-top: 0; color: #7d7aff;
         }
 
-        /* Compétences Badges */
-        .skills-grid { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 15px; }
-        .skill-badge { 
-            background: rgba(125, 122, 255, 0.1); border: 1px solid rgba(125, 122, 255, 0.3);
-            padding: 5px 12px; border-radius: 4px; font-size: 12px; color: #eee;
-        }
+       /* Compétences Badges avec Animation */
+.skills-grid { 
+    display: flex; 
+    flex-wrap: wrap; 
+    gap: 8px; 
+    margin-top: 15px; 
+}
+
+.skill-badge { 
+    background: rgba(125, 122, 255, 0.1); 
+    border: 1px solid rgba(125, 122, 255, 0.3);
+    padding: 6px 14px; 
+    border-radius: 4px; 
+    font-size: 12px; 
+    color: #eee;
+    cursor: default;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Transition fluide */
+    display: inline-block;
+}
+
+/* --- L'Animation au survol --- */
+.skill-badge:hover {
+    background: rgba(125, 122, 255, 0.25); /* Fond plus brillant */
+    border-color: #a259ff; /* Couleur violette vibrante */
+    color: #fff;
+    transform: translateY(-5px); /* Effet de levée */
+    box-shadow: 0 5px 15px rgba(125, 122, 255, 0.3); /* Ombre portée lumineuse */
+}
 
         /* Habilitations List */
         .hab-item { display: flex; align-items: center; gap: 10px; font-size: 14px; margin-bottom: 8px; color: #ccc; }
@@ -261,44 +283,58 @@
         .info-contact div { margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
         .info-contact i { color: #7d7aff; font-size: 16px; width: 20px; text-align: center; }
 
-       /* --- PIED DE PAGE (FOOTER) --- */
-        footer {
-            background-color: #333;
-            color: #ddd;
-            padding: 60px 60px 40px 60px; /* Ajustement du padding haut */
-            margin-top: 0; /* On retire la marge pour que le fondu colle au contenu */
-            display: grid;
-            grid-template-columns: 1.5fr 1fr 1fr;
-            gap: 40px;
-            font-size: 14px;
-            position: relative;
-        }
+      /* --- PIED DE PAGE (FOOTER) CORRIGÉ --- */
+footer {
+    background-color: #333;
+    color: #ddd;
+    padding: 60px 40px 40px 40px; /* Padding uniforme */
+    display: grid;
+    /* Utilisation de 3 colonnes égales (1fr) pour un équilibre parfait */
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 40px;
+    font-size: 14px;
+    position: relative;
+    /* Centre le contenu de la grille si l'écran est très large */
+    justify-items: center; 
+    text-align: center; /* Optionnel : centre le texte à l'intérieur des colonnes */
+}
 
-        /* L'effet de fondu au-dessus du footer */
-       
-        .footer-column h3 {
-            text-transform: uppercase;
-            font-size: 16px;
-            letter-spacing: 2px;
-            margin-bottom: 25px;
-            font-weight: 500;
-            color: white;
-        }
+.footer-column {
+    /* Largeur maximale pour éviter que les colonnes ne s'étalent trop */
+    max-width: 300px; 
+}
 
-        .footer-column p { line-height: 1.6; margin: 0; white-space: pre-line; }
-        .footer-contact { display: flex; flex-direction: column; gap: 10px; }
-        .footer-socials { display: flex; gap: 15px; margin-top: 20px; }
+.footer-column h3 {
+    text-transform: uppercase;
+    font-size: 16px;
+    letter-spacing: 2px;
+    margin-bottom: 25px;
+    font-weight: 500;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+}
 
-        @media (max-width: 768px) {
-            footer { 
-                grid-template-columns: 1fr; 
-                padding: 40px 20px; 
-            }
-            footer::before {
-                top: -60px;
-                height: 60px;
-            }
-        }
+.footer-column p { 
+    line-height: 1.6; 
+    margin: 0; 
+    white-space: pre-line; 
+}
+
+.footer-socials { 
+    display: flex; 
+    gap: 15px; 
+    margin-top: 20px; 
+    justify-content: center; /* Centre les icônes sous le titre */
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 768px) {
+    footer { 
+        grid-template-columns: 1fr; /* Une seule colonne sur mobile */
+        padding: 40px 20px; 
+        text-align: center;
+    }
+}
     </style>
 </head>
 <body>
@@ -432,9 +468,9 @@
 
    <footer>
         <div class="footer-column">
-            <h3>About Me</h3>
-            <p>Bonjour ! Je m'appelle <strong>Sacha Ignam</strong>. Je suis actuellement étudiant en troisième année d'un BUT GEII à l'Université d'Aix-Marseille, sur le site de Salon de Provence.
-            Passionné par l'industrie du futur et l'automatisme, je développe mes compétences à travers des projets concrets.</p>
+            <h3>Contact </h3>
+            <p>sacha.ignam@gmail.com</p>
+            <p>+33 6 29 45 62 53</p>
         </div>
 
         <div class="footer-column">
@@ -444,11 +480,8 @@
         </div>
 
         <div class="footer-column">
-            <h3>Contact</h3>
-            <div class="footer-contact">
-                <p>sacha.ignam@gmail.com</p>
-                <p>+33 6 29 45 62 53</p>
-            </div>
+            <h3>SUIVEZ MOI</h3>
+            
             <div class="footer-socials">
                 <a href="https://www.instagram.com/sacha.ignm" target="_blank" class="icon-btn insta"><i class="fab fa-instagram"></i></a>
                 <a href="https://www.linkedin.com/in/sacha-ignam-a9bb04300/" target="_blank" class="icon-btn linkedin"><i class="fab fa-linkedin-in"></i></a>
