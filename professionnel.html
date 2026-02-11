@@ -45,7 +45,67 @@
 
         nav { display: flex; align-items: center; gap: 25px; }
         nav a { color: #ccc; text-decoration: none; text-transform: uppercase; font-size: 13px; font-weight: bold; transition: 0.3s; }
-        nav a:hover, nav a.active { color: white; text-decoration: underline; }
+        nav a {
+            color: #ccc;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 13px;
+            font-weight: bold;
+            position: relative;
+            transition: color 0.3s;
+        }
+        nav a::after {
+            content: '';
+            position: absolute;
+            left: 0; right: 0; bottom: -3px;
+            height: 2px;
+            background: linear-gradient(90deg, #7d7aff, #fff 60%, #7d7aff);
+            transform: scaleX(0);
+            transition: transform 0.3s cubic-bezier(.68,-0.55,.27,1.55);
+            transform-origin: left;
+        }
+        .icon-btn {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-decoration: none !important;
+            font-size: 14px;
+            transition: transform 0.2s cubic-bezier(.68,-0.55,.27,1.55);
+            position: relative;
+        }
+        .icon-btn::after {
+            display: none !important;
+        }
+        .icon-btn:hover {
+            transform: scale(1.18) rotate(-8deg);
+        }
+        }
+        nav a:hover, nav a.active {
+            color: #fff;
+        }
+        nav a:hover::after, nav a.active::after {
+            transform: scaleX(1);
+        }
+
+        .icon-btn {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            transition: transform 0.2s cubic-bezier(.68,-0.55,.27,1.55);
+        }
+        .icon-btn:hover {
+            transform: scale(1.18) rotate(-8deg);
+        }
 
         .social-icons { display: flex; gap: 10px; align-items: center; margin-left: 15px; }
         .icon-btn { width: 30px; height: 30px; border-radius: 50%; display: flex; justify-content: center; align-items: center; color: white; text-decoration: none; font-size: 14px; }
