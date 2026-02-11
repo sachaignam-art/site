@@ -60,7 +60,7 @@
             position: absolute;
             left: 0; right: 0; bottom: -3px;
             height: 2px;
-            background: linear-gradient(90deg, #7d7aff, #fff 60%, #7d7aff);
+            background: linear-gradient(90deg, #7d7aff, #a259ff 50%, #7d7aff);
             transform: scaleX(0);
             transition: transform 0.3s cubic-bezier(.68,-0.55,.27,1.55);
             transform-origin: left;
@@ -320,6 +320,19 @@
             </div>
         </div>
     </footer>
+
+    <script>
+         // FORCER LE RETOUR EN HAUT AU RAFRAÎCHISSEMENT
+        // On utilise 'beforeunload' pour s'assurer que le navigateur ne garde pas la position
+        window.onbeforeunload = function () {
+            window.scrollTo(0, 0);
+        };
+
+        // Alternative plus robuste si la première ne suffit pas selon le navigateur
+        if ('scrollRestoration' in history) {
+            history.scrollRestoration = 'manual';
+        }
+    </script>
 
 </body>
 </html>

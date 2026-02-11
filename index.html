@@ -55,7 +55,7 @@
             position: absolute;
             left: 0; right: 0; bottom: -3px;
             height: 2px;
-            background: linear-gradient(90deg, #7d7aff, #fff 60%, #7d7aff);
+            background: linear-gradient(90deg, #7d7aff, #a259ff 50%, #7d7aff);
             transform: scaleX(0);
             transition: transform 0.3s cubic-bezier(.68,-0.55,.27,1.55);
             transform-origin: left;
@@ -79,28 +79,11 @@
         .icon-btn:hover {
             transform: scale(1.18) rotate(-8deg);
         }
-        
         nav a:hover, nav a.active {
             color: #fff;
         }
         nav a:hover::after, nav a.active::after {
             transform: scaleX(1);
-        }
-
-        .icon-btn {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            text-decoration: none;
-            font-size: 14px;
-            transition: transform 0.2s cubic-bezier(.68,-0.55,.27,1.55);
-        }
-        .icon-btn:hover {
-            transform: scale(1.18) rotate(-8deg);
         }
 
         .social-icons { display: flex; gap: 10px; align-items: center; margin-left: 15px; }
@@ -348,17 +331,25 @@
     <footer>
         <div class="footer-column">
             <h3>About Me</h3>
-            <p>Sacha Ignam, étudiant en BUT GEII. Passionné par l'automatisme.</p>
+            <p>Bonjour ! Je m'appelle <strong>Sacha Ignam</strong>. Je suis actuellement étudiant en troisième année d'un BUT GEII à l'Université d'Aix-Marseille, sur le site de Salon de Provence.
+            Passionné par l'industrie du futur et l'automatisme, je développe mes compétences à travers des projets concrets.</p>
         </div>
+
         <div class="footer-column">
             <h3>Localisation</h3>
-            <p>France, Toulon</p>
+            <p>France, Provence-Alpes-Côte d'Azur, Var
+            83000 - Toulon </p>
         </div>
+
         <div class="footer-column">
             <h3>Contact</h3>
             <div class="footer-contact">
                 <p>sacha.ignam@gmail.com</p>
                 <p>+33 6 29 45 62 53</p>
+            </div>
+            <div class="footer-socials">
+                <a href="https://www.instagram.com/sacha.ignm" target="_blank" class="icon-btn insta"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/in/sacha-ignam-a9bb04300/" target="_blank" class="icon-btn linkedin"><i class="fab fa-linkedin-in"></i></a>
             </div>
         </div>
     </footer>
