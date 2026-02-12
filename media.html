@@ -605,23 +605,58 @@ footer {
 
 /* --- ADAPTATION MOBILE --- */
 @media (max-width: 768px) {
+
+
+    /* Dans la section @media (max-width: 768px) */
+
+.info-section h2[style*="font-size: 2.5rem"] {
+    font-size: 1.6rem !important; /* Réduit la taille du titre principal sur mobile */
+    line-height: 1.2;
+    margin-bottom: 15px;
+}
+
+/* On ajuste aussi les titres "Terrain", "Atelier", "Bureau" pour qu'ils soient harmonieux */
+.info-text h2 {
+    font-size: 1.5rem;
+}
     .info-section, .info-section.reverse {
         flex-direction: column;
-        gap: 30px;
+        gap: 20px;
         text-align: center;
     }
     
     .info-gallery {
-        grid-template-columns: 1fr;
+        display: flex;          /* On passe en flexbox pour mieux contrôler la taille */
+        flex-direction: column; 
+        align-items: center;    /* Centre les photos horizontalement */
+        gap: 15px;
         width: 100%;
     }
 
-    .info-gallery img:first-child {
-        grid-column: span 1;
-        height: 200px;
+    .info-gallery img {
+        /* ICI ON RÉDUIT LA TAILLE */
+        width: 70% !important;  /* L'image ne prend que 70% de la largeur de l'écran */
+        max-width: 250px;       /* Elle ne dépassera jamais 250px de large */
+        
+        height: auto !important; /* Garde les proportions originales */
+        aspect-ratio: auto !important; /* Permet de voir l'image ENTIÈRE sans rognage */
+        object-fit: contain;    /* S'assure que rien n'est coupé */
+        
+        grid-column: span 1 !important; /* Sécurité pour annuler le mode PC */
+    }
+
+    /* On réinitialise la règle spécifique du PC pour la première image */
+    .info-gallery:has(img:nth-child(3)) img:first-child {
+        width: 70% !important;
+        max-width: 250px;
+        grid-column: span 1 !important;
+    }
+
+    .info-text p {
+        font-size: 0.95rem;
+        padding: 0 10px;
     }
 }
-
 /* --- STYLE DU MODAL (AGRANDISSEMENT PHOTO) --- */
 .modal {
     display: none;
@@ -665,6 +700,15 @@ footer {
 
 .close-modal:hover { color: #7d7aff; }
 
+
+.intro-text-block {
+    text-align: justify;
+    text-justify: inter-word; /* Améliore l'espacement entre les mots */
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.8;
+    color: #ccc;
+}
     </style>
 </head>
 <body>
@@ -735,21 +779,28 @@ footer {
 
     <section class="hero-section">
         <div class="hero-box">
-            <h1>Aventure</h1>
-            <p>Entreprise Média Mesures</p>
+            <h1>Alternance</h1>
+            <p>Mon expérience dans l'entreprise Média Mesures</p>
         </div>
     </section>
 
 
     <section class="info-section" style="margin-bottom: 40px;">
-    <div class="info-text" style="text-align: center; max-width: 800px; margin: 0 auto;">
-        <h2 style="font-size: 2.5rem;">L'Expérience Média Mesures</h2>
-        <p>
-            Au cœur de mon parcours professionnel, mon immersion chez <strong>Média Mesures</strong> a été une étape déterminante. 
-            Cette entreprise spécialisée dans l'expertise technique et le diagnostic m'a permis d'allier rigueur scientifique 
-            et enjeux de terrain. J'y ai découvert un univers où la précision de la mesure est au service de la performance énergétique 
-            et de la durabilité des bâtiments.
-        </p>
+    <div class="info-text" style="width: 100%; display: flex; flex-direction: column; align-items: center;">
+        <h2 style="font-size: 2.5rem; text-align: center;">Introduction</h2>
+        <div class="intro-text-block">
+            <p>
+                Mon expérience chez <strong>Média Mesures</strong> a constitué une étape déterminante dans mon parcours professionnel. 
+                Cette entreprise spécialisée dans la variation de vitesse, m'a permis de découvrir les multiples facettes du service 
+                technique. Le service technique de <strong>Média Mesures</strong> se distingue par la richesse et la diversité de ses  
+                d’une large palette de compétences, organisée autour de trois grandes activités complémentaires : 
+                le travail de <strong>Terrain</strong>, d'<strong>Atelier</strong> et de <strong>Bureau</strong>. 
+                Chacune de ces missions m'a offert des opportunités d'apprentissage uniques, me permettant de renforcer mes compétences techniques, 
+                de gagner en autonomie et de développer une vision globale du métier. 
+                L'objectif de cette présentation est de mettre en lumière les compétences techniques acquises et les missions de service que 
+                j'ai eu l'occasion de découvrir et auxquelles j'ai contribué.
+            </p>
+        </div>
     </div>
 </section>
 
