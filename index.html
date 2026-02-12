@@ -338,50 +338,84 @@
     to { transform: scale(1); opacity: 1; }
 }
 
-         /* --- PIED DE PAGE (FOOTER) CORRIGÉ --- */
-footer {
-    background-color: #333;
-    color: #ddd;
-    padding: 60px 40px 40px 40px; /* Padding uniforme */
-    display: grid;
-    /* Utilisation de 3 colonnes égales (1fr) pour un équilibre parfait */
-    grid-template-columns: repeat(3, 1fr); 
-    gap: 40px;
-    font-size: 14px;
-    position: relative;
-    /* Centre le contenu de la grille si l'écran est très large */
-    justify-items: center; 
-    text-align: center; /* Optionnel : centre le texte à l'intérieur des colonnes */
-}
+        /* --- PIED DE PAGE (FOOTER) - PAR DÉFAUT (PC) --- */
+        footer {
+            background-color: #333;
+            color: #ddd;
+            padding: 60px 40px;
+            display: grid;
+            /* 3 colonnes sur PC */
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 40px;
+            font-size: 14px;
+            text-align: center;
+        }
 
-.footer-column {
-    /* Largeur maximale pour éviter que les colonnes ne s'étalent trop */
-    max-width: 300px; 
-}
+        .footer-column {
+            max-width: 300px; 
+            justify-self: center; /* Centre chaque bloc dans sa colonne */
+        }
 
-.footer-column h3 {
+        .footer-column h3 {
     text-transform: uppercase;
     font-size: 16px;
     letter-spacing: 2px;
-    margin-bottom: 25px;
+    margin-bottom: 25px; /* Espace entre le titre et le texte */
     font-weight: 500;
     color: white;
     font-family: 'Roboto', sans-serif;
+
+    /* --- LIGNE DE SOULIGNAGE --- */
+    border-bottom: 2px solid #7d7aff; /* Épaisseur et couleur (violet comme ton site) */
+    display: inline-block;           /* Pour que la ligne ne fasse que la largeur du texte */
+    padding-bottom: 8px;             /* Espace entre le texte et la ligne */
 }
 
-.footer-column p { 
-    line-height: 1.6; 
-    margin: 0; 
-    white-space: pre-line; 
-}
+        .footer-column p { 
+            line-height: 1.6; 
+            margin: 5px 0; 
+            white-space: pre-line; 
+        }
 
-.footer-socials { 
-    display: flex; 
-    gap: 15px; 
-    margin-top: 20px; 
-    justify-content: center; /* Centre les icônes sous le titre */
-}
+        .footer-socials { 
+            display: flex; 
+            gap: 15px; 
+            margin-top: 20px; 
+            justify-content: center; 
+        }
 
+        /* --- AJUSTEMENTS MOBILE (Téléphone) --- */
+        @media (max-width: 768px) {
+            footer {
+                /* On passe de 3 colonnes à 1 seule colonne */
+                grid-template-columns: 1fr;
+                gap: 50px; /* Plus d'espace entre les blocs qui s'empilent */
+                padding: 50px 20px;
+            }
+
+            .gallery-container {
+                display: grid;
+                grid-template-columns: 1fr; /* Galerie en 1 colonne aussi sur mobile */
+                gap: 20px;
+            }
+
+            /* Ton code burger menu existant... */
+            .burger-menu { display: flex !important; }
+            nav {
+                position: fixed; top: 0; right: -100%;
+                width: 100%; height: 100vh;
+                background-color: rgba(10, 10, 10, 0.98);
+                backdrop-filter: blur(10px);
+                flex-direction: column; 
+                justify-content: center;
+                align-items: center;
+                gap: 30px;
+                transition: 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+                z-index: 1050;
+            }
+            nav.active { right: 0; }
+            /* Suite de tes styles nav mobile... */
+        }
 @media (max-width: 768px) {
     .burger-menu { display: flex !important; }
 
