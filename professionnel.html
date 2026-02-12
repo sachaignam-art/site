@@ -451,11 +451,15 @@ footer {
         transition: transform 0.3s ease;
     }
 
-    nav > a:hover::after, 
-    nav .dropdown > a.dropbtn:hover::after,
-    nav > a.active::after {
-        transform: scaleX(1);
-    }
+ 
+nav > a:hover::after, 
+nav .dropdown > a.dropbtn:hover::after,
+nav > a.active::after,
+nav .dropdown > a.dropbtn.active::after {
+    transform: scaleX(1) !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
 
     /* CACHER les sous-menus sur mobile (Media, Réhabilitation, BUT) */
     .dropdown-content { 
