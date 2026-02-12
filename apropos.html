@@ -363,7 +363,7 @@ footer {
         width: 100%; 
         max-width: 320px; 
     }
-    
+
     footer { 
         grid-template-columns: 1fr; /* Une seule colonne sur mobile */
         padding: 40px 20px; 
@@ -372,6 +372,45 @@ footer {
 }
 
 @media (max-width: 768px) {
+
+    /* --- 1. Ajustement du Titre principal --- */
+    .profile-info h1 {
+        font-size: 2.2rem !important; /* Réduit la taille pour mobile */
+        letter-spacing: 2px !important;
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    /* --- 2. Passage en une seule colonne --- */
+    .container {
+        margin-top: 80px; /* Moins d'espace sous le header */
+        padding: 0 20px;
+        flex-direction: column; /* Empile la sidebar sous le texte */
+        gap: 30px;
+    }
+
+    .profile-info {
+        min-width: 100%;
+        text-align: justify; /* Pour un rendu propre du texte */
+    }
+
+    .sidebar {
+        min-width: 100%;
+    }
+
+    /* --- 3. Ajustement des cartes de la sidebar --- */
+    .side-card {
+        padding: 20px;
+    }
+
+    .info-contact {
+        display: flex;
+        flex-direction: column;
+        align-items: left; /* Centre les contacts sur mobile */
+        background: rgba(255, 255, 255, 0.05);
+        padding: 20px;
+        border-radius: 8px;
+    }
     .burger-menu { display: flex !important; }
 
     nav {
