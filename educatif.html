@@ -332,6 +332,36 @@ footer {
 
 /* --- RESPONSIVE --- */
 @media (max-width: 768px) {
+
+    /* --- Ajustement du titre Hero sur Mobile --- */
+    .hero-box {
+        padding: 30px 20px; /* Réduit un peu le padding interne */
+        width: 85%; /* S'assure que la boîte ne touche pas les bords */
+    }
+
+    .hero-box h1 {
+        font-size: 1.8rem !important; /* Réduit la taille pour téléphone */
+        letter-spacing: 3px !important; /* Réduit l'espace entre les lettres */
+        line-height: 1.2;
+    }
+
+    .hero-box p {
+        font-size: 0.7rem !important;
+        letter-spacing: 2px !important;
+    }
+
+    /* --- Ta galerie reste en colonne --- */
+    .gallery-container { 
+        flex-direction: column; 
+        align-items: center; 
+        gap: 20px;
+    }
+    
+    .gallery-item { 
+        width: 100%; 
+        max-width: 320px; 
+    }
+    
     footer { 
         grid-template-columns: 1fr; /* Une seule colonne sur mobile */
         padding: 40px 20px; 
