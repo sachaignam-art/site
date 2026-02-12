@@ -251,55 +251,128 @@
             font-size: 0.8rem;
         }
 
-        /* --- 4. CONTENT SECTION (STYLE ÉPURÉ SOMBRE) --- */
-        .main-content {
-            background: transparent;
-            padding: 40px 0 100px 0;
+        /* --- STRUCTURE DU PROJET (6 PARTIES) --- */
+        .project-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 80px 20px;
         }
 
-        .content-section { 
-            max-width: 850px; 
-            margin: 0 auto; 
-            padding: 0 20px; 
+        .project-step {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            margin-bottom: 120px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
         }
+
+        /* Animation d'apparition au scroll */
+        .project-step.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Alternance des blocs */
+        .project-step:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+       /* --- GRILLE D'IMAGES AUTO-ADAPTATIVE --- */
+.step-image-grid {
+    flex: 1;
+    display: flex; /* Utilisation de flex pour coller aux dimensions des images */
+    gap: 15px;
+    justify-content: center; /* Centre les images si elles sont petites */
+    align-items: flex-start; /* Aligne les images par le haut */
+    position: relative;
+    flex-wrap: wrap; /* Permet de passer à la ligne sur petit écran */
+}
+
+.step-image-grid img {
+    max-width: 100%; /* Empêche l'image de déborder */
+    height: auto;    /* Garde le ratio original */
+    max-height: 500px; /* Limite la hauteur pour la cohérence visuelle */
+    object-fit: contain;
+    border-radius: 6px;
+    border: 1px solid rgba(125, 122, 255, 0.2);
+    transition: transform 0.4s ease, border-color 0.4s ease;
+}
+        .step-image-grid img:hover {
+            transform: scale(1.03);
+            border-color: #7d7aff;
+            z-index: 10;
+        }
+
         
-        .edu-item { 
-            background: rgba(255, 255, 255, 0.03); 
-            padding: 40px; 
-            border-radius: 4px; 
-            margin-bottom: 40px; 
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(125, 122, 255, 0.1); 
-            transition: all 0.4s ease;
+
+        /* Variante pour photos verticales (dessus/dessous) */
+        .grid-vertical {
+            grid-template-columns: 1fr !important; /* Force une seule colonne */
         }
 
-        .edu-item:hover {
-            border: 1px solid rgba(125, 122, 255, 0.4);
-            transform: translateX(10px);
-            background: rgba(255, 255, 255, 0.05);
-        }
-        
-        .edu-item h2 { 
-            margin-top: 0; 
-            font-family: 'Playfair Display', serif; 
-            color: #7d7aff; 
-            font-size: 24px;
-            letter-spacing: 1px;
+        .grid-vertical img {
+            height: auto !important; /* Laisse l'image prendre sa hauteur naturelle */
+            max-height: 500px; /* Limite pour ne pas que ce soit trop géant */
         }
 
-        .edu-item p {
-            line-height: 1.8;
-            color: #ccc;
-            font-weight: 300;
+        /* --- AJUSTEMENT MOBILE --- */
+        @media (max-width: 900px) {
+            .step-image-grid img {
+                height: 220px; /* Plus petit sur téléphone */
+            }
+        }
+        .step-content {
+            flex: 1;
         }
 
-        .date-location {
-            color: #fff;
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 15px;
+        .step-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            color: rgba(125, 122, 255, 0.1);
+            line-height: 1;
+            margin-bottom: -20px;
             display: block;
+        }
+
+        .step-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            color: #fff;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .step-content h2::after {
+            content: "";
+            display: block;
+            width: 50px;
+            height: 3px;
+            background: #7d7aff;
+            margin-top: 10px;
+        }
+
+        .step-content p {
+            color: #aaa;
+            line-height: 1.8;
+            font-size: 1.05rem;
+            text-align: justify;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 900px) {
+            .project-step, .project-step:nth-child(even) {
+                flex-direction: column;
+                gap: 30px;
+                margin-bottom: 80px;
+            }
+            .step-image img {
+                height: 250px;
+            }
+            .step-content {
+                text-align: left;
+            }
         }
 
         /* --- 4. GALERIE --- */
@@ -422,6 +495,21 @@ footer {
     justify-content: center; /* Centre les icônes sous le titre */
 }
 
+/* Agrandissement spécifique pour i5.jpg */
+/* Agrandissement modéré pour i5.jpg */
+.image-focus {
+    max-height: 580px !important; /* On passe de 500px à 580px seulement */
+    width: auto;
+    display: block;
+    margin: 0 auto;
+    transition: transform 0.4s ease;
+}
+
+/* On garde l'équilibre 50/50 avec le texte pour éviter l'effet "trop gros" */
+.project-step:has(.image-focus) .step-image-grid {
+    flex: 1; 
+}
+
 /* --- RESPONSIVE --- */
 @media (max-width: 768px) {
 
@@ -524,7 +612,6 @@ footer {
     </style>
 </head>
 <body>
-
    <header>
         <div class="logo-container" onclick="window.location.href='index.html'">
             <img src="SI.png" alt="Logo SI" class="main-logo">
@@ -596,22 +683,86 @@ footer {
         </div>
     </section>
 
-   <div class="main-content">
-        <div class="gallery-container">
-            <div class="gallery-item">
-                <a href="#.html">
-                    <img src="#.png" alt="Aventure Média" style="cursor:pointer;border-radius:8px;box-shadow:0 0 8px #a259ff;">
-                </a>
-                <h3>Alternance</h3>
-            </div>
-            <div class="gallery-item">
-                <a href="#.html">
-                    <img src="#.jpg" alt="Automatisation" style="cursor:pointer;border-radius:8px;box-shadow:0 0 8px #a259ff;">
-                </a>
-                <h3>Projet Réhabilitation</h3>
-            </div>
+   
+<div class="project-container">
+    
+    <section class="project-step">
+        <div class="step-image-grid">
+            <img src="i1.jpg" alt="Analyse 1">
+            <img src="i11.jpg" alt="Analyse 2">
         </div>
-    </div>
+        <div class="step-content">
+            <span class="step-number">01</span>
+            <h2>Cahier des Charges</h2>
+            <p>Détaillez ici les problèmes rencontrés sur le banc avant votre intervention.</p>
+        </div>
+    </section>
+
+    <section class="project-step">
+        <div class="step-image-grid">
+            <img src="i2.jpg" alt="Étude 1">
+            <img src="i21.jpg" alt="Étude 2">
+        </div>
+        <div class="step-content">
+            <span class="step-number">02</span>
+            <h2>Sélection des produits</h2>
+            <p>Calculs de perte de charge, dimensionnement et choix technologiques.</p>
+        </div>
+    </section>
+
+    <section class="project-step">
+        <div class="step-image-grid">
+            <img src="i3.jpg" alt="Conception">
+        </div>
+        <div class="step-content">
+            <span class="step-number">03</span>
+            <h2>Dimenssionnement</h2>
+            <p>Présentation des plans et de la modélisation CAO du banc réhabilité.</p>
+        </div>
+    </section>
+
+    <section class="project-step">
+        <div class="step-image-grid grid-vertical">
+            <img src="i4.jpg" alt="Réalisation - Vue 1">
+            <img src="i41.jpg" alt="Réalisation - Vue 2">
+        </div>
+        <div class="step-content">
+            <span class="step-number">04</span>
+            <h2>Schémas Électriques</h2>
+            <p>
+                Cette étape de montage a nécessité une attention particulière sur l'alignement 
+                mécanique et l'étanchéité du circuit. L'affichage vertical des photos permet 
+                de mieux apprécier les détails de l'installation sur toute sa hauteur.
+            </p>
+        </div>
+    </section>
+
+    <section class="project-step">
+        <div class="step-image-grid">
+            <img src="i5.jpg" alt="Automatisme 1" class="image-focus">
+    
+        </div>
+        <div class="step-content">
+            <span class="step-number">05</span>
+            <h2>Perçage et câblage</h2>
+            <p>Logique de commande et interface utilisateur (IHM).</p>
+        </div>
+    </section>
+
+    <section class="project-step">
+        <div class="step-image-grid">
+            <img src="i6.jpg" alt="Tests 1">
+            <img src="i61.jpg" alt="Tests 2">
+        </div>
+        <div class="step-content">
+            <span class="step-number">06</span>
+            <h2>Tests</h2>
+            <p>Validation finale et mise en service du banc de pompage.</p>
+        </div>
+    </section>
+
+</div>
+
 
     <div class="transition-zone"></div>
 
@@ -682,6 +833,23 @@ document.querySelectorAll('nav a').forEach(link => {
         spans[2].style.transform = "none";
     });
 });
+
+// Animation au scroll pour les étapes du projet
+        const observerOptions = {
+            threshold: 0.2
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.project-step').forEach(step => {
+            observer.observe(step);
+        });
     </script>
 
 </body>
