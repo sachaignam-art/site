@@ -522,6 +522,149 @@ footer {
         margin-top: 20px;
     }
 }
+
+/* --- NOUVELLE STRUCTURE SECTIONS --- */
+.content-wrapper {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 60px 20px;
+}
+
+.info-section {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    margin-bottom: 80px;
+}
+
+.info-section.reverse {
+    flex-direction: row-reverse;
+}
+
+.info-text {
+    flex: 1;
+}
+
+.info-text h2 {
+    font-family: 'Playfair Display', serif;
+    color: #7d7aff;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+}
+
+.info-text p {
+    color: #ccc;
+    line-height: 1.8;
+    font-size: 1.05rem;
+}
+
+/* --- GALERIE INTELLIGENTE (S'ADAPTE AU NOMBRE D'IMAGES) --- */
+.info-gallery {
+    flex: 1.2;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Deux colonnes égales */
+    gap: 15px;
+    align-items: start;
+}
+
+.info-gallery img {
+    width: 100%;
+    aspect-ratio: 3 / 4; /* Force un format vertical identique pour comparer Avant/Après */
+    object-fit: cover;   /* Remplit la case pour que les deux photos fassent la même taille */
+    border-radius: 6px;
+    border: 1px solid rgba(125, 122, 255, 0.2);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Règle spéciale : Si la galerie n'a QUE 2 images (comme pour l'Atelier) */
+.info-gallery:has(img:nth-child(2):last-child) img {
+    grid-column: span 1 !important; /* Force le côte à côte */
+    aspect-ratio: 3 / 4;           /* Garde les deux images identiques */
+}
+
+/* Règle pour les galeries à 3 images (Terrain/Bureau) */
+.info-gallery:has(img:nth-child(3)) img:first-child {
+    grid-column: span 2;
+    aspect-ratio: 16 / 9; /* La grande image reste large */
+}
+
+.info-gallery img:hover {
+    transform: scale(1.02);
+    border-color: #a259ff;
+    box-shadow: 0 0 15px rgba(162, 89, 255, 0.3);
+}
+
+.section-divider {
+    border: none;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(125, 122, 255, 0.3), transparent);
+    margin: 60px 0;
+}
+
+/* --- ADAPTATION MOBILE --- */
+@media (max-width: 768px) {
+    .info-section, .info-section.reverse {
+        flex-direction: column;
+        gap: 30px;
+        text-align: center;
+    }
+    
+    .info-gallery {
+        grid-template-columns: 1fr;
+        width: 100%;
+    }
+
+    .info-gallery img:first-child {
+        grid-column: span 1;
+        height: 200px;
+    }
+}
+
+/* --- STYLE DU MODAL (AGRANDISSEMENT PHOTO) --- */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(10px);
+    cursor: zoom-out;
+}
+
+.modal-content {
+    margin: auto;
+    display: block;
+    max-width: 85%;
+    max-height: 80vh;
+    border-radius: 4px;
+    box-shadow: 0 0 30px rgba(125, 122, 255, 0.3);
+    animation: zoomAnim 0.3s ease-out;
+}
+
+@keyframes zoomAnim {
+    from { transform: scale(0.7); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.close-modal {
+    position: absolute;
+    top: 30px;
+    right: 50px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.close-modal:hover { color: #7d7aff; }
+
     </style>
 </head>
 <body>
@@ -597,23 +740,79 @@ footer {
         </div>
     </section>
 
-   <div class="main-content">
-        <div class="gallery-container">
-            <div class="gallery-item">
-                <a href="#.html">
-                    <img src="#.png" alt="Aventure Média" style="cursor:pointer;border-radius:8px;box-shadow:0 0 8px #a259ff;">
-                </a>
-                <h3>Alternance</h3>
-            </div>
-            <div class="gallery-item">
-                <a href="#.html">
-                    <img src="#.jpg" alt="Automatisation" style="cursor:pointer;border-radius:8px;box-shadow:0 0 8px #a259ff;">
-                </a>
-                <h3>Projet Réhabilitation</h3>
-            </div>
-        </div>
-    </div>
 
+    <section class="info-section" style="margin-bottom: 40px;">
+    <div class="info-text" style="text-align: center; max-width: 800px; margin: 0 auto;">
+        <h2 style="font-size: 2.5rem;">L'Expérience Média Mesures</h2>
+        <p>
+            Au cœur de mon parcours professionnel, mon immersion chez <strong>Média Mesures</strong> a été une étape déterminante. 
+            Cette entreprise spécialisée dans l'expertise technique et le diagnostic m'a permis d'allier rigueur scientifique 
+            et enjeux de terrain. J'y ai découvert un univers où la précision de la mesure est au service de la performance énergétique 
+            et de la durabilité des bâtiments.
+        </p>
+    </div>
+</section>
+
+<hr class="section-divider">
+   
+    <main class="content-wrapper">
+
+    <section class="info-section">
+        <div class="info-text">
+            <h2>Terrain</h2>
+            <p>Description détaillée de votre première mission. Expliquez ici le contexte, les enjeux techniques et les solutions apportées. Ce texte permet de guider le visiteur à travers vos réalisations.</p>
+        </div>
+        <div class="info-gallery">
+            <img src="sacha.jpg" alt="Projet 1" onclick="openModal(this.src)">
+            <img src="piscine.JPG" alt="Projet 1" onclick="openModal(this.src)">
+            <img src="variateur.jpg" alt="Projet 1" onclick="openModal(this.src)">
+        </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <section class="info-section reverse">
+        <div class="info-text">
+            <h2>Atelier</h2>
+            <p>Présentation de la deuxième partie. En inversant l'ordre (image à gauche, texte à droite sur PC), on crée un rythme de lecture plus dynamique et professionnel.</p>
+        </div>
+        <div class="info-gallery">
+            <img src="avant.jpg" alt="Projet 2" onclick="openModal(this.src)">
+            <img src="après.jpg" alt="Projet 2" onclick="openModal(this.src)">
+        </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <section class="info-section">
+        <div class="info-text">
+            <h2>Bureau</h2>
+            <p>Conclusion de vos services ou projets. Mettez en avant les résultats obtenus et les compétences spécifiques utilisées pour cette troisième partie.</p>
+        </div>
+        <div class="info-gallery">
+            <img src="danfoss.jpg" alt="Projet 3" onclick="openModal(this.src)">
+            <img src="comparaison.jpg" alt="Projet 3" onclick="openModal(this.src)">
+            <img src="tableau.jpg" alt="Projet 3" onclick="openModal(this.src)">
+        </div>
+    </section>
+
+</main>
+
+<hr class="section-divider">
+
+<section class="info-section" style="margin-top: 40px;">
+    <div class="info-text" style="text-align: center; max-width: 800px; margin: 0 auto;">
+        <h2>Bilan & Perspectives</h2>
+        <p>
+            Ces missions au sein de Média Mesures m'ont permis de consolider mes compétences en <strong>analyse technique</strong> 
+            et en <strong>gestion de projet de réhabilitation</strong>. Au-delà de l'aspect technique, j'ai appris l'importance 
+            de la communication entre les différents acteurs d'un chantier pour garantir des résultats à la hauteur des exigences environnementales actuelles.
+        </p>
+        <p style="margin-top: 20px; font-style: italic; color: #7d7aff;">
+            Prêt à relever de nouveaux défis basés sur cette expertise.
+        </p>
+    </div>
+</section>
     <div class="transition-zone"></div>
 
     <footer>
@@ -683,7 +882,30 @@ document.querySelectorAll('nav a').forEach(link => {
         spans[2].style.transform = "none";
     });
 });
+
+function openModal(src) {
+    const modal = document.getElementById("myModal");
+    const modalImg = document.getElementById("img01");
+    modal.style.display = "block";
+    modalImg.src = src;
+    document.body.style.overflow = 'hidden'; // Empêche le scroll en arrière-plan
+}
+
+function closeModal() {
+    const modal = document.getElementById("myModal");
+    modal.style.display = "none";
+    document.body.style.overflow = 'auto'; // Réactive le scroll
+}
+
+// Fermer avec la touche Echap
+document.addEventListener('keydown', function(e) {
+    if (e.key === "Escape") closeModal();
+});
     </script>
 
+<div id="myModal" class="modal" onclick="closeModal()">
+    <span class="close-modal">&times;</span>
+    <img class="modal-content" id="img01">
+</div>
 </body>
 </html>
