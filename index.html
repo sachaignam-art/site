@@ -526,11 +526,19 @@
     font-size: 100px;
     font-weight: 900;
     letter-spacing: -5px;
-    /* Effet de texte dégradé animé */
+    
+    /* Dégradé */
     background: linear-gradient(90deg, #ffffff, #7d7aff, #a259ff, #ffffff);
     background-size: 200% auto;
+    
+    /* Découpe du texte (Ordre important) */
+    background-clip: text;
     -webkit-background-clip: text;
+    
+    /* Couleur transparente pour laisser voir le dégradé */
+    color: transparent; 
     -webkit-text-fill-color: transparent;
+    
     animation: shine 1.5s linear infinite;
     position: relative;
     z-index: 2;
