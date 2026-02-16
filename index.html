@@ -343,7 +343,22 @@ html, body {
 .main-content {
     background: transparent; /* On enlève le background redondant ici */
     padding: 100px 0;
+    padding-bottom: 150px;
     width: 100%;
+}
+
+/* --- ESPACEMENT DE LA GALERIE --- */
+.gallery-section {
+    padding: 100px 0; /* 100px d'espace en haut et en bas */
+    width: 100%;
+    overflow: hidden;
+}
+
+/* On s'assure que le footer ne remonte pas */
+footer {
+    margin-top: 50px; /* Espace de sécurité supplémentaire au-dessus du footer */
+    position: relative;
+    z-index: 10;
 }
 
        /* --- 4. GALERIE DÉFILANTE --- */
@@ -408,10 +423,17 @@ html, body {
     pointer-events: none; /* Pour que le clic passe à travers vers l'image */
 }
 
-/* L'animation : on décale de la moitié de la largeur totale */
+/* L'animation : on décale maintenant de 6 images (300px * 6) + les gaps (30px * 6) */
 @keyframes scrollInfinite {
     0% { transform: translateX(0); }
-    100% { transform: translateX(calc(-300px * 4 - 30px * 4)); } 
+    100% { transform: translateX(calc(-300px * 6 - 30px * 6)); } 
+}
+
+/* Ajustement mobile (si tu utilises 220px de large sur téléphone) */
+@media (max-width: 768px) {
+    @keyframes scrollInfinite {
+        100% { transform: translateX(calc(-220px * 6 - 30px * 6)); }
+    }
 }
 
 /* Ajustement mobile */
@@ -546,6 +568,42 @@ html, body {
            
         }
 @media (max-width: 768px) {
+
+    @media (max-width: 768px) {
+    /* ... tes autres styles mobile (header, burger, etc.) ... */
+
+    /* --- AMÉLIORATION DES CARTES NAV SUR MOBILE --- */
+    .nav-cards-container {
+        flex-direction: column; /* Empile les cartes l'une sur l'autre */
+        padding: 0 20px;       /* Moins de marge sur les côtés */
+        gap: 20px;             /* Espace entre les deux cartes */
+    }
+
+    .nav-card {
+        padding: 30px 25px;    /* Moins de vide interne sur mobile */
+        min-height: 200px;     /* Hauteur fixe pour un look équilibré */
+        text-align: center;    /* Centre le texte pour le mobile */
+        justify-content: center;
+        align-items: center;
+    }
+
+    .card-content h3 {
+        font-size: 1.5rem !important; /* Titre plus petit pour tenir sur une ligne */
+        letter-spacing: 2px;
+        margin-bottom: 10px;
+    }
+
+    .card-content p {
+        font-size: 0.85rem;    /* Texte plus lisible */
+        margin-bottom: 20px;
+        max-width: 100%;       /* Utilise toute la largeur */
+    }
+
+    .more-link {
+        justify-content: center; /* Centre le "En savoir plus" */
+        font-size: 0.75rem;
+    }
+}
     .burger-menu { display: flex !important; }
 
     nav {
@@ -790,46 +848,65 @@ body.no-scroll { overflow: hidden; }
 
 <div id="scroll-stop" style="height: 1px;"></div>
 
-<div id="gallery-target" class="main-content">
-    <div class="gallery-wrapper">
-        <div class="gallery-track">
-            <div class="gallery-item">
-                <span class="badge">Travail</span>
-                <img src="boitiercommande.jpg" alt="Projet 1" onclick="openModal(this)">
-            </div>
-            <div class="gallery-item">
-                <span class="badge">Cours</span>
-                <img src="handling.jpg" alt="Projet 2" onclick="openModal(this)">
-            </div>
-            <div class="gallery-item">
-                <span class="badge">Travail</span>
-                <img src="var.jpg" alt="Projet 3" onclick="openModal(this)">
-            </div>
-            <div class="gallery-item">
-                <span class="badge">Cours</span>
-                <img src="carteson.jpg" alt="Projet 4" onclick="openModal(this)">
-            </div>
+<div class="gallery-track">
+    <div class="gallery-item">
+        <span class="badge">Cours</span>
+        <img src="handling.jpg" alt="Station Handling" onclick="openModal(this)">
+    </div>
+    <div class="gallery-item">
+        <span class="badge">Travail</span>
+        <img src="boitiercommande.jpg" alt="Boîtier commande" onclick="openModal(this)">
+    </div>
+    <div class="gallery-item">
+        <span class="badge">Cours</span>
+        <img src="cartealim.jpg" alt="Carte Alimentation" onclick="openModal(this)">
+    </div>
+    <div class="gallery-item">
+        <span class="badge">Travail</span>
+        <img src="var.jpg" alt="Variateur" onclick="openModal(this)">
+    </div>
+    <div class="gallery-item">
+        <span class="badge">Cours</span>
+        <img src="carteson.jpg" alt="Carte Son" onclick="openModal(this)">
+    </div>
+    <div class="gallery-item">
+        <span class="badge">Cours</span>
+        <img src="chenillard.jpg" alt="Chenillard" onclick="openModal(this)">
+    </div>
+    <div class="gallery-item">
+        <span class="badge">Travail</span>
+        <img src="var2.JPG" alt="Variateur 2" onclick="openModal(this)">
+    </div>
 
-            <div class="gallery-item">
-                <span class="badge">Travail</span>
-                <img src="boitiercommande.jpg" alt="Projet 1" onclick="openModal(this)">
-            </div>
-            <div class="gallery-item">
-                <span class="badge">Cours</span>
-                <img src="handling.jpg" alt="Projet 2" onclick="openModal(this)">
-            </div>
-            <div class="gallery-item">
-                <span class="badge">Travail</span>
-                <img src="var.jpg" alt="Projet 3" onclick="openModal(this)">
-            </div>
-            <div class="gallery-item">
-                <span class="badge">Cours</span>
-                <img src="carteson.jpg" alt="Projet 4" onclick="openModal(this)">
-            </div>
-        </div>
+    <div class="gallery-item">
+        <span class="badge">Cours</span>
+        <img src="handling.jpg" alt="Station Handling" onclick="openModal(this)">
+    </div>
+    <div class="gallery-item">
+        <span class="badge">Travail</span>
+        <img src="boitiercommande.jpg" alt="Boîtier commande" onclick="openModal(this)">
+    </div>
+    <div class="gallery-item">
+        <span class="badge">Cours</span>
+        <img src="cartealim.jpg" alt="Carte Alimentation" onclick="openModal(this)">
+    </div>
+    <div class="gallery-item">
+        <span class="badge">Travail</span>
+        <img src="var.jpg" alt="Variateur" onclick="openModal(this)">
+    </div>
+    <div class="gallery-item">
+        <span class="badge">Cours</span>
+        <img src="carteson.jpg" alt="Carte Son" onclick="openModal(this)">
+    </div>
+    <div class="gallery-item">
+        <span class="badge">Cours</span>
+        <img src="chenillard.jpg" alt="Chenillard" onclick="openModal(this)">
+    </div>
+    <div class="gallery-item">
+        <span class="badge">Travail</span>
+        <img src="var2.JPG" alt="Variateur 2" onclick="openModal(this)">
     </div>
 </div>
-
     <footer>
         <div class="footer-column">
             <h3>Contact </h3>
