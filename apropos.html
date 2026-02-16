@@ -10,38 +10,41 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
-        /* --- 1. BASE (FOND UNIFIÉ COMME LES AUTRES PAGES) --- */
-        html, body {
-            margin: 0;
-            padding: 0;
-            background-color: #0a0a0a;
-            background: 
-                radial-gradient(circle at 20% 30%, rgba(125, 122, 255, 0.15) 0%, transparent 40%),
-                radial-gradient(circle at 80% 70%, rgba(61, 74, 93, 0.2) 0%, transparent 40%),
-                #0a0a0a;
-            background-attachment: fixed;
-            font-family: 'Roboto', sans-serif;
-            color: white;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
+         /* --- 1. BASE (FOND UNIFIÉ COMME SUR INDEX) --- */
+       html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden; /* Empêche le scroll horizontal s'il y a un petit débordement */
+    background-color: #0a0a0a;
+    background: 
+        radial-gradient(circle at 20% 30%, rgba(125, 122, 255, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(61, 74, 93, 0.2) 0%, transparent 40%),
+        #0a0a0a;
+        color : white;
+        scroll-behavior: smooth;
+    font-family: 'Roboto', sans-serif;
+
+
+}
 
         /* --- 2. HEADER (COPIE STRICTE DE INDEX.HTML) --- */
         header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 40px; 
-            background-color: #333;
-            color: white;
-            height: 60px;
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            box-sizing: border-box;
-        }
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px; 
+    background-color: #333;
+    color: white;
+    height: 60px;
+    position: fixed;
+    top: 0;
+    left: 0; /* Ajouté : force le collage à gauche */
+    right: 0; /* Ajouté : force le collage à droite */
+    width: 100%;
+    z-index: 1000;
+    box-sizing: border-box; /* Indispensable pour que le padding soit inclus dans les 100% */
+}
 
         .main-logo { height: 40px; width: auto; cursor: pointer; transition: transform 0.3s cubic-bezier(.68,-0.55,.27,1.55); }
         .main-logo:hover { transform: scale(1.15) rotate(-8deg); }
@@ -57,24 +60,36 @@
             pointer-events: none;
             position: absolute;
             background-color: #333;
-            min-width: 140px;
-            max-width: 180px;
+            min-width: 160px; /* J'ai légèrement augmenté pour que le texte respire */
             box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
             z-index: 1001;
             border-radius: 0 0 14px 14px;
             overflow: hidden;
             top: 100%;
-            left: 0;
+            
+            /* --- MODIFICATION 1 : CENTRAGE HORIZONTAL --- */
+            left: 50%; 
+            
             border: 2px solid #444;
             border-top: none;
-            transform: translateY(10px) scaleY(0.98);
+            
+            /* --- MODIFICATION 2 : MISE A JOUR DE L'ANIMATION --- */
+            /* On ajoute translate(-50%) pour compenser le centrage */
+            transform: translate(-50%, 10px) scaleY(0.98);
             transition: opacity 0.25s cubic-bezier(.68,-0.55,.27,1.55), transform 0.25s cubic-bezier(.68,-0.55,.27,1.55);
+            
+            /* Centrer le texte à l'intérieur du menu si tu préfères */
+            text-align: center; 
         }
+
         .dropdown:hover .dropdown-content,
         .dropdown:focus-within .dropdown-content {
             opacity: 1;
             pointer-events: auto;
-            transform: translateY(0) scaleY(1);
+            
+            /* --- MODIFICATION 3 : ETAT FINAL DE L'ANIMATION --- */
+            /* On garde le translate(-50%) ici aussi pour qu'il reste centré */
+            transform: translate(-50%, 0) scaleY(1);
         }
         .dropdown-content:before {
             content: '';
