@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
-          /* --- 1. BASE (FOND UNIFIÉ COMME SUR INDEX) --- */
+         /* --- 1. BASE (FOND UNIFIÉ COMME SUR INDEX) --- */
        html, body {
     margin: 0;
     padding: 0;
@@ -46,10 +46,6 @@
     box-sizing: border-box; /* Indispensable pour que le padding soit inclus dans les 100% */
 }
 
-        .main-logo { height: 40px; width: auto; cursor: pointer; transition: transform 0.3s cubic-bezier(.68,-0.55,.27,1.55); }
-        .main-logo:hover { transform: scale(1.15) rotate(-8deg); }
-
-        nav { display: flex; align-items: center; gap: 25px; }
         .dropdown {
             position: relative;
             display: inline-block;
@@ -151,6 +147,31 @@
                     transition: transform 0.3s cubic-bezier(.68,-0.55,.27,1.55);
                     transform-origin: left;
                 }
+
+        .main-logo { height: 40px; width: auto; cursor: pointer; transition: transform 0.3s cubic-bezier(.68,-0.55,.27,1.55); }
+        .main-logo:hover { transform: scale(1.15) rotate(-8deg); }
+
+        nav { display: flex; align-items: center; gap: 25px; }
+        nav a { color: #ccc; text-decoration: none; text-transform: uppercase; font-size: 13px; font-weight: bold; transition: 0.3s; }
+        nav a {
+            color: #ccc;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 13px;
+            font-weight: bold;
+            position: relative;
+            transition: color 0.3s;
+        }
+        nav a::after {
+            content: '';
+            position: absolute;
+            left: 0; right: 0; bottom: -3px;
+            height: 2px;
+            background: linear-gradient(90deg, #7d7aff, #a259ff 50%, #7d7aff);
+            transform: scaleX(0);
+            transition: transform 0.3s cubic-bezier(.68,-0.55,.27,1.55);
+            transform-origin: left;
+        }
         .icon-btn {
             width: 30px;
             height: 30px;
@@ -298,6 +319,77 @@
             display: block;
         }
 
+        /* --- 4. GALERIE --- */
+        .main-content {
+            background: transparent;
+            padding: 20px 0 100px 0;
+            width: 100%;
+        }
+
+        .gallery-container {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .gallery-item {
+            position: relative;
+            flex: 1; 
+            aspect-ratio: 1 / 1.1;
+            overflow: hidden;
+            border-radius: 4px;
+            background: #000;
+            border: 1px solid rgba(125, 122, 255, 0.15);
+            transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .gallery-item::after {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at center, transparent 30%, rgba(125, 122, 255, 0.15) 100%);
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            border: 1px solid rgba(125, 122, 255, 0.6);
+            box-shadow: 0 20px 40px rgba(125, 122, 255, 0.2);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(100%) brightness(0.7);
+            transition: all 0.7s ease;
+            cursor: pointer;
+        }
+
+        .gallery-item:hover img {
+            filter: grayscale(0%) brightness(1);
+            transform: scale(1.1);
+        }
+
+        .gallery-item h3 {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.9));
+            color: white;
+            font-size: 13px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-align: center;
+            z-index: 10;
+        }
+
   /* --- PIED DE PAGE (FOOTER) CORRIGÉ --- */
 footer {
     background-color: #333;
@@ -333,7 +425,6 @@ footer {
     display: inline-block;           /* Pour que la ligne ne fasse que la largeur du texte */
     padding-bottom: 8px;             /* Espace entre le texte et la ligne */
 }
-
 .footer-column p { 
     line-height: 1.6; 
     margin: 0; 
@@ -379,6 +470,7 @@ footer {
         max-width: 320px; 
     }
 
+    
     footer { 
         grid-template-columns: 1fr; /* Une seule colonne sur mobile */
         padding: 40px 20px; 
@@ -430,15 +522,11 @@ footer {
         transition: transform 0.3s ease;
     }
 
-  
-nav > a:hover::after, 
-nav .dropdown > a.dropbtn:hover::after,
-nav > a.active::after,
-nav .dropdown > a.dropbtn.active::after {
-    transform: scaleX(1) !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-}
+    nav > a:hover::after, 
+    nav .dropdown > a.dropbtn:hover::after,
+    nav > a.active::after {
+        transform: scaleX(1);
+    }
 
     /* CACHER les sous-menus sur mobile (Media, Réhabilitation, BUT) */
     .dropdown-content { 
@@ -449,6 +537,193 @@ nav .dropdown > a.dropbtn.active::after {
     .social-icons {
         margin-top: 20px;
     }
+}
+
+/* --- NOUVELLE STRUCTURE SECTIONS --- */
+.content-wrapper {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 60px 20px;
+}
+
+.info-section {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    margin-bottom: 80px;
+}
+
+.info-section.reverse {
+    flex-direction: row-reverse;
+}
+
+.info-text {
+    flex: 1;
+}
+
+.info-text h2 {
+    font-family: 'Playfair Display', serif;
+    color: #7d7aff;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+}
+
+.info-text p {
+    color: #ccc;
+    line-height: 1.8;
+    font-size: 1.05rem;
+}
+
+/* --- GALERIE INTELLIGENTE (S'ADAPTE AU NOMBRE D'IMAGES) --- */
+.info-gallery {
+    flex: 1.2;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Deux colonnes égales */
+    gap: 15px;
+    align-items: start;
+}
+
+.info-gallery img {
+    width: 100%;
+    aspect-ratio: 3 / 4; /* Force un format vertical identique pour comparer Avant/Après */
+    object-fit: cover;   /* Remplit la case pour que les deux photos fassent la même taille */
+    border-radius: 6px;
+    border: 1px solid rgba(125, 122, 255, 0.2);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Règle spéciale : Si la galerie n'a QUE 2 images (comme pour l'Atelier) */
+.info-gallery:has(img:nth-child(2):last-child) img {
+    grid-column: span 1 !important; /* Force le côte à côte */
+    aspect-ratio: 3 / 4;           /* Garde les deux images identiques */
+}
+
+/* Règle pour les galeries à 3 images (Terrain/Bureau) */
+.info-gallery:has(img:nth-child(3)) img:first-child {
+    grid-column: span 2;
+    aspect-ratio: 16 / 9; /* La grande image reste large */
+}
+
+.info-gallery img:hover {
+    transform: scale(1.02);
+    border-color: #a259ff;
+    box-shadow: 0 0 15px rgba(162, 89, 255, 0.3);
+}
+
+.section-divider {
+    border: none;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(125, 122, 255, 0.3), transparent);
+    margin: 60px 0;
+}
+
+/* --- ADAPTATION MOBILE --- */
+@media (max-width: 768px) {
+
+
+    /* Dans la section @media (max-width: 768px) */
+
+.info-section h2[style*="font-size: 2.5rem"] {
+    font-size: 1.6rem !important; /* Réduit la taille du titre principal sur mobile */
+    line-height: 1.2;
+    margin-bottom: 15px;
+}
+
+/* On ajuste aussi les titres "Terrain", "Atelier", "Bureau" pour qu'ils soient harmonieux */
+.info-text h2 {
+    font-size: 1.5rem;
+}
+    .info-section, .info-section.reverse {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+    
+    .info-gallery {
+        display: flex;          /* On passe en flexbox pour mieux contrôler la taille */
+        flex-direction: column; 
+        align-items: center;    /* Centre les photos horizontalement */
+        gap: 15px;
+        width: 100%;
+    }
+
+    .info-gallery img {
+        /* ICI ON RÉDUIT LA TAILLE */
+        width: 70% !important;  /* L'image ne prend que 70% de la largeur de l'écran */
+        max-width: 250px;       /* Elle ne dépassera jamais 250px de large */
+        
+        height: auto !important; /* Garde les proportions originales */
+        aspect-ratio: auto !important; /* Permet de voir l'image ENTIÈRE sans rognage */
+        object-fit: contain;    /* S'assure que rien n'est coupé */
+        
+        grid-column: span 1 !important; /* Sécurité pour annuler le mode PC */
+    }
+
+    /* On réinitialise la règle spécifique du PC pour la première image */
+    .info-gallery:has(img:nth-child(3)) img:first-child {
+        width: 70% !important;
+        max-width: 250px;
+        grid-column: span 1 !important;
+    }
+
+    .info-text p {
+        font-size: 0.95rem;
+        padding: 0 10px;
+    }
+}
+/* --- STYLE DU MODAL (AGRANDISSEMENT PHOTO) --- */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(10px);
+    cursor: zoom-out;
+}
+
+.modal-content {
+    margin: auto;
+    display: block;
+    max-width: 85%;
+    max-height: 80vh;
+    border-radius: 4px;
+    box-shadow: 0 0 30px rgba(125, 122, 255, 0.3);
+    animation: zoomAnim 0.3s ease-out;
+}
+
+@keyframes zoomAnim {
+    from { transform: scale(0.7); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.close-modal {
+    position: absolute;
+    top: 30px;
+    right: 50px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.close-modal:hover { color: #7d7aff; }
+
+
+.intro-text-block {
+    text-align: justify;
+    text-justify: inter-word; /* Améliore l'espacement entre les mots */
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.8;
+    color: #ccc;
 }
 
 .btn-back {
@@ -558,6 +833,84 @@ nav .dropdown > a.dropbtn.active::after {
             <p>Situation d'apprentissage et d'évaluation Robotique</p>
         </div>
     </section>
+
+    <section class="info-section" style="margin-bottom: 40px;">
+    <div class="info-text" style="width: 100%; display: flex; flex-direction: column; align-items: center;">
+        <h2 style="font-size: 2.5rem; text-align: center;">Introduction</h2>
+        <div class="intro-text-block">
+            <p>
+                Mon expérience chez <strong>Média Mesures</strong> a constitué une étape déterminante dans mon parcours professionnel. 
+                Cette entreprise spécialisée dans la variation de vitesse, m'a permis de découvrir les multiples facettes du service 
+                technique. Le service technique de <strong>Média Mesures</strong> se distingue par la richesse et la diversité de ses  
+                d’une large palette de compétences, organisée autour de trois grandes activités complémentaires : 
+                le travail de <strong>Terrain</strong>, d'<strong>Atelier</strong> et de <strong>Bureau</strong>. 
+                Chacune de ces missions m'a offert des opportunités d'apprentissage uniques, me permettant de renforcer mes compétences techniques, 
+                de gagner en autonomie et de développer une vision globale du métier. 
+                L'objectif de cette présentation est de mettre en lumière les compétences techniques acquises et les missions de service que 
+                j'ai eu l'occasion de découvrir et auxquelles j'ai contribué.
+            </p>
+        </div>
+    </div>
+</section>
+
+<hr class="section-divider">
+   
+    <main class="content-wrapper">
+
+    <section class="info-section">
+        <div class="info-text">
+            <h2>Terrain</h2>
+            <p>BIENTOT...</p>
+        </div>
+        <div class="info-gallery">
+            <img src="sacha.jpg" alt="Projet 1" onclick="openModal(this.src)">
+            <img src="piscine.JPG" alt="Projet 1" onclick="openModal(this.src)">
+            <img src="variateur.jpg" alt="Projet 1" onclick="openModal(this.src)">
+        </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <section class="info-section reverse">
+        <div class="info-text">
+            <h2>Atelier</h2>
+            <p>BIENTOT...</p>
+        </div>
+        <div class="info-gallery">
+            <img src="avant.jpg" alt="Projet 2" onclick="openModal(this.src)">
+            <img src="après.jpg" alt="Projet 2" onclick="openModal(this.src)">
+        </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <section class="info-section">
+        <div class="info-text">
+            <h2>Bureau</h2>
+            <p>BIENTOT...</p>
+        </div>
+        <div class="info-gallery">
+            <img src="danfoss.jpg" alt="Projet 3" onclick="openModal(this.src)">
+            <img src="comparaison.jpg" alt="Projet 3" onclick="openModal(this.src)">
+            <img src="tableau.jpg" alt="Projet 3" onclick="openModal(this.src)">
+        </div>
+    </section>
+
+</main>
+
+<hr class="section-divider">
+
+<section class="info-section" style="margin-top: 40px;">
+    <div class="info-text" style="text-align: center; max-width: 800px; margin: 0 auto;">
+        <h2 style="font-size: 2.5rem; text-align: center;">Bilan</h2>
+        <p>
+           BIENTOT...
+        </p>
+        <p style="margin-top: 20px; font-style: italic; color: #7d7aff;">
+            Désireux d'évoluer, je suis prêt à relever de nouveaux défis dans une nouvelle entreprise en poursuivant ma formation en Master.
+        </p>
+    </div>
+</section>
 
 <div style="text-align: center; margin-bottom: 60px;">
     <a href="but.html" class="btn-back">

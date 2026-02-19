@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Éducatif</title>
+    <title>Média</title>
     <link rel="icon"type="image/jpg" href="SI.png">
     
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
@@ -46,10 +46,6 @@
     box-sizing: border-box; /* Indispensable pour que le padding soit inclus dans les 100% */
 }
 
-        .main-logo { height: 40px; width: auto; cursor: pointer; transition: transform 0.3s cubic-bezier(.68,-0.55,.27,1.55); }
-        .main-logo:hover { transform: scale(1.15) rotate(-8deg); }
-
-        nav { display: flex; align-items: center; gap: 25px; }
         .dropdown {
             position: relative;
             display: inline-block;
@@ -151,6 +147,31 @@
                     transition: transform 0.3s cubic-bezier(.68,-0.55,.27,1.55);
                     transform-origin: left;
                 }
+
+        .main-logo { height: 40px; width: auto; cursor: pointer; transition: transform 0.3s cubic-bezier(.68,-0.55,.27,1.55); }
+        .main-logo:hover { transform: scale(1.15) rotate(-8deg); }
+
+        nav { display: flex; align-items: center; gap: 25px; }
+        nav a { color: #ccc; text-decoration: none; text-transform: uppercase; font-size: 13px; font-weight: bold; transition: 0.3s; }
+        nav a {
+            color: #ccc;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 13px;
+            font-weight: bold;
+            position: relative;
+            transition: color 0.3s;
+        }
+        nav a::after {
+            content: '';
+            position: absolute;
+            left: 0; right: 0; bottom: -3px;
+            height: 2px;
+            background: linear-gradient(90deg, #7d7aff, #a259ff 50%, #7d7aff);
+            transform: scaleX(0);
+            transition: transform 0.3s cubic-bezier(.68,-0.55,.27,1.55);
+            transform-origin: left;
+        }
         .icon-btn {
             width: 30px;
             height: 30px;
@@ -298,6 +319,77 @@
             display: block;
         }
 
+        /* --- 4. GALERIE --- */
+        .main-content {
+            background: transparent;
+            padding: 20px 0 100px 0;
+            width: 100%;
+        }
+
+        .gallery-container {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .gallery-item {
+            position: relative;
+            flex: 1; 
+            aspect-ratio: 1 / 1.1;
+            overflow: hidden;
+            border-radius: 4px;
+            background: #000;
+            border: 1px solid rgba(125, 122, 255, 0.15);
+            transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .gallery-item::after {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at center, transparent 30%, rgba(125, 122, 255, 0.15) 100%);
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            border: 1px solid rgba(125, 122, 255, 0.6);
+            box-shadow: 0 20px 40px rgba(125, 122, 255, 0.2);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(100%) brightness(0.7);
+            transition: all 0.7s ease;
+            cursor: pointer;
+        }
+
+        .gallery-item:hover img {
+            filter: grayscale(0%) brightness(1);
+            transform: scale(1.1);
+        }
+
+        .gallery-item h3 {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.9));
+            color: white;
+            font-size: 13px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-align: center;
+            z-index: 10;
+        }
+
   /* --- PIED DE PAGE (FOOTER) CORRIGÉ --- */
 footer {
     background-color: #333;
@@ -333,7 +425,6 @@ footer {
     display: inline-block;           /* Pour que la ligne ne fasse que la largeur du texte */
     padding-bottom: 8px;             /* Espace entre le texte et la ligne */
 }
-
 .footer-column p { 
     line-height: 1.6; 
     margin: 0; 
@@ -379,6 +470,7 @@ footer {
         max-width: 320px; 
     }
 
+    
     footer { 
         grid-template-columns: 1fr; /* Une seule colonne sur mobile */
         padding: 40px 20px; 
@@ -430,15 +522,11 @@ footer {
         transition: transform 0.3s ease;
     }
 
-  
-nav > a:hover::after, 
-nav .dropdown > a.dropbtn:hover::after,
-nav > a.active::after,
-nav .dropdown > a.dropbtn.active::after {
-    transform: scaleX(1) !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-}
+    nav > a:hover::after, 
+    nav .dropdown > a.dropbtn:hover::after,
+    nav > a.active::after {
+        transform: scaleX(1);
+    }
 
     /* CACHER les sous-menus sur mobile (Media, Réhabilitation, BUT) */
     .dropdown-content { 
@@ -449,6 +537,193 @@ nav .dropdown > a.dropbtn.active::after {
     .social-icons {
         margin-top: 20px;
     }
+}
+
+/* --- NOUVELLE STRUCTURE SECTIONS --- */
+.content-wrapper {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 60px 20px;
+}
+
+.info-section {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    margin-bottom: 80px;
+}
+
+.info-section.reverse {
+    flex-direction: row-reverse;
+}
+
+.info-text {
+    flex: 1;
+}
+
+.info-text h2 {
+    font-family: 'Playfair Display', serif;
+    color: #7d7aff;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+}
+
+.info-text p {
+    color: #ccc;
+    line-height: 1.8;
+    font-size: 1.05rem;
+}
+
+/* --- GALERIE INTELLIGENTE (S'ADAPTE AU NOMBRE D'IMAGES) --- */
+.info-gallery {
+    flex: 1.2;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Deux colonnes égales */
+    gap: 15px;
+    align-items: start;
+}
+
+.info-gallery img {
+    width: 100%;
+    aspect-ratio: 3 / 4; /* Force un format vertical identique pour comparer Avant/Après */
+    object-fit: cover;   /* Remplit la case pour que les deux photos fassent la même taille */
+    border-radius: 6px;
+    border: 1px solid rgba(125, 122, 255, 0.2);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Règle spéciale : Si la galerie n'a QUE 2 images (comme pour l'Atelier) */
+.info-gallery:has(img:nth-child(2):last-child) img {
+    grid-column: span 1 !important; /* Force le côte à côte */
+    aspect-ratio: 3 / 4;           /* Garde les deux images identiques */
+}
+
+/* Règle pour les galeries à 3 images (Terrain/Bureau) */
+.info-gallery:has(img:nth-child(3)) img:first-child {
+    grid-column: span 2;
+    aspect-ratio: 16 / 9; /* La grande image reste large */
+}
+
+.info-gallery img:hover {
+    transform: scale(1.02);
+    border-color: #a259ff;
+    box-shadow: 0 0 15px rgba(162, 89, 255, 0.3);
+}
+
+.section-divider {
+    border: none;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(125, 122, 255, 0.3), transparent);
+    margin: 60px 0;
+}
+
+/* --- ADAPTATION MOBILE --- */
+@media (max-width: 768px) {
+
+
+    /* Dans la section @media (max-width: 768px) */
+
+.info-section h2[style*="font-size: 2.5rem"] {
+    font-size: 1.6rem !important; /* Réduit la taille du titre principal sur mobile */
+    line-height: 1.2;
+    margin-bottom: 15px;
+}
+
+/* On ajuste aussi les titres "Terrain", "Atelier", "Bureau" pour qu'ils soient harmonieux */
+.info-text h2 {
+    font-size: 1.5rem;
+}
+    .info-section, .info-section.reverse {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+    
+    .info-gallery {
+        display: flex;          /* On passe en flexbox pour mieux contrôler la taille */
+        flex-direction: column; 
+        align-items: center;    /* Centre les photos horizontalement */
+        gap: 15px;
+        width: 100%;
+    }
+
+    .info-gallery img {
+        /* ICI ON RÉDUIT LA TAILLE */
+        width: 70% !important;  /* L'image ne prend que 70% de la largeur de l'écran */
+        max-width: 250px;       /* Elle ne dépassera jamais 250px de large */
+        
+        height: auto !important; /* Garde les proportions originales */
+        aspect-ratio: auto !important; /* Permet de voir l'image ENTIÈRE sans rognage */
+        object-fit: contain;    /* S'assure que rien n'est coupé */
+        
+        grid-column: span 1 !important; /* Sécurité pour annuler le mode PC */
+    }
+
+    /* On réinitialise la règle spécifique du PC pour la première image */
+    .info-gallery:has(img:nth-child(3)) img:first-child {
+        width: 70% !important;
+        max-width: 250px;
+        grid-column: span 1 !important;
+    }
+
+    .info-text p {
+        font-size: 0.95rem;
+        padding: 0 10px;
+    }
+}
+/* --- STYLE DU MODAL (AGRANDISSEMENT PHOTO) --- */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(10px);
+    cursor: zoom-out;
+}
+
+.modal-content {
+    margin: auto;
+    display: block;
+    max-width: 85%;
+    max-height: 80vh;
+    border-radius: 4px;
+    box-shadow: 0 0 30px rgba(125, 122, 255, 0.3);
+    animation: zoomAnim 0.3s ease-out;
+}
+
+@keyframes zoomAnim {
+    from { transform: scale(0.7); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.close-modal {
+    position: absolute;
+    top: 30px;
+    right: 50px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.close-modal:hover { color: #7d7aff; }
+
+
+.intro-text-block {
+    text-align: justify;
+    text-justify: inter-word; /* Améliore l'espacement entre les mots */
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.8;
+    color: #ccc;
 }
 
 .btn-back {
@@ -484,6 +759,199 @@ nav .dropdown > a.dropbtn.active::after {
 .btn-back:hover i {
     transform: translateX(-5px); /* Petit mouvement de la flèche vers la gauche */
 }
+
+.img-gemma-large {
+    width: 90% !important; /* Utilise 90% de la largeur totale de la page */
+    max-width: 1000px !important; /* Limite à 1000px pour ne pas pixeliser */
+    height: auto !important;
+    border: 2px solid #7d7aff; /* Ajoute une bordure pour bien la mettre en valeur */
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(125, 122, 255, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.img-gemma-large:hover {
+    transform: scale(1.02); /* Petit effet de zoom au survol */
+    border-color: #a259ff;
+}
+
+/* Sur mobile, on garde une taille adaptée */
+@media (max-width: 768px) {
+    .img-gemma-large {
+        width: 100% !important;
+    }
+}
+
+
+
+.video-container-local:hover {
+    transform: scale(1.02);
+    border-color: #a259ff;
+    box-shadow: 0 15px 50px rgba(162, 89, 255, 0.3);
+}
+
+.video-container-local video {
+    width: 100%;
+    display: block; /* Enlève l'espace blanc sous la vidéo */
+    outline: none;
+}
+
+/* Optionnel : Styliser la barre de contrôle pour certains navigateurs */
+video::-webkit-media-controls-panel {
+    background-image: linear-gradient(transparent, rgba(10, 10, 10, 0.9));
+}
+
+/* État par défaut (Vignette discrète) */
+.video-container-local {
+    max-width: 200px; /* Encore plus petit au repos */
+    margin: 20px auto;
+    border-radius: 8px; /* Bordures plus fines */
+    overflow: hidden;
+    border: 1px solid rgba(125, 122, 255, 0.5); /* Bordure plus discrète */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    cursor: pointer;
+    background: #000;
+}
+
+/* État quand elle joue (Taille raisonnable) */
+.video-container-local.is-playing {
+    max-width: 600px; /* Taille "moyenne" au lieu de 900px */
+    border-color: #7d7aff;
+    box-shadow: 0 10px 30px rgba(125, 122, 255, 0.2);
+}
+
+.video-container-local video {
+    width: 100%;
+    display: block;
+    border-radius: 7px;
+}
+.project-container {
+    padding: 80px 10%;
+}
+
+.project-step {
+    display: flex;
+    gap: 60px;
+    align-items: center;
+    margin-top: 120px;
+}
+
+.project-step:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+/* === MEDIA GRID === */
+
+.media-grid {
+    flex: 1;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Images */
+.media-grid img {
+    max-width: 100%;
+    max-height: 400px;
+    height: auto;
+    object-fit: contain;
+    border-radius: 8px;
+    border: 1px solid rgba(125,122,255,0.2);
+    padding: 6px;
+    background: #111;
+    transition: 0.4s ease;
+}
+
+.media-grid img:hover {
+    transform: scale(1.05);
+    border-color: #7d7aff;
+}
+
+/* Video */
+.media-grid video {
+    max-width: 100%;
+    max-height: 450px;
+    border-radius: 8px;
+    border: 1px solid rgba(125,122,255,0.2);
+}
+
+/* Texte */
+.step-content {
+    flex: 1;
+}
+
+.step-number {
+    font-size: 60px;
+    font-weight: 700;
+    color: rgba(125,122,255,0.15);
+}
+
+.step-content h2 {
+    font-size: 28px;
+    margin: 10px 0 20px;
+}
+
+.step-content p {
+    color: #bbb;
+    line-height: 1.8;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .project-step {
+        flex-direction: column !important;
+    }
+}
+/* ===== Effet Hover ===== */
+
+.media-grid img {
+    cursor: pointer;
+    transition: transform 0.4s ease, box-shadow 0.4s ease, filter 0.4s ease;
+}
+
+.media-grid img:hover {
+    transform: scale(1.07);
+    box-shadow: 0 15px 40px rgba(125,122,255,0.3);
+    filter: brightness(1.1);
+}
+
+
+/* ===== LIGHTBOX ===== */
+
+#lightbox {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    inset: 0;
+    background: rgba(0,0,0,0.9);
+    backdrop-filter: blur(8px);
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.3s ease;
+}
+
+#lightbox img {
+    max-width: 90%;
+    max-height: 85%;
+    border-radius: 10px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+    animation: zoomIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+@keyframes zoomIn {
+    from {transform: scale(0.8);}
+    to {transform: scale(1);}
+}
+
+
     </style>
 </head>
 <body>
@@ -559,6 +1027,177 @@ nav .dropdown > a.dropbtn.active::after {
         </div>
     </section>
 
+
+    <section class="info-section" style="margin-bottom: 40px;">
+    <div class="info-text" style="width: 100%; display: flex; flex-direction: column; align-items: center;">
+        <h2 style="font-size: 2.5rem; text-align: center;">Introduction</h2>
+        <div class="intro-text-block">
+            <p>
+                  L’objectif de cette Situation d’Apprentissage et d'Évaluation est de réaliser l’automatisation et la supervision d’une plateforme en utilisant une 
+                partie commande intégrant un automate programmable industriel (API) ainsi qu'un écran de supervision tactile et programmable.
+                La SAé est destinée aux étudiants de seconce année du BUT GEII, durant le semestre 3 et 4.
+                L’IUT de Salon a donc fait l’acquisition, chez le fabricant Festo, d’une chaîne de production de pièces comportant 6 stations, et a décidé de les automatiser.
+                La SAÉ pourra mettre en œuvre les thèmes suivants :<br>
+●	<strong>Choix et dimensionnement de la partie opérative (capteurs, actionneurs).</strong><br>
+●	<strong>Réalisation d’un équipement d’automatisme communiquant.</strong><br>
+●	<strong>Tests et mesures nécessaires à la vérification du système en mettant en œuvre un plan d’essais.</strong><br>
+●	<strong>Acquisition et génération d’une grandeur analogique.</strong><br>
+●	<strong>Commande de variateur (TOR et/ou module de commande analogique).</strong></strong><br>
+●	<strong>Mise en œuvre et configuration d’un réseau de communication pour la commande d’un équipement distant.</strong><br>
+●	<strong>Application à un process industriel ou un bâtiment intelligent.</strong><br>
+
+            </p>
+        </div>
+    </div>
+</section>
+
+<hr class="section-divider">
+   
+    <main class="content-wrapper">
+
+    <div class="project-container">
+
+    <!-- ================= PARTIE 1 ================= -->
+    <section class="project-step">
+        <div class="media-grid three">
+            <img src="groupe.jpg" alt="" onclick="openLightbox(this)">
+            <img src="alim.jpg" alt="" onclick="openLightbox(this)">
+            <img src="cdc.jpg" alt="" onclick="openLightbox(this)">
+        </div>
+        <div class="step-content">
+            <span class="step-number">01</span>
+            <h2>Cahier des Charges</h2>
+            <p>
+                Texte explicatif de la partie 1.
+                Description technique, contexte, objectifs, contraintes.
+            </p>
+        </div>
+    </section>
+
+<hr class="section-divider">
+    <!-- ================= PARTIE 2 ================= -->
+    <section class="project-step">
+        <div class="media-grid two">
+            <img src="ladder.jpg" alt="" onclick="openLightbox(this)">
+            <img src="grafcetCI.jpg" alt="" onclick="openLightbox(this)">
+            <img src="tableau2.jpg" alt="" onclick="openLightbox(this)">
+        </div>
+        <div class="step-content">
+            <span class="step-number">02</span>
+            <h2>Conditions Initiales</h2>
+            <p>
+            Le grafcet d’initialisation permet de mettre à l’état initial la maquette, il effectue un test de tous les capteurs et actionneurs pour vérifier le bon 
+            fonctionnement et réunir les conditions initiales pour commencer la production. Tant que les conditions initiales ne sont pas réunies, la production ne peut 
+            donc pas commencer.Pour la maquette de Manipulation les conditions initiales sont les suivantes : <br>
+
+•	<strong>Bras à gauche (station précédente) (%I0.1)</strong><br>
+•	<strong>Pince en haut (%I0.5)</strong> <br>
+•	<strong>Pièce non disponible (%I0.0)</strong><br>
+•	<strong>Pince ouverte (%Q0.3)</strong><br>
+N’ayant pas de capteurs indiquant que la pince est ouverte il a fallu utiliser l’actionneur. <br>
+Vous retrouverez ci-contre sous forme de ladder et de grafcet les conditions initiales pour la station Handling
+
+            </p>
+        </div>
+    </section>
+
+<hr class="section-divider">
+    <!-- ================= PARTIE 3 ================= -->
+    <section class="project-step">
+        <div class="media-grid one">
+            <img src="gemma.jpg" alt="" onclick="openLightbox(this)" class="img-gemma-large">
+        </div>
+        <div class="step-content">
+            <span class="step-number">03</span>
+            <h2>Gemma</h2>
+            <p>
+                LeGuide d’Étude des Modes de Marches et d’Arrêt a besoin de 7 modes dont un mode d'arrêt d'urgence, un mode manuel, un mode de production normal, etc. <br>
+Pour ces 7 modes on utilise les mémentos M0.1 à M0.7.
+Le GEMMA a également besoin de 6 commandes.<br>
+•	<strong>ARU</strong> : demande arrêt d’urgence (mode 1)<br>
+•	<strong>INIT</strong> : demande mise à l’état initial (mode 3) <br>
+•	<strong>DCY</strong> :  démarrer le cycle (mode5 ou 7)<br>
+•	<strong>AUTO</strong> : démarrer le cycle en automatique (mode 5)<br>
+•	<strong>MANU</strong> : démarrer le cycle en manuel (mode 7)<br>
+•	<strong>STOP</strong> : demande d’arrêt en fin de cycle.<br>
+•	On utilise ici les mémentos M1.0 à M1.6.  
+Voici une représentation du GEMMA.
+
+            </p>
+        </div>
+    </section>
+
+<hr class="section-divider">
+    <!-- ================= PARTIE 4 ================= -->
+    <section class="project-step">
+        <div class="media-grid three">
+            <img src="HMI1.jpg" alt="" onclick="openLightbox(this)">
+            <img src="HMI2.jpg" alt="" onclick="openLightbox(this)">
+            <img src="HMI3.jpg" alt="" onclick="openLightbox(this)">
+        </div>
+        <div class="step-content">
+            <span class="step-number">04</span>
+            <h2>Interface Homme Machine</h2>
+            <p>
+               L’Interface Homme-Machine est comme son nom l’indique l’écran qui permet de relier l’homme avec la station. En effet c’est un écran tactile qui a pour but 
+               de commander la machine. Dans le cahier des charges, il nous a été demandé 3 écrans donc 1 en option. <br> L’écran 1 permet à l’utilisateur de visualiser parmi 
+               l’ensemble des modes celui qui est actif et de choisir le mode voulu grâce aux 6 commandes énumérées précédemment. <br> L’écran 2 permet à l’utilisateur de choisir 
+               l’actionneur à commander dans le mode manuel.<br> L’écran 3 permet à l’utilisateur de visualiser les mouvements de la station pendant le mode automatique et de 
+               naviguer vers les autres écrans. 
+               Voici ci-contre l'écran 1 et 2 de l’HMI de la station de Manipulation.
+
+            </p>
+        </div>
+    </section>
+
+<hr class="section-divider">
+    <!-- ================= PARTIE 5 ================= -->
+    <section class="project-step">
+        <div class="media-grid one">
+            <img src="grafcet.jpg" alt="" onclick="openLightbox(this)">
+        </div>
+        <div class="step-content">
+            <span class="step-number">05</span>
+            <h2>Production Normale</h2>
+            <p>
+              J’ai d’abord réalisé le GRAFCET de production normale, puis je l’ai implémenté sous TIA Portal en Ladder à l’aide de bobines SET et RESET pour respecter la 
+              séquence définie. Un problème est apparu : les glissières pouvaient se remplir sans qu’aucun capteur ne détecte leur saturation. 
+              Après avoir déterminé qu’elles pouvaient contenir 6 pièces chacune, j’ai créé un bloc fonctionnel « Compteurs » intégrant deux compteurs. 
+              Ceux-ci s’incrémentent à chaque rangement d’une pièce et arrêtent la production une fois 6 pièces atteintes. La production reprend uniquement après 
+              réinitialisation complète via le bouton NEXT.
+            </p> 
+        </div>
+    </section>
+
+<hr class="section-divider">
+    <!-- ================= PARTIE 6 (VIDEO) ================= -->
+    <section class="project-step">
+        <div class="media-grid one">
+            <video controls>
+                <source src="auto.mov" type="video/mp4">
+                Votre navigateur ne supporte pas la vidéo.
+            </video>
+        </div>
+        <div class="step-content">
+            <span class="step-number">06</span>
+            <h2>Conclusion</h2>
+            <p>
+              Malgré les difficultés rencontrées par les différents membres et la contrainte lié au peu de séances mise à disposition à cause de l’alternance Nous avons donc
+            réussi tant bien que mal avec mes 5 partenaires techniciens a terminé nos stations et donc faire fonctionner la chaîne de production dans son ensemble. Vous 
+            pouvez trouver une vidéo de notre chaîne de production ci-dessous. <br> Ce projet nous aura donc permis d’acquérir de nombreuses compétences et de valider les 
+            compétences Concevoir, Vérifier et Intégrer.
+
+            </p>
+        </div>
+    </section>
+
+</div>
+
+
+</main>
+
+
+
 <div style="text-align: center; margin-bottom: 60px;">
     <a href="but.html" class="btn-back">
         <i class="fas fa-arrow-left"></i> Retour à BUT GEII
@@ -602,7 +1241,7 @@ nav .dropdown > a.dropbtn.active::after {
             history.scrollRestoration = 'manual';
         }
 
-        const burgerBtn = document.getElementById('burgerBtn');
+         const burgerBtn = document.getElementById('burgerBtn');
 const navMenu = document.querySelector('nav');
 
 burgerBtn.addEventListener('click', () => {
@@ -634,7 +1273,45 @@ document.querySelectorAll('nav a').forEach(link => {
         spans[2].style.transform = "none";
     });
 });
+
+
+function openLightbox(img) {
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = document.getElementById("lightbox-img");
+
+    lightbox.style.display = "flex";
+    lightboxImg.src = img.src;
+}
+
+function closeLightbox() {
+    document.getElementById("lightbox").style.display = "none";
+}
+
+document.addEventListener("keydown", function(e) {
+    if (e.key === "Escape") {
+        closeLightbox();
+    }
+});
+
+const videoWrapper = document.getElementById('videoWrapper');
+const video = document.getElementById('myProjectVideo');
+
+// 1. Quand on clique sur le conteneur
+videoWrapper.addEventListener('click', () => {
+    if (video.paused) {
+        video.play();
+        videoWrapper.classList.add('is-playing');
+        video.controls = true; // Affiche les contrôles seulement quand ça joue
+    }
+});
+
     </script>
 
+<!-- LIGHTBOX -->
+<div id="lightbox" onclick="closeLightbox()">
+    <img id="lightbox-img">
+</div>
+
+</div>
 </body>
 </html>
