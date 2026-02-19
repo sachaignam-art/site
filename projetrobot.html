@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Éducatif</title>
+    <title>Média</title>
     <link rel="icon"type="image/jpg" href="SI.png">
     
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
@@ -759,6 +759,227 @@ footer {
 .btn-back:hover i {
     transform: translateX(-5px); /* Petit mouvement de la flèche vers la gauche */
 }
+
+.img-gemma-large {
+    width: 90% !important; /* Utilise 90% de la largeur totale de la page */
+    max-width: 1000px !important; /* Limite à 1000px pour ne pas pixeliser */
+    height: auto !important;
+    border: 2px solid #7d7aff; /* Ajoute une bordure pour bien la mettre en valeur */
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(125, 122, 255, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.img-gemma-large:hover {
+    transform: scale(1.02); /* Petit effet de zoom au survol */
+    border-color: #a259ff;
+}
+
+/* Sur mobile, on garde une taille adaptée */
+@media (max-width: 768px) {
+    .img-gemma-large {
+        width: 100% !important;
+    }
+}
+
+
+
+.video-container-local:hover {
+    transform: scale(1.02);
+    border-color: #a259ff;
+    box-shadow: 0 15px 50px rgba(162, 89, 255, 0.3);
+}
+
+.video-container-local video {
+    width: 100%;
+    display: block; /* Enlève l'espace blanc sous la vidéo */
+    outline: none;
+}
+
+/* Optionnel : Styliser la barre de contrôle pour certains navigateurs */
+video::-webkit-media-controls-panel {
+    background-image: linear-gradient(transparent, rgba(10, 10, 10, 0.9));
+}
+
+/* État par défaut (Vignette discrète) */
+.video-container-local {
+    max-width: 200px; /* Encore plus petit au repos */
+    margin: 20px auto;
+    border-radius: 8px; /* Bordures plus fines */
+    overflow: hidden;
+    border: 1px solid rgba(125, 122, 255, 0.5); /* Bordure plus discrète */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    cursor: pointer;
+    background: #000;
+}
+
+/* État quand elle joue (Taille raisonnable) */
+.video-container-local.is-playing {
+    max-width: 600px; /* Taille "moyenne" au lieu de 900px */
+    border-color: #7d7aff;
+    box-shadow: 0 10px 30px rgba(125, 122, 255, 0.2);
+}
+
+.video-container-local video {
+    width: 100%;
+    display: block;
+    border-radius: 7px;
+}
+.project-container {
+    padding: 80px 10%;
+}
+
+
+.project-step {
+    display: flex;
+    gap: 60px;
+    align-items: center;
+    margin-top: 120px;
+}
+
+.project-step:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+/* === MEDIA GRID === */
+
+.media-grid {
+    flex: 1;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Images */
+.media-grid img {
+    max-width: 100%;
+    max-height: 400px;
+    height: auto;
+    object-fit: contain;
+    border-radius: 8px;
+    border: 1px solid rgba(125,122,255,0.2);
+    padding: 6px;
+    background: #111;
+    transition: 0.4s ease;
+}
+
+.media-grid img:hover {
+    transform: scale(1.05);
+    border-color: #7d7aff;
+}
+
+/* Video */
+.media-grid video {
+    max-width: 100%;
+    max-height: 450px;
+    border-radius: 8px;
+    border: 1px solid rgba(125,122,255,0.2);
+}
+
+/* Texte */
+.step-content {
+    flex: 1;
+}
+
+.step-number {
+    font-size: 60px;
+    font-weight: 700;
+    color: rgba(125,122,255,0.15);
+}
+
+.step-content h2 {
+    font-size: 28px;
+    margin: 10px 0 20px;
+}
+
+.step-content p {
+    color: #bbb;
+    line-height: 1.8;
+    text-align: justify;       /* Justifie toutes les lignes */
+    text-justify: inter-word;  /* Ajuste l'espacement entre les mots */
+}
+
+
+/* Responsive */
+@media (max-width: 900px) {
+    .project-step {
+        flex-direction: column !important;
+    }
+}
+/* ===== Effet Hover ===== */
+
+.media-grid img {
+    cursor: pointer;
+    transition: transform 0.4s ease, box-shadow 0.4s ease, filter 0.4s ease;
+}
+
+.media-grid img:hover {
+    transform: scale(1.07);
+    box-shadow: 0 15px 40px rgba(125,122,255,0.3);
+    filter: brightness(1.1);
+}
+
+
+/* ===== LIGHTBOX ===== */
+
+#lightbox {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    inset: 0;
+    background: rgba(0,0,0,0.9);
+    backdrop-filter: blur(8px);
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.3s ease;
+}
+
+#lightbox img {
+    max-width: 90%;
+    max-height: 85%;
+    border-radius: 10px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+    animation: zoomIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+@keyframes zoomIn {
+    from {transform: scale(0.8);}
+    to {transform: scale(1);}
+}
+@media (max-width: 900px) {
+
+    .project-step {
+        flex-direction: column !important;
+        gap: 30px;
+    }
+
+    .step-content {
+        order: 1;
+        text-align: left;
+    }
+
+    .media-grid {
+        order: 2;
+        width: 100%;
+        justify-content: center;
+    }
+
+    .media-grid img,
+    .media-grid video {
+        max-width: 100%;
+        height: auto;
+    }
+}
+
+
     </style>
 </head>
 <body>
@@ -784,7 +1005,7 @@ footer {
             <div class="dropdown">
                 <a href="educatif.html" class="dropbtn active" style="position:relative;z-index:2;" tabindex="0" aria-haspopup="true" aria-expanded="false">Éducatif</a>
                 <div class="dropdown-content" role="menu">
-                    <a href="but.html" role="menuitem" tabindex="0">BUT</a>
+                    <a href="but.html" role="menuitem" tabindex="0">BUT</a> 
                     <a href="projetauto.html" role="menuitem" tabindex="0">Projet Automatisme</a>
                     <a href="projetrobot.html" role="menuitem" tabindex="0">Projet Robotique</a>
                 </div>
@@ -836,20 +1057,21 @@ footer {
         </div>
     </section>
 
+
     <section class="info-section" style="margin-bottom: 40px;">
     <div class="info-text" style="width: 100%; display: flex; flex-direction: column; align-items: center;">
         <h2 style="font-size: 2.5rem; text-align: center;">Introduction</h2>
         <div class="intro-text-block">
             <p>
-                Mon expérience chez <strong>Média Mesures</strong> a constitué une étape déterminante dans mon parcours professionnel. 
-                Cette entreprise spécialisée dans la variation de vitesse, m'a permis de découvrir les multiples facettes du service 
-                technique. Le service technique de <strong>Média Mesures</strong> se distingue par la richesse et la diversité de ses  
-                d’une large palette de compétences, organisée autour de trois grandes activités complémentaires : 
-                le travail de <strong>Terrain</strong>, d'<strong>Atelier</strong> et de <strong>Bureau</strong>. 
-                Chacune de ces missions m'a offert des opportunités d'apprentissage uniques, me permettant de renforcer mes compétences techniques, 
-                de gagner en autonomie et de développer une vision globale du métier. 
-                L'objectif de cette présentation est de mettre en lumière les compétences techniques acquises et les missions de service que 
-                j'ai eu l'occasion de découvrir et auxquelles j'ai contribué.
+            Le projet s'inscrit dans le cadre de l'automatisation d'une chaîne de production. Notre équipe est un binôme composé de moi même accompagné de mon camarade de classe,
+            responsables spécifiquement de la partie magasin, c'est-à-dire la prise et la dépose de cubes par le robot Niryo Ned2 venant du convoyeur et allant sur le 
+            robot mobile SHERPA. Le système sera utilisé lors de démonstrations pédagogiques pour les journées portes ouvertes de l'IUT de Salon-de-Provence. Dans le cadre 
+            de la SAé, notre projet vise à concevoir et intégrer une solution de robotisation sur la chaîne de production. Les apprentissages critiques concernés sont : <br>
+            <strong>Contribuer à la rédaction d'un cahier des charges ;</strong> <br>
+            <strong>Prouver la pertinence de ses choix technologiques ;</strong> <br>
+            <strong>Rédiger un dossier de conception;</strong> <br>
+            Nous allons utiliser un bras robotisé. Le robot manipulé est un Niryo Ned2, un bras robotisé 6 axes destiné à l'enseignement. 
+            Il sera équipé d'une pince standard pour le déplacement des pièces.
             </p>
         </div>
     </div>
@@ -859,60 +1081,149 @@ footer {
    
     <main class="content-wrapper">
 
-    <section class="info-section">
-        <div class="info-text">
-            <h2>Terrain</h2>
-            <p>BIENTOT...</p>
+    <div class="project-container">
+
+    <!-- ================= PARTIE 1 ================= -->
+    <section class="project-step">
+        <div class="media-grid three">
+            <img src="schema1.jpg" alt="" onclick="openLightbox(this)">
+            <img src="schema2.jpg" alt="" onclick="openLightbox(this)">
         </div>
-        <div class="info-gallery">
-            <img src="sacha.jpg" alt="Projet 1" onclick="openModal(this.src)">
-            <img src="piscine.JPG" alt="Projet 1" onclick="openModal(this.src)">
-            <img src="variateur.jpg" alt="Projet 1" onclick="openModal(this.src)">
+        <div class="step-content">
+            <span class="step-number">01</span>
+            <h2>Environnement du projet</h2>
+            <p>
+            L’environnement se distingue en deux parties. La première partie correspond à la table qui sert de magasin. Cet environnement est fixe et nous retrouverons 
+            le robot ainsi que la cible Niryo. Nous retrouverons à côté un robot Sherpa transportant une autre cible Niryo afin que le robot Ned2 puisse déposer les pièces 
+            du magasin sur l’autre plateforme. Voici un schéma représentatif avec les différentes mesures utiles :
+            Pour se repérer dans la salle, nous avons également établi un schéma représentant l’ensemble des machines et leur position dans le projet :
+            </p>
         </div>
     </section>
 
-    <hr class="section-divider">
-
+<hr class="section-divider">
+    <!-- ================= PARTIE 2 ================= -->
     <section class="info-section reverse">
-        <div class="info-text">
-            <h2>Atelier</h2>
-            <p>BIENTOT...</p>
+        <div class="media-grid two">
+            <img src="objectif.jpg" alt="" onclick="openLightbox(this)">
+            <img src="planning.jpg" alt="" onclick="openLightbox(this)">
         </div>
-        <div class="info-gallery">
-            <img src="avant.jpg" alt="Projet 2" onclick="openModal(this.src)">
-            <img src="après.jpg" alt="Projet 2" onclick="openModal(this.src)">
+        <div class="step-content">
+            <span class="step-number">02</span>
+            <h2>Cahier des Charges</h2>
+            <p>
+            Un cahier des charges est un document fixant les modalités d’exécution d’un projet. 
+            Ce projet de SAE vise à concevoir une chaîne automatisée complète pour la JPO de l'école qui aura lieu début Février. Il s'agit d'un défi technique collaboratif 
+            impliquant plusieurs systèmes : robot industriel (UR3), 2 robots Niryo Ned 2, un robot mobile (Sherpa) et robot humanoïdes (Pepper). La mission de notre binôme 
+            repose sur la programmation d'un robot Niryo Ned 2 afin d'assurer son rôle au coeur de ce processus industriel.
+            Nos objectifs sont donc les suivants : Touver un scénario d'intégration réaliste du robot dans la chaîne de production, concevoir un protocole de tests ainsi
+            qu'une procédure de maintenance, définir les spécifications et s'approprier le fonctionnemment. <br>
+            Vus trouverez ci-contre une photo des objectifs plus détaillés ainsi que le planning prévisionnel du projet.
+            </p>
         </div>
     </section>
 
-    <hr class="section-divider">
-
-    <section class="info-section">
-        <div class="info-text">
-            <h2>Bureau</h2>
-            <p>BIENTOT...</p>
+<hr class="section-divider">
+    <!-- ================= PARTIE 3 ================= -->
+    <section class="project-step">
+        <div class="media-grid one">
+            <img src="ordre 1.jpg" alt="" onclick="openLightbox(this)" class="img-gemma-large">
+             <img src="ordre 2 .jpg" alt="" onclick="openLightbox(this)" class="img-gemma-large">
         </div>
-        <div class="info-gallery">
-            <img src="danfoss.jpg" alt="Projet 3" onclick="openModal(this.src)">
-            <img src="comparaison.jpg" alt="Projet 3" onclick="openModal(this.src)">
-            <img src="tableau.jpg" alt="Projet 3" onclick="openModal(this.src)">
+        <div class="step-content">
+            <span class="step-number">03</span>
+            <h2>Analyse fonctionnelle</h2>
+            <p>
+            Dans le cadre de cette SAE, le robot Niryo Ned 2 agit comme un bras de manipulation de fin de ligne. L'ordre 1 montre que le robot assure la transition entre le 
+            bras du convoyeur et le robot mobile SHERPA. Le robot doit non seulement manipuler les objets avec précision, mais aussi synchroniser son mouvement avec l'arrivée
+            du SHERPA. Comme cette fonction n'est pas directement réalisable il faut donc l'a découpé. <br>
+            La mission globale se décompose en trois étapes logiques qui structurent le système : <br>
+            <strong>F1 - Détection </strong>: Le cycle démarre par la détection du cube sur le convoyeur (via caméra). Cette étape assure la synchronisation entre le flux de production et
+            le mouvement du robot. <br>
+            <strong>F2 - Saisie </strong>: Le Niryo Ned 2 exécute sa trajectoire vers les coordonnées cibles et active sa pince. C'est la phase de manipulation physique. <br>
+            <strong>F3 - Dépose </strong>: Le robot dépose les cubes sur le SHERPA. Cette étape valide la fin du cycle et déclenche le signal autorisant le départ du robot mobile pour sa
+            mission.
+
+
+            </p>
         </div>
     </section>
+
+<hr class="section-divider">
+    <!-- ================= PARTIE 4 ================= -->
+    <section class="info-section reverse">
+        <div class="media-grid three">
+            <img src="HMI1.jpg" alt="" onclick="openLightbox(this)">
+            <img src="HMI2.jpg" alt="" onclick="openLightbox(this)">
+            <img src="HMI3.jpg" alt="" onclick="openLightbox(this)">
+        </div>
+        <div class="step-content">
+            <span class="step-number">04</span>
+            <h2>Conception</h2>
+            <p>
+               L’Interface Homme-Machine est comme son nom l’indique l’écran qui permet de relier l’homme avec la station. En effet c’est un écran tactile qui a pour but 
+               de commander la machine. Dans le cahier des charges, il nous a été demandé 3 écrans donc 1 en option. <br> L’écran 1 permet à l’utilisateur de visualiser parmi 
+               l’ensemble des modes celui qui est actif et de choisir le mode voulu grâce aux 6 commandes énumérées précédemment. <br> L’écran 2 permet à l’utilisateur de choisir 
+               l’actionneur à commander dans le mode manuel.<br> L’écran 3 permet à l’utilisateur de visualiser les mouvements de la station pendant le mode automatique et de 
+               naviguer vers les autres écrans. 
+               Voici ci-contre l'écran 1 et 2 de l’HMI de la station de Manipulation.
+
+            </p>
+        </div>
+    </section>
+
+<hr class="section-divider">
+    <!-- ================= PARTIE 5 ================= -->
+    <section class="project-step">
+        <div class="media-grid one">
+            <img src="grafcet.jpg" alt="" onclick="openLightbox(this)">
+        </div>
+        <div class="step-content">
+            <span class="step-number">05</span>
+            <h2>Choix technique</h2>
+            <p>
+              J’ai d’abord réalisé le GRAFCET de production normale, puis je l’ai implémenté sous TIA Portal en Ladder à l’aide de bobines SET et RESET pour respecter la 
+              séquence définie. Un problème est apparu : les glissières pouvaient se remplir sans qu’aucun capteur ne détecte leur saturation. 
+              Après avoir déterminé qu’elles pouvaient contenir 6 pièces chacune, j’ai créé un bloc fonctionnel « Compteurs » intégrant deux compteurs. 
+              Ceux-ci s’incrémentent à chaque rangement d’une pièce et arrêtent la production une fois 6 pièces atteintes. La production reprend uniquement après 
+              réinitialisation complète via le bouton NEXT.
+            </p> 
+        </div>
+    </section>
+
+<hr class="section-divider">
+    <!-- ================= PARTIE 6 (VIDEO) ================= -->
+    <section class="info-section reverse">
+        <div class="media-grid one">
+            <video controls>
+                <source src="robot.mov" type="video/mp4">
+                Votre navigateur ne supporte pas la vidéo.
+            </video>
+        </div>
+        <div class="step-content">
+            <span class="step-number">06</span>
+            <h2>Conclusion</h2>
+            <p>
+            En prévision de la présentation lors de la JPO, la salle a été sécurisée afin de garantir l'intégrité physique du public et le bon fonctionnement des machines.
+            Un périmètre de sécurité a été instauré, délimitant la zone de navigation du SHERPA et l'enveloppe de travail des robots Ned 2. 
+            Sur le plan de la maintenance et du maintien en condition opérationnelle, une procédurerigoureuse a été établie : <br> 
+            <strong>Initialisation</strong>: Calibration systématique du robot lors de la mise sous tension. <br>
+            <strong>Calibration mécanique </strong>: Vérification et recalage des Workspace si un déplacement physique de base est constaté. <br>
+            <strong>Maintenance logicielle </strong>: Suivi des mises à jour du firmware et redémarrage préventif des moteurs pour garantir la précision des encodeurs. <br>
+            En conclusion, malgré les défis rencontrés, notamment l'absence d'un automate de supervision centralisé, nous avons su développer des solutions logicielles
+            et nous adapter pour le bon fonctionnement de la chaîne. L'intégration du robot Nyrio Ned2 est une réussite.
+            Ce projet valide la capacité de systèmes collaboratifs à opérer de manière synchronisée dans un environnement de production simulé.
+
+            </p>
+        </div>
+    </section>
+
+</div>
+
 
 </main>
 
-<hr class="section-divider">
 
-<section class="info-section" style="margin-top: 40px;">
-    <div class="info-text" style="text-align: center; max-width: 800px; margin: 0 auto;">
-        <h2 style="font-size: 2.5rem; text-align: center;">Bilan</h2>
-        <p>
-           BIENTOT...
-        </p>
-        <p style="margin-top: 20px; font-style: italic; color: #7d7aff;">
-            Désireux d'évoluer, je suis prêt à relever de nouveaux défis dans une nouvelle entreprise en poursuivant ma formation en Master.
-        </p>
-    </div>
-</section>
 
 <div style="text-align: center; margin-bottom: 60px;">
     <a href="but.html" class="btn-back">
@@ -957,7 +1268,7 @@ footer {
             history.scrollRestoration = 'manual';
         }
 
-        const burgerBtn = document.getElementById('burgerBtn');
+         const burgerBtn = document.getElementById('burgerBtn');
 const navMenu = document.querySelector('nav');
 
 burgerBtn.addEventListener('click', () => {
@@ -989,7 +1300,45 @@ document.querySelectorAll('nav a').forEach(link => {
         spans[2].style.transform = "none";
     });
 });
+
+
+function openLightbox(img) {
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = document.getElementById("lightbox-img");
+
+    lightbox.style.display = "flex";
+    lightboxImg.src = img.src;
+}
+
+function closeLightbox() {
+    document.getElementById("lightbox").style.display = "none";
+}
+
+document.addEventListener("keydown", function(e) {
+    if (e.key === "Escape") {
+        closeLightbox();
+    }
+});
+
+const videoWrapper = document.getElementById('videoWrapper');
+const video = document.getElementById('myProjectVideo');
+
+// 1. Quand on clique sur le conteneur
+videoWrapper.addEventListener('click', () => {
+    if (video.paused) {
+        video.play();
+        videoWrapper.classList.add('is-playing');
+        video.controls = true; // Affiche les contrôles seulement quand ça joue
+    }
+});
+
     </script>
 
+<!-- LIGHTBOX -->
+<div id="lightbox" onclick="closeLightbox()">
+    <img id="lightbox-img">
+</div>
+
+</div>
 </body>
 </html>

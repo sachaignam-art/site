@@ -897,7 +897,10 @@ video::-webkit-media-controls-panel {
 .step-content p {
     color: #bbb;
     line-height: 1.8;
+    text-align: justify;       /* Justifie toutes les lignes */
+    text-justify: inter-word;  /* Ajuste l'espacement entre les mots */
 }
+
 
 /* Responsive */
 @media (max-width: 900px) {
@@ -959,7 +962,7 @@ video::-webkit-media-controls-panel {
 
     .step-content {
         order: 1;
-        text-align: left;
+        text-align: justify;
     }
 
     .media-grid {
@@ -1103,7 +1106,7 @@ video::-webkit-media-controls-panel {
 
 <hr class="section-divider">
     <!-- ================= PARTIE 2 ================= -->
-    <section class="project-step">
+    <section class="info-section reverse">
         <div class="media-grid two">
             <img src="ladder.jpg" alt="" onclick="openLightbox(this)">
             <img src="grafcetCI.jpg" alt="" onclick="openLightbox(this)">
@@ -1156,7 +1159,7 @@ Voici une représentation du GEMMA.
 
 <hr class="section-divider">
     <!-- ================= PARTIE 4 ================= -->
-    <section class="project-step">
+    <section class="info-section reverse">
         <div class="media-grid three">
             <img src="HMI1.jpg" alt="" onclick="openLightbox(this)">
             <img src="HMI2.jpg" alt="" onclick="openLightbox(this)">
@@ -1198,7 +1201,7 @@ Voici une représentation du GEMMA.
 
 <hr class="section-divider">
     <!-- ================= PARTIE 6 (VIDEO) ================= -->
-    <section class="project-step">
+    <section class="info-section reverse">
         <div class="media-grid one">
             <video controls>
                 <source src="auto.mov" type="video/mp4">
