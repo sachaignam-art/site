@@ -950,6 +950,30 @@ video::-webkit-media-controls-panel {
     from {transform: scale(0.8);}
     to {transform: scale(1);}
 }
+@media (max-width: 900px) {
+
+    .project-step {
+        flex-direction: column !important;
+        gap: 30px;
+    }
+
+    .step-content {
+        order: 1;
+        text-align: left;
+    }
+
+    .media-grid {
+        order: 2;
+        width: 100%;
+        justify-content: center;
+    }
+
+    .media-grid img,
+    .media-grid video {
+        max-width: 100%;
+        height: auto;
+    }
+}
 
 
     </style>
@@ -1068,8 +1092,9 @@ video::-webkit-media-controls-panel {
             <span class="step-number">01</span>
             <h2>Cahier des Charges</h2>
             <p>
-                Texte explicatif de la partie 1.
-                Description technique, contexte, objectifs, contraintes.
+            Le cahier des charges est un document qui définit les besoins et les exigences d’un projet. Il sert de référence tout au long du projet pour s’assurer que les 
+            objectifs sont atteints. L ecahier des charges de ce projet se divise en 2 parties. La première partie regroupe : la pré-étude, les spécifications techniques, 
+            le délai, le coût du projet etc. . Alors que la seconde partie abordent la partie automatisation des maquettes, qui comprend le gemma, IHM et programmation des API.<br>
             </p>
         </div>
     </section>
