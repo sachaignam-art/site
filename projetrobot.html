@@ -1153,47 +1153,24 @@ video::-webkit-media-controls-panel {
     <!-- ================= PARTIE 4 ================= -->
     <section class="info-section reverse">
         <div class="media-grid three">
-            <img src="HMI1.jpg" alt="" onclick="openLightbox(this)">
-            <img src="HMI2.jpg" alt="" onclick="openLightbox(this)">
-            <img src="HMI3.jpg" alt="" onclick="openLightbox(this)">
+            <img src="conception.jpg" alt="" onclick="openLightbox(this)">
+            <img src="conception2.jpg" alt="" onclick="openLightbox(this)">
+            <img src="conception3.jpg" alt="" onclick="openLightbox(this)">
         </div>
         <div class="step-content">
             <span class="step-number">04</span>
             <h2>Conception</h2>
             <p>
-               L’Interface Homme-Machine est comme son nom l’indique l’écran qui permet de relier l’homme avec la station. En effet c’est un écran tactile qui a pour but 
-               de commander la machine. Dans le cahier des charges, il nous a été demandé 3 écrans donc 1 en option. <br> L’écran 1 permet à l’utilisateur de visualiser parmi 
-               l’ensemble des modes celui qui est actif et de choisir le mode voulu grâce aux 6 commandes énumérées précédemment. <br> L’écran 2 permet à l’utilisateur de choisir 
-               l’actionneur à commander dans le mode manuel.<br> L’écran 3 permet à l’utilisateur de visualiser les mouvements de la station pendant le mode automatique et de 
-               naviguer vers les autres écrans. 
-               Voici ci-contre l'écran 1 et 2 de l’HMI de la station de Manipulation.
-
+            La phase de conception a débuté par la modélisation de l'environnement de travail (consultable dans la section <strong>"Environnement du projet"</strong>)
+            
             </p>
         </div>
     </section>
 
 <hr class="section-divider">
     <!-- ================= PARTIE 5 ================= -->
-    <section class="project-step">
-        <div class="media-grid one">
-            <img src="grafcet.jpg" alt="" onclick="openLightbox(this)">
-        </div>
-        <div class="step-content">
-            <span class="step-number">05</span>
-            <h2>Choix technique</h2>
-            <p>
-              J’ai d’abord réalisé le GRAFCET de production normale, puis je l’ai implémenté sous TIA Portal en Ladder à l’aide de bobines SET et RESET pour respecter la 
-              séquence définie. Un problème est apparu : les glissières pouvaient se remplir sans qu’aucun capteur ne détecte leur saturation. 
-              Après avoir déterminé qu’elles pouvaient contenir 6 pièces chacune, j’ai créé un bloc fonctionnel « Compteurs » intégrant deux compteurs. 
-              Ceux-ci s’incrémentent à chaque rangement d’une pièce et arrêtent la production une fois 6 pièces atteintes. La production reprend uniquement après 
-              réinitialisation complète via le bouton NEXT.
-            </p> 
-        </div>
-    </section>
 
-<hr class="section-divider">
-    <!-- ================= PARTIE 6 (VIDEO) ================= -->
-    <section class="info-section reverse">
+    <section class="info-section">
         <div class="media-grid one">
             <video controls>
                 <source src="robot.mov" type="video/mp4">
@@ -1201,7 +1178,7 @@ video::-webkit-media-controls-panel {
             </video>
         </div>
         <div class="step-content">
-            <span class="step-number">06</span>
+            <span class="step-number">05</span>
             <h2>Conclusion</h2>
             <p>
             En prévision de la présentation lors de la JPO, la salle a été sécurisée afin de garantir l'intégrité physique du public et le bon fonctionnement des machines.
