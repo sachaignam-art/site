@@ -379,7 +379,6 @@ footer {
     display: flex;
     gap: 30px;
     width: max-content; /* S'adapte au contenu */
-    animation: scrollInfinite 20s linear infinite; /* Vitesse réglable ici */
 }
 
 /* Arrête le défilement au survol pour cliquer sur une photo */
@@ -427,6 +426,30 @@ footer {
     border-radius: 4px;
     z-index: 5;
     pointer-events: none; /* Pour que le clic passe à travers vers l'image */
+}
+
+@media (max-width: 768px) {
+
+    .gallery-wrapper {
+        overflow-x: auto;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+        scroll-behavior: smooth;
+    }
+
+    .gallery-track {
+        animation: none !important; /* Stop animation */
+        scroll-snap-type: x mandatory;
+    }
+
+    .gallery-item {
+        scroll-snap-align: center;
+    }
+
+    /* Optionnel : masquer la scrollbar */
+    .gallery-wrapper::-webkit-scrollbar {
+        display: none;
+    }
 }
 
 /* L'animation : on décale maintenant de 6 images (300px * 6) + les gaps (30px * 6) */
@@ -856,7 +879,8 @@ body.no-scroll { overflow: hidden; }
 
 <div id="scroll-stop" style="height: 1px;"></div>
 
-<div class="gallery-track">
+<div class="gallery-wrapper">
+    <div class="gallery-track">
     <div class="gallery-item">
         <span class="badge">Cours</span>
         <img src="handling.jpg" alt="Station Handling" onclick="openModal(this)">
@@ -914,6 +938,7 @@ body.no-scroll { overflow: hidden; }
         <span class="badge">Travail</span>
         <img src="var2.JPG" alt="Variateur 2" onclick="openModal(this)">
     </div>
+</div>
 </div>
     <footer>
         <div class="footer-column">
