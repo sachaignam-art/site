@@ -527,14 +527,40 @@ nav .dropdown > a.dropbtn.active::after {
                 <p>Formation suivi en alternance en deuxième et troisième année.</p>
             </a>
         <style>
-        .clickable-edu-item:hover {
-            background: rgba(125,122,255,0.08);
-            box-shadow: 0 2px 12px 0 rgba(125,122,255,0.10);
-            transition: background 0.18s, box-shadow 0.18s;
-        }
-        .clickable-edu-item {
-            border-radius: 8px;
-        }
+    
+    .clickable-edu-item {
+        display: block;
+        text-decoration: none;
+        color: inherit;
+        cursor: pointer;
+        border-radius: 12px; /* Coins plus arrondis pour un look moderne */
+        transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); /* Transition plus fluide et organique */
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* L'état au survol (Hover) */
+    .clickable-edu-item:hover {
+        background: rgba(125, 122, 255, 0.12) !important; /* Fond un peu plus opaque */
+        transform: translateY(-8px) scale(1.02); /* Soulève le bloc ET l'agrandit légèrement */
+        box-shadow: 0 15px 35px rgba(125, 122, 255, 0.2); /* Ombre portée violette diffuse */
+        border-color: rgba(125, 122, 255, 0.6) !important; /* Bordure violette plus intense */
+    }
+
+    /* Effet de lueur interne au survol (Optionnel mais stylé) */
+    .clickable-edu-item::before {
+        content: '';
+        position: absolute;
+        top: 0; left: -100%;
+        width: 100%; height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+        transition: 0.5s;
+    }
+
+    .clickable-edu-item:hover::before {
+        left: 100%;
+    }
+</style>
         </style>
 
             <div class="edu-item">
