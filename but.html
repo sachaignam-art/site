@@ -312,6 +312,7 @@
     transform: scale(1.05);
 }
 
+/* --- Style du titre (Caché par défaut) --- */
 .gallery-item h3 {
     position: absolute;
     bottom: 0;
@@ -325,6 +326,18 @@
     text-transform: uppercase;
     text-align: center;
     z-index: 10;
+    
+    /* Animation : On cache le texte */
+    opacity: 0;
+    transform: translateY(10px); /* Petit décalage vers le bas */
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    pointer-events: none; /* Empêche le texte de bloquer le clic sur l'image */
+}
+
+/* --- Style au survol (Apparition du texte) --- */
+.gallery-item:hover h3 {
+    opacity: 1;
+    transform: translateY(0); /* Le texte remonte à sa position initiale */
 }
          /* --- PIED DE PAGE (FOOTER) CORRIGÉ --- */
 footer {

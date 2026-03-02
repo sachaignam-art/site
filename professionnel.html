@@ -316,6 +316,19 @@
             text-transform: uppercase;
             text-align: center;
             z-index: 10;
+            
+            /* --- NOUVEAU : On cache le texte par défaut --- */
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px); /* Le texte commence légèrement plus bas */
+            transition: opacity 0.4s ease, transform 0.4s ease; /* Animation fluide */
+        }
+
+        /* --- NOUVEAU : On affiche le texte au survol du bloc --- */
+        .gallery-item:hover h3 {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0); /* Le texte remonte à sa position initiale */
         }
 
          /* --- PIED DE PAGE (FOOTER) CORRIGÉ --- */
@@ -552,7 +565,7 @@ nav .dropdown > a.dropbtn.active::after {
     <section class="hero-section">
         <div class="hero-box">
             <h1>Parcours Professionnel</h1>
-            <p>Découvrez mes réalisations</p>
+            <p>Découvrez mon parcours et mes réalisations</p>
         </div>
     </section>
 
