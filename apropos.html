@@ -489,6 +489,95 @@ footer {
     .social-icons {
         margin-top: 20px;
     }
+} /* --- 3. HERO SECTION --- */
+        .hero-section {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(125, 122, 255, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(61, 74, 93, 0.2) 0%, transparent 40%),
+                #0a0a0a;
+            background-attachment: fixed;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-box {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 60px 80px;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-box h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            letter-spacing: 8px;
+            margin: 0;
+            background: linear-gradient(to right, #ffffff, #7d7aff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent; 
+            background-clip: text;
+            text-transform: uppercase;
+        }
+
+        .hero-box p {
+            font-weight: 300;
+            letter-spacing: 4px;
+            color: #aaa;
+            margin-top: 15px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        /* --- LA GOUTTE (SCROLL INDICATOR) --- */
+        .scroll-indicator-container {
+            position: absolute;
+            bottom: 40px;
+            cursor: pointer;
+            padding: 20px;
+            z-index: 100;
+        }
+
+        .scroll-indicator {
+            width: 2px;
+            height: 50px;
+            background: linear-gradient(to bottom, transparent, #7d7aff, #a259ff);
+            animation: scrollLine 2s infinite;
+            transition: 0.3s ease;
+            margin: 0 auto;
+        }
+
+        .scroll-indicator-container:hover .scroll-indicator {
+            height: 80px;
+            background: linear-gradient(to bottom, transparent, #ffffff);
+            box-shadow: 0 0 15px #a259ff;
+        }
+
+        @keyframes scrollLine {
+            0% { transform: scaleY(0); transform-origin: top; opacity: 0; }
+            50% { transform: scaleY(1); transform-origin: top; opacity: 1; }
+            51% { transform: scaleY(1); transform-origin: bottom; }
+            100% { transform: scaleY(0); transform-origin: bottom; opacity: 0; }
+        }
+
+
+.scroll-indicator-container {
+    transition: transform 0.3s ease;
+}
+
+.scroll-indicator-container:active {
+    transform: translateY(10px) scale(0.9); /* Effet d'appui quand on clique */
 }
 
     </style>
@@ -507,10 +596,10 @@ footer {
         <nav>
             <a href="index.html">Accueil</a>
             <div class="dropdown">
-                <a href="professionnel.html" class="dropbtn" style="position:relative;z-index:2;" tabindex="0" aria-haspopup="true" aria-expanded="false">Professionnel</a>
+                <a href="formation.html" class="dropbtn" style="position:relative;z-index:2;" tabindex="0" aria-haspopup="true" aria-expanded="false">Formation</a>
             </div>
             <div class="dropdown">
-                <a href="educatif.html" class="dropbtn" style="position:relative;z-index:2;" tabindex="0" aria-haspopup="true" aria-expanded="false">Éducatif</a>
+                <a href="projets.html" class="dropbtn" style="position:relative;z-index:2;" tabindex="0" aria-haspopup="true" aria-expanded="false">Projets</a>
             </div>
             <a href="apropos.html" class="active">À propos</a>
                 <script>
@@ -552,7 +641,18 @@ footer {
         </nav>
     </header>
 
-    <div class="container">
+    <section class="hero-section">
+        <div class="hero-box">
+            <h1>À PROPOS DE MOI </h1>
+            <p>Apprenez à me connaître</p>
+        </div>
+        
+        <div class="scroll-indicator-container" id="scrollBtn" onclick="scrollToGallery()">
+            <div class="scroll-indicator"></div>
+        </div>
+    </section>
+
+    <div class="container" id="about-section">
         <div class="profile-info">
             <h1>À propos de moi</h1>
             
@@ -691,7 +791,16 @@ document.querySelectorAll('nav a').forEach(link => {
         spans[2].style.transform = "none";
     });
 });
-        </script>
+function scrollToGallery() {
+    const section = document.getElementById("about-section");
+    const offset = 80; // hauteur du header
+    const position = section.offsetTop - offset;
+
+    window.scrollTo({
+        top: position,
+        behavior: "smooth"
+    });
+}      </script>
 
 </body>
 </html>

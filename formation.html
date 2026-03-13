@@ -10,6 +10,138 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
+        /* HERO spécifique formation */
+.hero-section {
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: transparent;
+}
+
+.hero-box {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 40px 60px;
+    border-radius: 2px;
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255,255,255,0.1);
+    animation: fadeIn 1.5s ease-out;
+}
+
+.hero-box h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    letter-spacing: 6px;
+    margin: 0;
+    background: linear-gradient(to right,#ffffff,#7d7aff);
+    -webkit-text-fill-color: transparent;
+    text-transform: uppercase;
+}
+
+.hero-box p {
+    font-weight: 300;
+    letter-spacing: 4px;
+    color: #aaa;
+    margin-top: 15px;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+}
+
+/* SECTION FORMATION */
+
+.main-content {
+    background: transparent;
+    padding: 40px 0 100px 0;
+}
+
+.content-section { 
+    max-width: 850px; 
+    margin: 0 auto; 
+    padding: 0 20px; 
+}
+
+.edu-item { 
+    background: rgba(255,255,255,0.03); 
+    padding: 40px; 
+    border-radius: 4px; 
+    margin-bottom: 40px; 
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(125,122,255,0.1); 
+    transition: all 0.4s ease;
+}
+
+.edu-item:hover {
+    border: 1px solid rgba(125,122,255,0.4);
+    transform: translateX(10px);
+    background: rgba(255,255,255,0.05);
+}
+
+.edu-item h2 { 
+    margin-top: 0; 
+    font-family: 'Playfair Display', serif; 
+    color: #7d7aff; 
+    font-size: 24px;
+}
+
+.edu-item p {
+    line-height: 1.8;
+    color: #ccc;
+    font-weight: 300;
+}
+
+.date-location {
+    color: #fff;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.edu-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+/* bloc formation cliquable */
+
+.clickable-edu-item {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+    border-radius: 12px;
+    transition: all 0.4s cubic-bezier(0.25,0.8,0.25,1);
+    position: relative;
+    overflow: hidden;
+}
+
+.clickable-edu-item:hover {
+    background: rgba(125,122,255,0.12);
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 15px 35px rgba(125,122,255,0.2);
+    border-color: rgba(125,122,255,0.6);
+}
+
+.clickable-edu-item::before {
+    content:'';
+    position:absolute;
+    top:0;
+    left:-100%;
+    width:100%;
+    height:100%;
+    background: linear-gradient(90deg,transparent,rgba(255,255,255,0.05),transparent);
+    transition:0.5s;
+}
+
+.clickable-edu-item:hover::before {
+    left:100%;
+}
        /* --- 1. BASE (FOND UNIFIÉ COMME SUR INDEX) --- */
        html, body {
     margin: 0;
@@ -692,79 +824,6 @@ footer {
     }
 }
 
-/* --- SPLASH SCREEN "SI" PREMIUM --- */
-#splash-screen {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 10000;
-    transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.6s;
-}
-
-.splash-blur-bg {
-    position: absolute;
-    width: 100%; height: 100%;
-    background: rgba(8, 8, 8, 0.9);
-    backdrop-filter: blur(25px);
-    -webkit-backdrop-filter: blur(25px);
-}
-
-.si-container {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.si-text {
-    font-family: 'Playfair Display', serif;
-    font-size: 100px;
-    font-weight: 900;
-    letter-spacing: -5px;
-    
-    /* Dégradé */
-    background: linear-gradient(90deg, #ffffff, #7d7aff, #a259ff, #ffffff);
-    background-size: 200% auto;
-    
-    /* Découpe du texte (Ordre important) */
-    background-clip: text;
-    -webkit-background-clip: text;
-    
-    /* Couleur transparente pour laisser voir le dégradé */
-    color: transparent; 
-    -webkit-text-fill-color: transparent;
-    
-    animation: shine 1.5s linear infinite;
-    position: relative;
-    z-index: 2;
-}
-
-.si-text-glow {
-    position: absolute;
-    font-family: 'Playfair Display', serif;
-    font-size: 100px;
-    font-weight: 900;
-    letter-spacing: -5px;
-    color: #7d7aff;
-    filter: blur(20px);
-    opacity: 0.6;
-    animation: pulseGlow 1.2s infinite alternate;
-    z-index: 1;
-}
-
-.loader-bar {
-    width: 0;
-    height: 3px;
-    background: linear-gradient(90deg, #7d7aff, #a259ff);
-    margin-top: -10px;
-    border-radius: 10px;
-    box-shadow: 0 0 15px rgba(125, 122, 255, 0.7);
-    animation: fastProgress 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-}
-
 /* --- ANIMATIONS --- */
 @keyframes shine {
     to { background-position: 200% center; }
@@ -788,6 +847,79 @@ footer {
 }
 
 body.no-scroll { overflow: hidden; }
+
+/* --- STRUCTURE TIMELINE --- */
+.timeline-container {
+    position: relative;
+    max-width: 1000px;
+    margin: 50px auto;
+    padding: 20px 0;
+}
+
+/* La ligne verticale centrale */
+.timeline-container::after {
+    content: '';
+    position: absolute;
+    width: 2px;
+    background: linear-gradient(to bottom, transparent, #7d7aff, #a259ff, transparent);
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -1px;
+}
+
+/* Conteneur individuel d'un item */
+.timeline-item {
+    padding: 10px 40px;
+    position: relative;
+    background: inherit;
+    width: 50%;
+    box-sizing: border-box;
+}
+
+/* Le petit rond sur la ligne */
+.timeline-item::after {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    right: -8px;
+    background-color: #0a0a0a;
+    border: 2px solid #7d7aff;
+    top: 40px;
+    border-radius: 50%;
+    z-index: 1;
+    box-shadow: 0 0 10px #7d7aff;
+}
+
+/* Positionnement Gauche */
+.left { left: 0; }
+
+/* Positionnement Droite */
+.right {
+    left: 50%;
+}
+
+.right::after {
+    left: -8px;
+}
+
+/* Ajustement des cartes à l'intérieur */
+.timeline-item .edu-item {
+    margin-bottom: 0; /* On gère l'espace via le container timeline */
+}
+
+/* --- RESPONSIVE (Mobile) --- */
+@media screen and (max-width: 768px) {
+    .timeline-container::after { left: 31px; } /* Ligne à gauche sur mobile */
+    .timeline-item {
+        width: 100%;
+        padding-left: 70px;
+        padding-right: 25px;
+    }
+    .timeline-item.right { left: 0%; }
+    .timeline-item::after { left: 23px !important; }
+}
     </style>
 </head>
 <body>
@@ -813,9 +945,9 @@ body.no-scroll { overflow: hidden; }
     <span style="width: 25px; height: 3px; background: white; transition: 0.3s;"></span>
 </div>
         <nav>
-            <a href="index.html" class="active">Accueil</a>
+            <a href="index.html" class="dropbtn">Accueil</a>
             <div class="dropdown">
-                <a href="formation.html" class="dropbtn" style="position:relative;z-index:2;" tabindex="0" aria-haspopup="true" aria-expanded="false">Formation</a>
+                <a href="formation.html" class="active" style="position:relative;z-index:2;" tabindex="0" aria-haspopup="true" aria-expanded="false">Formation</a>
             </div>
             <div class="dropdown">
                 <a href="projets.html" class="dropbtn" style="position:relative;z-index:2;" tabindex="0" aria-haspopup="true" aria-expanded="false">Projets</a>
@@ -830,9 +962,8 @@ body.no-scroll { overflow: hidden; }
 
     <section class="hero-section">
         <div class="hero-box">
-            <h1>SACHA IGNAM</h1>
-            <p>Bienvenue sur mon site</p>
-            <p>Découvrez mes services et compétences</p>
+            <h1>FORMATION</h1>
+            <p>Mon parcours académique</p>
         </div>
         
         <div class="scroll-indicator-container" id="scrollBtn" onclick="scrollToGallery()">
@@ -840,96 +971,61 @@ body.no-scroll { overflow: hidden; }
         </div>
     </section>
 
+<div class="main-content">
+    <div class="timeline-container" id="about-section">
 
+         <div class="timeline-item right">
+           <div class="edu-item">
+                <img src="mediacool.jpg" alt="Energitec" class="edu-img" style="object-fit: contain;">
+                   <span class="date-location">Média Mesures | 2024 - 2026</span>
+                <h2 style="margin:0;">Alternance Technicien expert Variateur</h2>
+                <p>Alternance lors de ma deuxieème et troisième année de BUT GEII</strong>.</p>
+            </a>
+        </div>
+</div>
 
-
-    <section class="nav-cards-section">
-    <div class="nav-cards-container">
-        <a href="formation.html" class="nav-card">
-            <div class="card-content">
-                <h3>Ma Formation</h3>
-                <p>Explorez mon parcourset découvrez la formation que j'ai suivi...</p>
-                <span class="more-link">En savoir plus <i class="fas fa-arrow-right"></i></span>
+        <div class="timeline-item left">
+           <div class="edu-item">
+                <img src="iut.png" alt="Energitec" class="edu-img" style="object-fit: contain;">
+                   <span class="date-location">IUT d'Aix-Marseille, Salon-de-Provence | 2023 - 2026</span>
+                <h2 style="margin:0;">Bachelor Universitaire Technologique (BUT) GEII</h2>
+                <p>Parcours <strong>Automatisme et Informatique Industrielle</strong>.</p>
+            </a>
+        </div>
+</div>
+        <div class="timeline-item right">
+            <div class="edu-item">
+                <img src="coudon.png" alt="Cegelec" class="edu-img" style="object-fit: contain;">
+                <span class="date-location">Lycée du Coudon, La Garde | 2020 - 2023</span>
+                <h2>Baccalauréat Général</h2>
+                <p>Spécialités : <strong>Mathématiques et Sciences de l'Ingénieur</strong>.
             </div>
-            <div class="card-glow"></div>
-        </a>
+        </div>
 
-        <a href="projets.html" class="nav-card">
-            <div class="card-content">
-                <h3>Mes Projets</h3>
-                <p>Explorez les différents projets que j'ai réalisé (Scolaire, Professionnel ou Personnel)...</p>
-                <span class="more-link">En savoir plus <i class="fas fa-arrow-right"></i></span>
+        <div class="timeline-item left">
+            <div class="edu-item">
+                <img src="ensosp.png" alt="Univ Toulon" class="edu-img" style="object-fit: contain;">
+                <span class="date-location">Collège de la Navarre, La Crau | 2019 - 2020</span>
+                <h2>Stage d'observation</h2>
+                <p>Stage de découverte à l'ENSOSP (École Nationale Supérieure des Officiers de Sapeurs Pompiers).
             </div>
-            <div class="card-glow"></div>
-        </a>
-    </div>
-</section>
+        </div>
 
 
-
-<div id="scroll-stop" style="height: 1px;"></div>
-
-<div class="gallery-wrapper">
-<div class="gallery-track">
-    <div class="gallery-item">
-        <span class="badge">Cours</span>
-        <img src="handling.jpg" alt="Station Handling" onclick="openModal(this)">
-    </div>
-    <div class="gallery-item">
-        <span class="badge">Travail</span>
-        <img src="boitiercommande.jpg" alt="Boîtier commande" onclick="openModal(this)">
-    </div>
-    <div class="gallery-item">
-        <span class="badge">Cours</span>
-        <img src="cartealim.jpg" alt="Carte Alimentation" onclick="openModal(this)">
-    </div>
-    <div class="gallery-item">
-        <span class="badge">Travail</span>
-        <img src="var.jpg" alt="Variateur" onclick="openModal(this)">
-    </div>
-    <div class="gallery-item">
-        <span class="badge">Cours</span>
-        <img src="carteson.jpg" alt="Carte Son" onclick="openModal(this)">
-    </div>
-    <div class="gallery-item">
-        <span class="badge">Cours</span>
-        <img src="chenillard.jpg" alt="Chenillard" onclick="openModal(this)">
-    </div>
-    <div class="gallery-item">
-        <span class="badge">Travail</span>
-        <img src="var2.JPG" alt="Variateur 2" onclick="openModal(this)">
-    </div>
-
-    <div class="gallery-item">
-        <span class="badge">Cours</span>
-        <img src="handling.jpg" alt="Station Handling" onclick="openModal(this)">
-    </div>
-    <div class="gallery-item">
-        <span class="badge">Travail</span>
-        <img src="boitiercommande.jpg" alt="Boîtier commande" onclick="openModal(this)">
-    </div>
-    <div class="gallery-item">
-        <span class="badge">Cours</span>
-        <img src="cartealim.jpg" alt="Carte Alimentation" onclick="openModal(this)">
-    </div>
-    <div class="gallery-item">
-        <span class="badge">Travail</span>
-        <img src="var.jpg" alt="Variateur" onclick="openModal(this)">
-    </div>
-    <div class="gallery-item">
-        <span class="badge">Cours</span>
-        <img src="carteson.jpg" alt="Carte Son" onclick="openModal(this)">
-    </div>
-    <div class="gallery-item">
-        <span class="badge">Cours</span>
-        <img src="chenillard.jpg" alt="Chenillard" onclick="openModal(this)">
-    </div>
-    <div class="gallery-item">
-        <span class="badge">Travail</span>
-        <img src="var2.JPG" alt="Variateur 2" onclick="openModal(this)">
     </div>
 </div>
-</div>
+
+
+
+   
+
+
+
+
+
+
+
+
 
     <footer>
         <div class="footer-column">
@@ -1046,18 +1142,7 @@ document.querySelectorAll('nav a').forEach(link => {
     });
 });
 
-document.addEventListener('DOMContentLoaded', () => {
-    const splash = document.getElementById('splash-screen');
-    
-    // Bloque le scroll immédiatement
-    document.body.classList.add('no-scroll');
 
-    // Libère le site après 0.8s
-    setTimeout(() => {
-        splash.classList.add('splash-hidden');
-        document.body.classList.remove('no-scroll');
-    }, 800); 
-});
 
 document.addEventListener("DOMContentLoaded", function () {
 
@@ -1089,6 +1174,16 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 });
+function scrollToGallery() {
+    const section = document.getElementById("about-section");
+    const offset = 80; // hauteur du header
+    const position = section.offsetTop - offset;
+
+    window.scrollTo({
+        top: position,
+        behavior: "smooth"
+    });
+}
     </script>
 </body>
 </html>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Éducatif</title>
+    <title>Professionnel</title>
     <link rel="icon"type="image/jpg" href="SI.png">
     
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
@@ -201,7 +201,7 @@
 
         /* --- 3. HERO SECTION --- */
         .hero-section {
-            height: 50vh;
+            height: 55vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -247,58 +247,94 @@
             font-size: 0.8rem;
         }
 
-        /* --- 4. CONTENT SECTION (STYLE ÉPURÉ SOMBRE) --- */
+        /* --- 4. GALERIE --- */
         .main-content {
             background: transparent;
-            padding: 40px 0 100px 0;
+            padding: 20px 0 100px 0;
+            width: 100%;
         }
 
-        .content-section { 
-            max-width: 850px; 
-            margin: 0 auto; 
-            padding: 0 20px; 
-        }
-        
-        .edu-item { 
-            background: rgba(255, 255, 255, 0.03); 
-            padding: 40px; 
-            border-radius: 4px; 
-            margin-bottom: 40px; 
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(125, 122, 255, 0.1); 
-            transition: all 0.4s ease;
+        .gallery-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 40px;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+        .gallery-item {
+             width:100%;
+    max-width:320px;
+    margin:auto;
+            position: relative;
+            flex: 1; 
+            aspect-ratio: 1 / 1.1;
+            overflow: hidden;
+            border-radius: 4px;
+            background: transparent;
+            border: 1px solid rgba(125, 122, 255, 0.15);
+            transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
-        .edu-item:hover {
-            border: 1px solid rgba(125, 122, 255, 0.4);
-            transform: translateX(10px);
-            background: rgba(255, 255, 255, 0.05);
-        }
-        
-        .edu-item h2 { 
-            margin-top: 0; 
-            font-family: 'Playfair Display', serif; 
-            color: #7d7aff; 
-            font-size: 24px;
-            letter-spacing: 1px;
+        .gallery-item::after {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at center, transparent 30%, rgba(125, 122, 255, 0.15) 100%);
+            pointer-events: none;
+            z-index: 5;
         }
 
-        .edu-item p {
-            line-height: 1.8;
-            color: #ccc;
-            font-weight: 300;
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            border: 1px solid rgba(125, 122, 255, 0.6);
+            box-shadow: 0 20px 40px rgba(125, 122, 255, 0.2);
         }
 
-        .date-location {
-            color: #fff;
-            font-size: 14px;
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(100%) brightness(0.7);
+            transition: all 0.7s ease;
+            cursor: pointer;
+        }
+
+        .gallery-item:hover img {
+            filter: grayscale(0%) brightness(1);
+            transform: scale(1.1);
+        }
+
+        .gallery-item h3 {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.9));
+            color: white;
+            font-size: 13px;
+            letter-spacing: 2px;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 15px;
-            display: block;
+            text-align: center;
+            z-index: 10;
+            
+            /* --- NOUVEAU : On cache le texte par défaut --- */
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px); /* Le texte commence légèrement plus bas */
+            transition: opacity 0.4s ease, transform 0.4s ease; /* Animation fluide */
         }
 
-  /* --- PIED DE PAGE (FOOTER) CORRIGÉ --- */
+        /* --- NOUVEAU : On affiche le texte au survol du bloc --- */
+        .gallery-item:hover h3 {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0); /* Le texte remonte à sa position initiale */
+        }
+
+         /* --- PIED DE PAGE (FOOTER) CORRIGÉ --- */
 footer {
     background-color: #333;
     color: #ddd;
@@ -378,15 +414,33 @@ footer {
         width: 100%; 
         max-width: 320px; 
     }
-
+    
     footer { 
         grid-template-columns: 1fr; /* Une seule colonne sur mobile */
         padding: 40px 20px; 
         text-align: center;
     }
 }
+            footer::before {
+                top: -60px;
+                height: 60px;
+            }
+        
 
-@media (max-width: 768px) {
+        #imageModal {
+            display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.95); justify-content: center; align-items: center;
+            backdrop-filter: blur(10px);
+        }
+        #modalImg { max-width: 80%; max-height: 80%; border: 1px solid rgba(255,255,255,0.1); border-radius: 4px; }
+
+        @media (max-width: 768px) {
+            .gallery-container { flex-direction: column; align-items: center; }
+            .gallery-item { width: 100%; max-width: 320px; }
+            footer { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 768px) {
     .burger-menu { display: flex !important; }
 
     nav {
@@ -430,7 +484,7 @@ footer {
         transition: transform 0.3s ease;
     }
 
-  
+ 
 nav > a:hover::after, 
 nav .dropdown > a.dropbtn:hover::after,
 nav > a.active::after,
@@ -449,48 +503,140 @@ nav .dropdown > a.dropbtn.active::after {
     .social-icons {
         margin-top: 20px;
     }
+}      /* --- 3. HERO SECTION --- */
+        .hero-section {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(125, 122, 255, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(61, 74, 93, 0.2) 0%, transparent 40%),
+                #0a0a0a;
+            background-attachment: fixed;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-box {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 60px 80px;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-box h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            letter-spacing: 8px;
+            margin: 0;
+            background: linear-gradient(to right, #ffffff, #7d7aff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent; 
+            background-clip: text;
+            text-transform: uppercase;
+        }
+
+        .hero-box p {
+            font-weight: 300;
+            letter-spacing: 4px;
+            color: #aaa;
+            margin-top: 15px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        /* --- LA GOUTTE (SCROLL INDICATOR) --- */
+        .scroll-indicator-container {
+            position: absolute;
+            bottom: 40px;
+            cursor: pointer;
+            padding: 20px;
+            z-index: 100;
+        }
+
+        .scroll-indicator {
+            width: 2px;
+            height: 50px;
+            background: linear-gradient(to bottom, transparent, #7d7aff, #a259ff);
+            animation: scrollLine 2s infinite;
+            transition: 0.3s ease;
+            margin: 0 auto;
+        }
+
+        .scroll-indicator-container:hover .scroll-indicator {
+            height: 80px;
+            background: linear-gradient(to bottom, transparent, #ffffff);
+            box-shadow: 0 0 15px #a259ff;
+        }
+
+        @keyframes scrollLine {
+            0% { transform: scaleY(0); transform-origin: top; opacity: 0; }
+            50% { transform: scaleY(1); transform-origin: top; opacity: 1; }
+            51% { transform: scaleY(1); transform-origin: bottom; }
+            100% { transform: scaleY(0); transform-origin: bottom; opacity: 0; }
+        }
+
+
+.scroll-indicator-container {
+    transition: transform 0.3s ease;
 }
 
-.clickable-edu-item {
-        display: block;
-        text-decoration: none;
-        color: inherit;
-        cursor: pointer;
-        border-radius: 12px; /* Coins plus arrondis pour un look moderne */
-        transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); /* Transition plus fluide et organique */
-        position: relative;
-        overflow: hidden;
-    }
+.scroll-indicator-container:active {
+    transform: translateY(10px) scale(0.9); /* Effet d'appui quand on clique */
+}
+/* CONTENEUR */
+.filter-buttons{
+    display:flex;
+    justify-content:center;
+    gap:18px;
+    margin-bottom:50px;
+    flex-wrap:wrap;
+}
 
-    /* L'état au survol (Hover) */
-    .clickable-edu-item:hover {
-        background: rgba(125, 122, 255, 0.12) !important; /* Fond un peu plus opaque */
-        transform: translateY(-8px) scale(1.02); /* Soulève le bloc ET l'agrandit légèrement */
-        box-shadow: 0 15px 35px rgba(125, 122, 255, 0.2); /* Ombre portée violette diffuse */
-        border-color: rgba(125, 122, 255, 0.6) !important; /* Bordure violette plus intense */
-    }
+/* BOUTONS */
+.filter-btn{
+    position:relative;
+    padding:12px 28px;
+    border-radius:30px;
+    border:1px solid rgba(125,122,255,0.25);
+    background:rgba(255,255,255,0.03);
+    backdrop-filter: blur(10px);
+    color:#ccc;
+    cursor:pointer;
+    font-size:13px;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    transition: all 0.35s cubic-bezier(.68,-0.55,.27,1.55);
+}
 
-    /* Effet de lueur interne au survol (Optionnel mais stylé) */
-    .clickable-edu-item::before {
-        content: '';
-        position: absolute;
-        top: 0; left: -100%;
-        width: 100%; height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
-        transition: 0.5s;
-    }
+/* HOVER */
+.filter-btn:hover{
+    color:white;
+    border-color:#7d7aff;
+    transform: translateY(-2px);
+    box-shadow:0 10px 25px rgba(125,122,255,0.25);
+}
 
-    .clickable-edu-item:hover::before {
-        left: 100%;
-    }
-
-    .edu-img {
-    width: 100%;
-    height: 200px; /* Hauteur fixe pour une uniformité */
-    object-fit: cover; /* Recadre l'image pour qu'elle remplisse l'espace sans déformation */
-    border-radius: 4px;
-    margin-bottom: 20px;
-    display: block;
+/* BOUTON ACTIF */
+.filter-btn.active{
+    color:white;
+    border-color:#7d7aff;
+    background:linear-gradient(135deg,#7d7aff,#a259ff);
+    box-shadow:
+        0 0 15px rgba(125,122,255,0.6),
+        0 10px 30px rgba(125,122,255,0.25);
+}
+.filter-btn:active{
+    transform:scale(0.95);
 }
 
     </style>
@@ -501,7 +647,7 @@ nav .dropdown > a.dropbtn.active::after {
         <div class="logo-container" onclick="window.location.href='index.html'">
             <img src="SI.png" alt="Logo SI" class="main-logo">
         </div>
-         <div class="burger-menu" id="burgerBtn" style="display: none; flex-direction: column; gap: 5px; cursor: pointer; z-index: 1100;">
+        <div class="burger-menu" id="burgerBtn" style="display: none; flex-direction: column; gap: 5px; cursor: pointer; z-index: 1100;">
     <span style="width: 25px; height: 3px; background: white; transition: 0.3s;"></span>
     <span style="width: 25px; height: 3px; background: white; transition: 0.3s;"></span>
     <span style="width: 25px; height: 3px; background: white; transition: 0.3s;"></span>
@@ -509,10 +655,10 @@ nav .dropdown > a.dropbtn.active::after {
         <nav>
             <a href="index.html">Accueil</a>
             <div class="dropdown">
-                <a href="professionnel.html" class="dropbtn" style="position:relative;z-index:2;" tabindex="0" aria-haspopup="true" aria-expanded="false">Professionnel</a>
+                <a href="formation.html" class="dropbtn" style="position:relative;z-index:2;" tabindex="0" aria-haspopup="true" aria-expanded="false">Formation</a>
             </div>
             <div class="dropdown">
-                <a href="educatif.html" class="dropbtn active" style="position:relative;z-index:2;" tabindex="0" aria-haspopup="true" aria-expanded="false">Éducatif</a>
+                <a href="projets.html" class="dropbtn active" style="position:relative;z-index:2;" tabindex="0" aria-haspopup="true" aria-expanded="false">Projets</a>
             </div>
             <a href="apropos.html">À propos</a>
                 <script>
@@ -556,41 +702,57 @@ nav .dropdown > a.dropbtn.active::after {
 
     <section class="hero-section">
         <div class="hero-box">
-            <h1>Formation & Éducation</h1>
-            <p>Mon parcours académique</p>
+            <h1>Mes Projets</h1>
+            <p>Découvrez mes réalisations</p>
+        </div>
+         <div class="scroll-indicator-container" id="scrollBtn" onclick="scrollToGallery()">
+            <div class="scroll-indicator"></div>
         </div>
     </section>
 
-    <div class="main-content">
-        <div class="content-section">
-            <a href="but.html" class="edu-item clickable-edu-item" style="display:block;text-decoration:none;color:inherit;cursor:pointer;">
-                <img src="iut.png" alt="Lycée" class="edu-img">
-                <span class="date-location">IUT d'Aix-Marseille, Salon-de-Provence | 2023 - 2026</span>
-                <h2 style="margin:0;">Bachelor Universitaire Technologique (BUT) GEII</h2>
-                <p>Parcours <strong>Automatisme et Informatique Industrielle</strong>.</p>
-                <p>Formation suivi en alternance en deuxième et troisième année.</p>
-            </a>
-       
     
-            <div class="edu-item">
-                <img src="coudon.png" alt="Lycée" class="edu-img">
-                <span class="date-location">Lycée du Coudon | 2020 - 2023</span>
-                <h2>Baccalauréat Général</h2>
-                <p>Spécialités : <strong>Mathématiques et Sciences de l'Ingénieur</strong>.
-            </div> 
-            <div class="edu-item">
-                <img src="ensosp.png" alt="Lycée" class="edu-img">
-                <span class="date-location">Collège de la Navarre | 2019 - 2020</span>
-                <h2>Stage d'observation</h2>
-                <p>Stage de découverte à l'ENSOSP (École Nationale Supérieure des Officiers de Sapeurs Pompiers).
+
+    <div class="main-content">
+        <div class="filter-buttons">
+    <button class="filter-btn active" data-filter="all">Tous</button>
+    <button class="filter-btn" data-filter="pro">Projets pro</button>
+    <button class="filter-btn" data-filter="scolaire">Projets scolaires</button>
+    <button class="filter-btn" data-filter="perso">Projets perso</button>
+</div>
+        <div class="gallery-container" id="about-section">
+            <div class="gallery-item" data-category="pro">
+                <a href="media.html">
+                    <img src="media.png" alt="Aventure Média" style="cursor:pointer;border-radius:8px;box-shadow:0 0 8px #a259ff;">
+                </a>
+                <h3>Alternance</h3>
+            </div>
+            <div class="gallery-item" data-category="pro">
+                <a href="rehabilitation.html">
+                    <img src="projet.jpg" alt="Automatisation" style="cursor:pointer;border-radius:8px;box-shadow:0 0 8px #a259ff;">
+                </a>
+                <h3>Projet Réhabilitation</h3>
+            </div>
+
+            <div class="gallery-item" data-category="scolaire">
+                <a href="projetauto.html">
+                    <img src="handlingaffiche.png" alt="Automatisme" style="cursor:pointer;border-radius:8px;box-shadow:0 0 8px #a259ff;">
+                </a>
+                <h3>Projet Automatisme</h3>
+            </div>
+
+            <div class="gallery-item" data-category="scolaire">
+                <a href="projetrobot.html">
+                    <img src="niryo.png" alt="Robotique" style="cursor:pointer;border-radius:8px;box-shadow:0 0 8px #a259ff;">
+                </a>
+                <h3>Projet Robotique</h3>
             </div>
         </div>
     </div>
 
-      
-
     <div class="transition-zone"></div>
 
+
+    
     <footer>
         <div class="footer-column">
             <h3>Contact </h3>
@@ -614,6 +776,10 @@ nav .dropdown > a.dropbtn.active::after {
         </div>
     </footer>
 
+    <div id="imageModal" onclick="closeModal()">
+        <img id="modalImg">
+    </div>
+
     <script>
          // FORCER LE RETOUR EN HAUT AU RAFRAÎCHISSEMENT
         // On utilise 'beforeunload' pour s'assurer que le navigateur ne garde pas la position
@@ -625,8 +791,15 @@ nav .dropdown > a.dropbtn.active::after {
         if ('scrollRestoration' in history) {
             history.scrollRestoration = 'manual';
         }
+        function openModal(element) {
+            document.getElementById("imageModal").style.display = "flex";
+            document.getElementById("modalImg").src = element.src;
+        }
+        function closeModal() {
+            document.getElementById("imageModal").style.display = "none";
+        }
 
-        const burgerBtn = document.getElementById('burgerBtn');
+    const burgerBtn = document.getElementById('burgerBtn');
 const navMenu = document.querySelector('nav');
 
 burgerBtn.addEventListener('click', () => {
@@ -658,7 +831,37 @@ document.querySelectorAll('nav a').forEach(link => {
         spans[2].style.transform = "none";
     });
 });
-    </script>
 
+const buttons = document.querySelectorAll(".filter-btn");
+const projects = document.querySelectorAll(".gallery-item");
+
+buttons.forEach(btn => {
+    btn.addEventListener("click", () => {
+
+        buttons.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+
+        const filter = btn.getAttribute("data-filter");
+
+        projects.forEach(project => {
+            if(filter === "all" || project.dataset.category === filter){
+                project.style.display = "block";
+            } else {
+                project.style.display = "none";
+            }
+        });
+    });
+});
+function scrollToGallery() {
+    const section = document.getElementById("about-section");
+    const offset = 80; // hauteur du header
+    const position = section.offsetTop - offset;
+
+    window.scrollTo({
+        top: position,
+        behavior: "smooth"
+    });
+}
+    </script>
 </body>
 </html>
