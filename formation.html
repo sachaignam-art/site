@@ -807,11 +807,14 @@ footer {
         transition: transform 0.3s ease;
     }
 
-    nav > a:hover::after, 
-    nav .dropdown > a.dropbtn:hover::after,
-    nav > a.active::after {
-        transform: scaleX(1);
-    }
+nav > a:hover::after, 
+nav .dropdown > a.dropbtn:hover::after,
+nav > a.active::after,
+nav .dropdown > a.dropbtn.active::after {
+    transform: scaleX(1) !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
 
     /* CACHER les sous-menus sur mobile (Media, Réhabilitation, BUT) */
     .dropdown-content { 
@@ -936,7 +939,7 @@ body.no-scroll { overflow: hidden; }
 </div>
 
     <header>
-        <div class="logo-container" onclick="window.location.href='index.html'">
+     <div class="logo-container" onclick="window.location.href='index.html'">
             <img src="SI.png" alt="Logo SI" class="main-logo">
         </div>
         <div class="burger-menu" id="burgerBtn" style="display: none; flex-direction: column; gap: 5px; cursor: pointer; z-index: 1100;">
@@ -945,14 +948,18 @@ body.no-scroll { overflow: hidden; }
     <span style="width: 25px; height: 3px; background: white; transition: 0.3s;"></span>
 </div>
         <nav>
-            <a href="index.html" class="dropbtn">Accueil</a>
+            <a href="index.html">Projets</a>
             <div class="dropdown">
-                <a href="formation.html" class="active" style="position:relative;z-index:2;" tabindex="0" aria-haspopup="true" aria-expanded="false">Formation</a>
+                <a href="formation.html" class="dropbtn active" style="position:relative;z-index:2;" tabindex="0" aria-haspopup="true" aria-expanded="false">Formation</a>
             </div>
             <div class="dropdown">
                 <a href="projets.html" class="dropbtn" style="position:relative;z-index:2;" tabindex="0" aria-haspopup="true" aria-expanded="false">Projets</a>
             </div>
-            <a href="apropos.html">À propos</a>
+            
+             <div class="dropdown">
+                <a href="apropos.html" class="dropbtn" style="position:relative;z-index:2;" tabindex="0" aria-haspopup="true" aria-expanded="false">À propos</a>
+            </div>
+            
             <div class="social-icons">
                 <a href="https://www.instagram.com/sacha.ignm" target="_blank" class="icon-btn insta"><i class="fab fa-instagram"></i></a>
                 <a href="https://www.linkedin.com/in/sacha-ignam-a9bb04300/" target="_blank" class="icon-btn linkedin"><i class="fab fa-linkedin-in"></i></a>
