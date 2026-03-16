@@ -220,26 +220,31 @@
         .insta { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
         .linkedin { background-color: #0077b5; }
 
-        /* --- 3. HERO SECTION --- */
+       /* --- 3. HERO SECTION --- */
         .hero-section {
-            height: 50vh;
+            height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(125, 122, 255, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(61, 74, 93, 0.2) 0%, transparent 40%),
+                #0a0a0a;
+            background-attachment: fixed;
             text-align: center;
             position: relative;
-            background: transparent;
         }
 
         .hero-box {
             background: rgba(255, 255, 255, 0.03);
-            padding: 40px 60px;
-            border-radius: 2px;
+            padding: 60px 80px;
             backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
             animation: fadeIn 1.5s ease-out;
         }
+
 
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
@@ -707,10 +712,10 @@ footer {
         <nav>
             <a href="index.html">Accueil</a>
             <div class="dropdown">
-                <a href="formation.html" class="dropbtn active" style="position:relative;z-index:2;" tabindex="0" aria-haspopup="true" aria-expanded="false">Formation</a>
+                <a href="formation.html" class="dropbtn" style="position:relative;z-index:2;" tabindex="0" aria-haspopup="true" aria-expanded="false">Formation</a>
             </div>
             <div class="dropdown">
-                <a href="projets.html" class="dropbtn" style="position:relative;z-index:2;" tabindex="0" aria-haspopup="true" aria-expanded="false">Projets</a>
+                <a href="projets.html" class="dropbtn active" style="position:relative;z-index:2;" tabindex="0" aria-haspopup="true" aria-expanded="false">Projets</a>
             </div>
             <a href="apropos.html">À propos</a>
                 <script>
@@ -754,8 +759,12 @@ footer {
 
     <section class="hero-section">
         <div class="hero-box">
-            <h1>Projet</h1>
-            <p>Réhabilitation d'un banc didactique de pompage </p>
+            <h1>PROJET</h1>
+            <p>Réhabilitation d'un banc didactique de pompage</p>
+        </div>
+        
+        <div class="scroll-indicator-container" id="scrollBtn" onclick="scrollToGallery()">
+            <div class="scroll-indicator"></div>
         </div>
     </section>
 
@@ -763,13 +772,40 @@ footer {
 
     <div class="intro-outro-section">
         <div class="section-divider"></div>
-        <h3 class="section-subtitle">Introduction</h3>
+        <h3 class="section-subtitle">Contexte</h3>
         <p class="section-text" style="text-align: justify;">
        Lors de cette première année d’alternance, il m’a été demandé de moderniser un banc de pompe déjà existant.
        Ce banc est utilisé lors de formations proposées par Média Mesures. L'objectif de cette modernisation est de diminuer la taille 
        de l'armoire et séparer la partie puissance de la partie commande, 
        afin de faciliter les interventions de maintenance et faciliter le transport.
        Voici ci-dessous les différentes de ce projet (ppour la partie commande).
+        </p>
+        <div class="section-divider"></div>
+    </div>
+
+     <div class="intro-outro-section">
+    
+        <h3 class="section-subtitle">Manipulations et interventions effectuées</h3>
+       <div class="section-text" style="text-align: left;">
+    <ul>
+        <li>Sélection des composants électriques</li>
+        <li>Dimensionnement de l'armoire et des boîtiers de commandes</li>
+        <li>Conception des schémas électriques</li>
+        <li>Perçage des boîtiers de commandes</li>
+        <li>Câblage des composants électriques</li>
+        <li>Test de fonctionnement et validation du système</li>
+    </ul>
+</div>
+        <div class="section-divider"></div>
+    </div>
+
+     <div class="intro-outro-section">
+      
+        <h3 class="section-subtitle">Ressenti personnel</h3>
+        <p class="section-text" style="text-align: justify;">
+J’ai particulièrement apprécié ce projet grâce à sa diversité et à sa complémentarité. Le banc de pompe est désormais fonctionnel et a été utilisé lors de diverses formations.
+Ce projet m’a permis de gérer un projet dans son intégralité, ce qui a contribué à développer mon autonomie ainsi que mes différentes compétences, tant sur le plan
+ scolaire que professionnel.
         </p>
         <div class="section-divider"></div>
     </div>

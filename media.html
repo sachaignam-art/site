@@ -220,24 +220,28 @@
         .insta { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
         .linkedin { background-color: #0077b5; }
 
-        /* --- 3. HERO SECTION --- */
+       /* --- 3. HERO SECTION --- */
         .hero-section {
-            height: 50vh;
+            height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(125, 122, 255, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(61, 74, 93, 0.2) 0%, transparent 40%),
+                #0a0a0a;
+            background-attachment: fixed;
             text-align: center;
             position: relative;
-            background: transparent;
         }
 
         .hero-box {
             background: rgba(255, 255, 255, 0.03);
-            padding: 40px 60px;
-            border-radius: 2px;
+            padding: 60px 80px;
             backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
             animation: fadeIn 1.5s ease-out;
         }
 
@@ -775,7 +779,7 @@ footer {
         <nav>
             <a href="index.html">Accueil</a>
             <div class="dropdown">
-                <a href="professionnel.html" class="dropbtn active" style="position:relative;z-index:2;" tabindex="0" aria-haspopup="true" aria-expanded="false">Professionnel</a>
+                <a href="formation.html" class="dropbtn active" style="position:relative;z-index:2;" tabindex="0" aria-haspopup="true" aria-expanded="false">Formation</a>
             </div>
             <div class="dropdown">
                 <a href="projets.html" class="dropbtn" style="position:relative;z-index:2;" tabindex="0" aria-haspopup="true" aria-expanded="false">Projets</a>
@@ -822,8 +826,12 @@ footer {
 
     <section class="hero-section">
         <div class="hero-box">
-            <h1>Alternance</h1>
+            <h1>ALTERNANCE</h1>
             <p>Mon expérience dans l'entreprise Média Mesures</p>
+        </div>
+        
+        <div class="scroll-indicator-container" id="scrollBtn" onclick="scrollToGallery()">
+            <div class="scroll-indicator"></div>
         </div>
     </section>
 
