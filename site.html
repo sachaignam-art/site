@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projet Robot</title>
+    <title>Site Web</title>
     <link rel="icon"type="image/jpg" href="SI.png">
     
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
@@ -245,6 +245,7 @@
             animation: fadeIn 1.5s ease-out;
         }
 
+
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -272,55 +273,134 @@
             font-size: 0.8rem;
         }
 
-        /* --- 4. CONTENT SECTION (STYLE ÉPURÉ SOMBRE) --- */
-        .main-content {
-            background: transparent;
-            padding: 40px 0 100px 0;
+        /* --- STRUCTURE DU PROJET (6 PARTIES) --- */
+        .project-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 80px 20px;
         }
 
-        .content-section { 
-            max-width: 850px; 
-            margin: 0 auto; 
-            padding: 0 20px; 
+        .project-step {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            margin-bottom: 120px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
         }
+
+        /* Animation d'apparition au scroll */
+        .project-step.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Alternance des blocs */
+        .project-step:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+       /* --- GRILLE D'IMAGES AUTO-ADAPTATIVE --- */
+.step-image-grid {
+    flex: 1;
+    display: flex; /* Utilisation de flex pour coller aux dimensions des images */
+    gap: 15px;
+    justify-content: center; /* Centre les images si elles sont petites */
+    align-items: flex-start; /* Aligne les images par le haut */
+    position: relative;
+    flex-wrap: wrap; /* Permet de passer à la ligne sur petit écran */
+}
+
+.step-image-grid img {
+    max-width: 100%; /* Empêche l'image de déborder */
+    height: auto;    /* Garde le ratio original */
+    max-height: 500px; /* Limite la hauteur pour la cohérence visuelle */
+    object-fit: contain;
+    border-radius: 6px;
+    border: 1px solid rgba(125, 122, 255, 0.2);
+    transition: transform 0.4s ease, border-color 0.4s ease;
+}
+        .step-image-grid img:hover {
+    transform: scale(1.05);
+    border-color: #a259ff;
+    box-shadow: 0 0 25px rgba(162, 89, 255, 0.6);
+}
         
-        .edu-item { 
-            background: rgba(255, 255, 255, 0.03); 
-            padding: 40px; 
-            border-radius: 4px; 
-            margin-bottom: 40px; 
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(125, 122, 255, 0.1); 
-            transition: all 0.4s ease;
+
+        /* Variante pour photos verticales (dessus/dessous) */
+        .grid-vertical {
+            grid-template-columns: 1fr !important; /* Force une seule colonne */
         }
 
-        .edu-item:hover {
-            border: 1px solid rgba(125, 122, 255, 0.4);
-            transform: translateX(10px);
-            background: rgba(255, 255, 255, 0.05);
+        .grid-vertical img {
+            height: auto !important; /* Laisse l'image prendre sa hauteur naturelle */
+            max-height: 500px; /* Limite pour ne pas que ce soit trop géant */
         }
+
+        /* --- AJUSTEMENT MOBILE --- */
+        @media (max-width: 900px) {
+            .step-image-grid img {
+                height: 220px; /* Plus petit sur téléphone */
+            }
+        }
+        .step-content {
+            flex: 1;
+    color: #aaa;
+    line-height: 1.8;
+    font-size: 1.15rem;
+    font-weight: 300;
+    text-align: center;
+}
         
-        .edu-item h2 { 
-            margin-top: 0; 
-            font-family: 'Playfair Display', serif; 
-            color: #7d7aff; 
-            font-size: 24px;
-            letter-spacing: 1px;
-        }
 
-        .edu-item p {
-            line-height: 1.8;
-            color: #ccc;
-            font-weight: 300;
-        }
-
-        .date-location {
-            color: #fff;
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 15px;
+        .step-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            color: rgba(125, 122, 255, 0.1);
+            line-height: 1;
+            margin-bottom: -20px;
             display: block;
+        }
+
+        .step-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            color: #fff;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .step-content h2::after {
+            content: "";
+            display: block;
+            width: 50px;
+            height: 3px;
+            background: #7d7aff;
+            margin-top: 10px;
+        }
+
+        .step-content p {
+            color: #aaa;
+            line-height: 1.8;
+            font-size: 1.05rem;
+            text-align: justify;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 900px) {
+            .project-step, .project-step:nth-child(even) {
+                flex-direction: column-reverse !important;
+                flex-direction: column;
+                gap: 30px;
+                margin-bottom: 80px;
+            }
+            .step-image img {
+                height: 250px;
+            }
+            .step-content {
+                text-align: left;
+            }
         }
 
         /* --- 4. GALERIE --- */
@@ -429,6 +509,7 @@ footer {
     display: inline-block;           /* Pour que la ligne ne fasse que la largeur du texte */
     padding-bottom: 8px;             /* Espace entre le texte et la ligne */
 }
+
 .footer-column p { 
     line-height: 1.6; 
     margin: 0; 
@@ -440,6 +521,21 @@ footer {
     gap: 15px; 
     margin-top: 20px; 
     justify-content: center; /* Centre les icônes sous le titre */
+}
+
+/* Agrandissement spécifique pour i5.jpg */
+/* Agrandissement modéré pour i5.jpg */
+.image-focus {
+    max-height: 580px !important; /* On passe de 500px à 580px seulement */
+    width: auto;
+    display: block;
+    margin: 0 auto;
+    transition: transform 0.4s ease;
+}
+
+/* On garde l'équilibre 50/50 avec le texte pour éviter l'effet "trop gros" */
+.project-step:has(.image-focus) .step-image-grid {
+    flex: 1; 
 }
 
 /* --- RESPONSIVE --- */
@@ -473,7 +569,6 @@ footer {
         width: 100%; 
         max-width: 320px; 
     }
-
     
     footer { 
         grid-template-columns: 1fr; /* Une seule colonne sur mobile */
@@ -546,204 +641,37 @@ nav .dropdown > a.dropbtn.active::after {
     }
 }
 
-/* --- NOUVELLE STRUCTURE SECTIONS --- */
-.content-wrapper {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 60px 20px;
+/* --- STYLE POUR INTRO & CONCLUSION --- */
+.intro-outro-section {
+    max-width: 850px; /* Plus étroit pour une meilleure lecture */
+    margin: 0 auto 60px auto;
+    text-align: center;
+    padding: 0 20px;
 }
 
-.info-section {
-    display: flex;
-    align-items: center;
-    gap: 50px;
-    margin-bottom: 80px;
-}
-
-.info-section.reverse {
-    flex-direction: row-reverse;
-}
-
-.info-text {
-    flex: 1;
-    color: #aaa;
-    line-height: 1.8;
-    font-size: 1.15rem;
-    font-weight: 300;
-    text-align: justify;
-}
-
-
-.info-text h2 {
+.section-subtitle {
     font-family: 'Playfair Display', serif;
-    color: #7d7aff;
-    font-size: 2rem;
-    margin-bottom: 20px;
+    font-size: 2.2rem;
+    color: #7d7aff; /* Couleur violette de ton thème */
+    margin-bottom: 25px;
     letter-spacing: 2px;
 }
 
-.info-text p {
-
+.section-text {
     color: #aaa;
     line-height: 1.8;
     font-size: 1.15rem;
     font-weight: 300;
     text-align: justify;
-}
-
-/* --- GALERIE INTELLIGENTE (S'ADAPTE AU NOMBRE D'IMAGES) --- */
-.info-gallery {
-    flex: 1.2;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Deux colonnes égales */
-    gap: 15px;
-    align-items: start;
-}
-
-.info-gallery img {
-    width: 100%;
-    aspect-ratio: 3 / 4; /* Force un format vertical identique pour comparer Avant/Après */
-    object-fit: cover;   /* Remplit la case pour que les deux photos fassent la même taille */
-    border-radius: 6px;
-    border: 1px solid rgba(125, 122, 255, 0.2);
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-/* Règle spéciale : Si la galerie n'a QUE 2 images (comme pour l'Atelier) */
-.info-gallery:has(img:nth-child(2):last-child) img {
-    grid-column: span 1 !important; /* Force le côte à côte */
-    aspect-ratio: 3 / 4;           /* Garde les deux images identiques */
-}
-
-/* Règle pour les galeries à 3 images (Terrain/Bureau) */
-.info-gallery:has(img:nth-child(3)) img:first-child {
-    grid-column: span 2;
-    aspect-ratio: 16 / 9; /* La grande image reste large */
-}
-
-.info-gallery img:hover {
-    transform: scale(1.05);
-    border-color: #a259ff;
-    box-shadow: 0 0 25px rgba(162, 89, 255, 0.6);
 }
 
 .section-divider {
-    border: none;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(125, 122, 255, 0.3), transparent);
-    margin: 60px 0;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, #7d7aff, #a259ff);
+    margin: 40px auto;
+    border-radius: 2px;
 }
-
-/* --- ADAPTATION MOBILE --- */
-@media (max-width: 768px) {
-
-
-    /* Dans la section @media (max-width: 768px) */
-
-.info-section h2[style*="font-size: 2.5rem"] {
-    font-size: 1.6rem !important; /* Réduit la taille du titre principal sur mobile */
-    line-height: 1.2;
-    margin-bottom: 15px;
-}
-
-/* On ajuste aussi les titres "Terrain", "Atelier", "Bureau" pour qu'ils soient harmonieux */
-.info-text h2 {
-    font-size: 1.5rem;
-}
-    .info-section, .info-section.reverse {
-        flex-direction: column;
-        gap: 20px;
-        text-align: center;
-    }
-    
-    .info-gallery {
-        display: flex;          /* On passe en flexbox pour mieux contrôler la taille */
-        flex-direction: column; 
-        align-items: center;    /* Centre les photos horizontalement */
-        gap: 15px;
-        width: 100%;
-    }
-
-    .info-gallery img {
-        /* ICI ON RÉDUIT LA TAILLE */
-        width: 70% !important;  /* L'image ne prend que 70% de la largeur de l'écran */
-        max-width: 250px;       /* Elle ne dépassera jamais 250px de large */
-        
-        height: auto !important; /* Garde les proportions originales */
-        aspect-ratio: auto !important; /* Permet de voir l'image ENTIÈRE sans rognage */
-        object-fit: contain;    /* S'assure que rien n'est coupé */
-        
-        grid-column: span 1 !important; /* Sécurité pour annuler le mode PC */
-    }
-
-    /* On réinitialise la règle spécifique du PC pour la première image */
-    .info-gallery:has(img:nth-child(3)) img:first-child {
-        width: 70% !important;
-        max-width: 250px;
-        grid-column: span 1 !important;
-    }
-
-    .info-text p {
-        font-size: 0.95rem;
-        padding: 0 10px;
-    }
-}
-/* --- STYLE DU MODAL (AGRANDISSEMENT PHOTO) --- */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 2000;
-    padding-top: 100px;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.95);
-    backdrop-filter: blur(10px);
-    cursor: zoom-out;
-}
-
-.modal-content {
-    margin: auto;
-    display: block;
-    max-width: 85%;
-    max-height: 80vh;
-    border-radius: 4px;
-    box-shadow: 0 0 30px rgba(125, 122, 255, 0.3);
-    animation: zoomAnim 0.3s ease-out;
-}
-
-@keyframes zoomAnim {
-    from { transform: scale(0.7); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
-}
-
-.close-modal {
-    position: absolute;
-    top: 30px;
-    right: 50px;
-    color: #fff;
-    font-size: 40px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.close-modal:hover { color: #7d7aff; }
-
-
-.intro-text-block {
-    text-align: justify;
-    text-justify: inter-word; /* Améliore l'espacement entre les mots */
-    max-width: 800px;
-    margin: 0 auto;
-    line-height: 1.8;
-    color: #aaa;
-    font-size: 1.15rem;
-    font-weight: 300;
-}
-
 
 .btn-back {
     display: inline-flex;
@@ -778,243 +706,10 @@ nav .dropdown > a.dropbtn.active::after {
 .btn-back:hover i {
     transform: translateX(-5px); /* Petit mouvement de la flèche vers la gauche */
 }
-
-.img-gemma-large {
-    width: 90% !important; /* Utilise 90% de la largeur totale de la page */
-    max-width: 1000px !important; /* Limite à 1000px pour ne pas pixeliser */
-    height: auto !important;
-    border: 2px solid #7d7aff; /* Ajoute une bordure pour bien la mettre en valeur */
-    border-radius: 8px;
-    box-shadow: 0 10px 30px rgba(125, 122, 255, 0.2);
-    transition: transform 0.3s ease;
-}
-
-.img-gemma-large:hover {
-    transform: scale(1.02); /* Petit effet de zoom au survol */
-    border-color: #a259ff;
-}
-
-/* Sur mobile, on garde une taille adaptée */
-@media (max-width: 768px) {
-    .img-gemma-large {
-        width: 100% !important;
-    }
-}
-
-
-
-.video-container-local:hover {
-    transform: scale(1.02);
-    border-color: #a259ff;
-    box-shadow: 0 15px 50px rgba(162, 89, 255, 0.3);
-}
-
-.video-container-local video {
-    width: 100%;
-    display: block; /* Enlève l'espace blanc sous la vidéo */
-    outline: none;
-}
-
-/* Optionnel : Styliser la barre de contrôle pour certains navigateurs */
-video::-webkit-media-controls-panel {
-    background-image: linear-gradient(transparent, rgba(10, 10, 10, 0.9));
-}
-
-/* État par défaut (Vignette discrète) */
-.video-container-local {
-    max-width: 200px; /* Encore plus petit au repos */
-    margin: 20px auto;
-    border-radius: 8px; /* Bordures plus fines */
-    overflow: hidden;
-    border: 1px solid rgba(125, 122, 255, 0.5); /* Bordure plus discrète */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-    cursor: pointer;
-    background: #000;
-}
-
-/* État quand elle joue (Taille raisonnable) */
-.video-container-local.is-playing {
-    max-width: 600px; /* Taille "moyenne" au lieu de 900px */
-    border-color: #7d7aff;
-    box-shadow: 0 10px 30px rgba(125, 122, 255, 0.2);
-}
-
-.video-container-local video {
-    width: 100%;
-    display: block;
-    border-radius: 7px;
-}
-.project-container {
-    padding: 80px 10%;
-}
-
-
-.project-step {
-    display: flex;
-    gap: 60px;
-    align-items: center;
-    margin-top: 120px;
-}
-
-.project-step:nth-child(even) {
-    flex-direction: row-reverse;
-}
-
-/* === MEDIA GRID === */
-
-.media-grid {
-    flex: 1;
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-}
-
-/* Images */
-.media-grid img {
-    max-width: 100%;
-    max-height: 400px;
-    height: auto;
-    object-fit: contain;
-    border-radius: 8px;
-    border: 1px solid rgba(125,122,255,0.2);
-    padding: 6px;
-    background: #111;
-    transition: 0.4s ease;
-}
-
-.media-grid img:hover {
-    transform: scale(1.05);
-    border-color: #a259ff;
-    box-shadow: 0 0 25px rgba(162, 89, 255, 0.6);
-}
-
-/* Video */
-.media-grid video {
-    max-width: 100%;
-    max-height: 450px;
-    border-radius: 8px;
-    border: 1px solid rgba(125,122,255,0.2);
-}
-.media-grid video:hover {
- transform: scale(1.05);
-    border-color: #a259ff;
-    box-shadow: 0 0 25px rgba(162, 89, 255, 0.6);
-}
-
-/* Texte */
-.step-content {
-    color: #aaa;
-    line-height: 1.8;
-    font-size: 1.15rem;
-    font-weight: 300;
-    text-align: center;
-    flex: 1;
-}
-
-.step-number {
-    font-size: 60px;
-    font-weight: 700;
-    color: rgba(125,122,255,0.15);
-}
-
-.step-content h2 {
-    font-size: 28px;
-    margin: 10px 0 20px;
-}
-
-.step-content p {
-    color: #bbb;
-    line-height: 1.8;
-    text-align: justify;       /* Justifie toutes les lignes */
-    text-justify: inter-word;  /* Ajuste l'espacement entre les mots */
-}
-
-
-/* Responsive */
-@media (max-width: 900px) {
-    .project-step {
-        flex-direction: column !important;
-    }
-}
-/* ===== Effet Hover ===== */
-
-.media-grid img {
-    cursor: pointer;
-    transition: transform 0.4s ease, box-shadow 0.4s ease, filter 0.4s ease;
-}
-
-.media-grid img:hover {
-    transform: scale(1.07);
-    box-shadow: 0 15px 40px rgba(125,122,255,0.3);
-    filter: brightness(1.1);
-}
-
-
-/* ===== LIGHTBOX ===== */
-
-#lightbox {
-    display: none;
-    position: fixed;
-    z-index: 9999;
-    inset: 0;
-    background: rgba(0,0,0,0.9);
-    backdrop-filter: blur(8px);
-    justify-content: center;
-    align-items: center;
-    animation: fadeIn 0.3s ease;
-}
-
-#lightbox img {
-    max-width: 90%;
-    max-height: 85%;
-    border-radius: 10px;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.6);
-    animation: zoomIn 0.3s ease;
-}
-
-@keyframes fadeIn {
-    from {opacity: 0;}
-    to {opacity: 1;}
-}
-
-@keyframes zoomIn {
-    from {transform: scale(0.8);}
-    to {transform: scale(1);}
-}
-@media (max-width: 900px) {
-
-    .project-step {
-        flex-direction: column !important;
-        gap: 30px;
-    }
-
-    .step-content {
-        order: 1;
-        text-align: left;
-    }
-
-    .media-grid {
-        order: 2;
-        width: 100%;
-        justify-content: center;
-    }
-
-    .media-grid img,
-    .media-grid video {
-        max-width: 100%;
-        height: auto;
-    }
-}
-
-
     </style>
 </head>
 <body>
-
-    <header>
+   <header>
         <div class="logo-container" onclick="window.location.href='index.html'">
             <img src="SI.png" alt="Logo SI" class="main-logo">
         </div>
@@ -1071,10 +766,10 @@ video::-webkit-media-controls-panel {
         </nav>
     </header>
 
-   <section class="hero-section">
+    <section class="hero-section">
         <div class="hero-box">
             <h1>PROJET</h1>
-            <p>Situation d'apprentissage et d'évaluation Robotique</p>
+            <p>Site Web - Portfolio</p>
         </div>
         
         <div class="scroll-indicator-container" id="scrollBtn" onclick="scrollToGallery()">
@@ -1082,185 +777,58 @@ video::-webkit-media-controls-panel {
         </div>
     </section>
 
+<div class="project-container">
 
-    <section class="info-section">
-    <div class="info-text" >
-        <h2 style="font-size: 2.5rem; text-align: center;">Contexte</h2>
-        <div class="intro-text-block">
-            <p>
-            Le projet s'inscrit dans le cadre de l'automatisation d'une chaîne de production. Notre équipe est un binôme composé de moi même accompagné de mon camarade de classe,
-            responsables spécifiquement de la partie magasin, c'est-à-dire la prise et la dépose de cubes par le robot Niryo Ned2 venant du convoyeur et allant sur le 
-            robot mobile SHERPA. Le système sera utilisé lors de démonstrations pédagogiques pour les journées portes ouvertes de l'IUT de Salon-de-Provence. Dans le cadre 
-            de la SAé, notre projet vise à concevoir et intégrer une solution de robotisation sur la chaîne de production. <br>
-            Nous allons utiliser un bras robotisé. Le robot manipulé est un Niryo Ned2, un bras robotisé 6 axes destiné à l'enseignement. 
-            Il sera équipé d'une pince standard pour le déplacement des pièces.
-            </p>
-        </div>
+    <div class="intro-outro-section">
+        <div class="section-divider"></div>
+        <h3 class="section-subtitle">Contexte</h3>
+        <p class="section-text" style="text-align: justify;">
+      Ceprojet consiste en la création de portfolio, que vous explorez actuellement. Il est le fruit d’une démarche de conception et de 
+      développement complet. L’objectif ? Centraliser mon parcours, mes compétences et mes réalisations au sein d’une interface unique, 
+       à la fois professionnelle et immersive. Ce projet s'inscrit dans une démarche de communication et de valorisation 
+       de mes compétences pour faciliter mon insertion dans le monde professionnel.
+
+        </p>
+        <div class="section-divider"></div>
     </div>
-</section>
 
-<hr class="section-divider">
-
-<section class="info-section">
-    <div class="info-text">
-        <h2 style="font-size: 2.5rem; text-align: center;">Manipulations et interventions effectuées</h2>
-        <div class="intro-text-block">
-            <p>
-            <li>Contribuer à la rédaction d'un cahier des charges et des spécifications ; </li>
-            <li>Programmation du bras robotisé ;</li>
-            <li>Tests et optimisations des mouvements du bras robotisé ; </li>
-            <li>Prouver la pertinence de ses choix technologiques ;</li>
-            <li>Rédiger un dossier de conception, de maintenance, de vérification et d'intégration; </li>
-     
-            </p>
-        </div>
-    </div>
-</section>
-
-<hr class="section-divider">
-
-<section class="info-section">
-    <div class="info-text">
-        <h2 style="font-size: 2.5rem; text-align: center;">Ressenti personnel</h2>
-        <div class="intro-text-block">
-            <p>
-  La robotique est un domaine passionnant qui combien électroniquen programmation et mécanique. J'ai apprécié le défi de devoir créer un scénario 
-  à présenter lors de la Journée Portes Ouvertes en créant une chaîne de production avec plusieurs types de robots.
-  <br>
-  <br>
-  Ce projet m'a permis de développer des compétences en robotique, un domaine qui m'intéresse pour une potentielle carrière dans l'automatisaton
-  industrielle ou la robotique de service.
-            </p>
-        </div>
-    </div>
-</section>
-
-<hr class="section-divider">
-   
-    <main class="content-wrapper">
-
-    <div class="project-container">
-
-    <!-- ================= PARTIE 1 ================= -->
-    <section class="project-step">
-        <div class="media-grid three">
-            <img src="schema1.jpg" alt="" onclick="openLightbox(this)">
-            <img src="schema2.jpg" alt="" onclick="openLightbox(this)">
-        </div>
-        <div class="step-content">
-            <span class="step-number">01</span>
-            <h2>Environnement du projet</h2>
-            <p>
-            L’environnement se distingue en deux parties. La première partie correspond à la table qui sert de magasin. Cet environnement est fixe et nous retrouverons 
-            le robot ainsi que la cible Niryo. Nous retrouverons à côté un robot Sherpa transportant une autre cible Niryo afin que le robot Ned2 puisse déposer les pièces 
-            du magasin sur l’autre plateforme. Voici un schéma représentatif avec les différentes mesures utiles :
-            Pour se repérer dans la salle, nous avons également établi un schéma représentant l’ensemble des machines et leur position dans le projet :
-            </p>
-        </div>
-    </section>
-
-<hr class="section-divider">
-    <!-- ================= PARTIE 2 ================= -->
-    <section class="info-section reverse">
-        <div class="media-grid two">
-            <img src="objectif.jpg" alt="" onclick="openLightbox(this)">
-            <img src="planning.jpg" alt="" onclick="openLightbox(this)">
-        </div>
-        <div class="step-content">
-            <span class="step-number">02</span>
-            <h2>Cahier des Charges</h2>
-            <p>
-            Un cahier des charges est un document fixant les modalités d’exécution d’un projet. 
-            Ce projet de SAE vise à concevoir une chaîne automatisée complète pour la JPO de l'école qui aura lieu début Février. Il s'agit d'un défi technique collaboratif 
-            impliquant plusieurs systèmes : robot industriel (UR3), 2 robots Niryo Ned 2, un robot mobile (Sherpa) et robot humanoïdes (Pepper). La mission de notre binôme 
-            repose sur la programmation d'un robot Niryo Ned 2 afin d'assurer son rôle au coeur de ce processus industriel.
-            Nos objectifs sont donc les suivants : Touver un scénario d'intégration réaliste du robot dans la chaîne de production, concevoir un protocole de tests ainsi
-            qu'une procédure de maintenance, définir les spécifications et s'approprier le fonctionnemment. <br>
-            Vus trouverez ci-contre une photo des objectifs plus détaillés ainsi que le planning prévisionnel du projet.
-            </p>
-        </div>
-    </section>
-
-<hr class="section-divider">
-    <!-- ================= PARTIE 3 ================= -->
-    <section class="project-step">
-        <div class="media-grid one">
-            <img src="ordre 1.jpg" alt="" onclick="openLightbox(this)" class="img-gemma-large">
-             <img src="ordre 2 .jpg" alt="" onclick="openLightbox(this)" class="img-gemma-large">
-        </div>
-        <div class="step-content">
-            <span class="step-number">03</span>
-            <h2>Analyse fonctionnelle</h2>
-            <p>
-            Dans le cadre de cette SAE, le robot Niryo Ned 2 agit comme un bras de manipulation de fin de ligne. L'ordre 1 montre que le robot assure la transition entre le 
-            bras du convoyeur et le robot mobile SHERPA. Le robot doit non seulement manipuler les objets avec précision, mais aussi synchroniser son mouvement avec l'arrivée
-            du SHERPA. Comme cette fonction n'est pas directement réalisable il faut donc l'a découpé. <br>
-            La mission globale se décompose en trois étapes logiques qui structurent le système : <br>
-            <strong>F1 - Détection </strong>: Le cycle démarre par la détection du cube sur le convoyeur (via caméra). Cette étape assure la synchronisation entre le flux de production et
-            le mouvement du robot. <br>
-            <strong>F2 - Saisie </strong>: Le Niryo Ned 2 exécute sa trajectoire vers les coordonnées cibles et active sa pince. C'est la phase de manipulation physique. <br>
-            <strong>F3 - Dépose </strong>: Le robot dépose les cubes sur le SHERPA. Cette étape valide la fin du cycle et déclenche le signal autorisant le départ du robot mobile pour sa
-            mission.
-
-
-            </p>
-        </div>
-    </section>
-
-<hr class="section-divider">
-    <!-- ================= PARTIE 4 ================= -->
-    <section class="info-section reverse">
-        <div class="media-grid three">
-            <img src="conception.jpg" alt="" onclick="openLightbox(this)">
-            <img src="conception2.jpg" alt="" onclick="openLightbox(this)">
-            <img src="conception3.jpg" alt="" onclick="openLightbox(this)">
-        </div>
-        <div class="step-content">
-            <span class="step-number">04</span>
-            <h2>Conception</h2>
-            <p>
-            La phase de conception a débuté par la modélisation de l'environnement de travail (consultable dans la section <strong>"Environnement du projet"</strong>)
-            Après avoir validé le schéma de conception et défini le scénario industriel, nous avons procédé à la configuration des deux Workspaces (zones de travail) 
-            : celui embarqué sur le SHERPA et celui assurant l'interface entre le Ned 2 et le convoyeur. Une fois ces environnements définis, nous avons 
-            cartographié l'ensemble des coordonnées nécessaires au cycle de fonctionnement. Pour optimiser la clarté et la maintenance du code, j'ai eu l'idée de
-            clarifier le programme avec de variables de position nommées, permettant d'associer chaque coordonnée cartésienne à un alias explicite.
-            Vous trouverez ci-contre des photos justifiant et expliquant la pertinence de choix réalisés lors de la programmation du robot.
-            </p>
-        </div>
-    </section>
-
-<hr class="section-divider">
-    <!-- ================= PARTIE 5 ================= -->
-
-    <section class="info-section">
-        <div class="media-grid one">
-            <video controls>
-                <source src="robot.mov" type="video/mp4">
-                Votre navigateur ne supporte pas la vidéo.
-            </video>
-        </div>
-        <div class="step-content">
-            <span class="step-number">05</span>
-            <h2>Conclusion</h2>
-            <p>
-            En prévision de la présentation lors de la JPO, la salle a été sécurisée afin de garantir l'intégrité physique du public et le bon fonctionnement des machines.
-            Un périmètre de sécurité a été instauré, délimitant la zone de navigation du SHERPA et l'enveloppe de travail des robots Ned 2. 
-            Sur le plan de la maintenance et du maintien en condition opérationnelle, une procédurerigoureuse a été établie : <br> 
-            <strong>Initialisation</strong>: Calibration systématique du robot lors de la mise sous tension. <br>
-            <strong>Calibration mécanique </strong>: Vérification et recalage des Workspace si un déplacement physique de base est constaté. <br>
-            <strong>Maintenance logicielle </strong>: Suivi des mises à jour du firmware et redémarrage préventif des moteurs pour garantir la précision des encodeurs. <br>
-            En conclusion, malgré les défis rencontrés, notamment l'absence d'un automate de supervision centralisé, nous avons su développer des solutions logicielles
-            et nous adapter pour le bon fonctionnement de la chaîne. L'intégration du robot Nyrio Ned2 est une réussite.
-            Ce projet valide la capacité de systèmes collaboratifs à opérer de manière synchronisée dans un environnement de production simulé.
-
-            </p>
-        </div>
-    </section>
-
+     <div class="intro-outro-section">
+    
+        <h3 class="section-subtitle">Manipulations et interventions effectuées</h3>
+       <div class="section-text" style="text-align: left;">
+    <ul>
+        <li>Analyse des besoins et définition de l'architecture du site</li>
+        <li>Conception de l'identité visuelle et de l'expérience utilsateur (CSS3)</li>
+        <li>Intégration des galeries photo</li>
+        <li>Programmation (HTML5)</li>
+        <li>Gestion du nom de domaine et configuration de l'hébergement</li>
+        <li>Test de fonctionnement et validation du système</li>
+    </ul>
 </div>
+        <div class="section-divider"></div>
+    </div>
 
+     <div class="intro-outro-section">
+      
+        <h3 class="section-subtitle">Bilan du résultat</h3>
+        <p class="section-text" style="text-align: justify;">
+Le portfolio est un site web moderne et responsive, conçu pour présenter mon parcours de manière structurée et percutante. Grâce à une navigation intuitive
+et une expérience utilisateur soignée, le contenu s'adapte parfaitement à tous les supports, du smartphone au poste de travail. <br><br>
+Plus qu'un simple CV, ce site est un outil de communication efficace qui valorise mes compétences techniques et mes réalisations, facilitant
+ainsi mon insertion dans le monde professionnel.
+        </p>
+        <div class="section-divider"></div>
+    </div>
 
-</main>
+    <div class="intro-outro-section">
+      
+        <h3 class="section-subtitle">Ressenti personnel</h3>
+        <p class="section-text" style="text-align: justify;">
+
+        </p>
+        <div class="section-divider"></div>
+    </div>
+</div>
 
 
 
@@ -1295,6 +863,12 @@ video::-webkit-media-controls-panel {
         </div>
     </footer>
 
+   <!-- MODAL LIGHTBOX -->
+<div id="myModal" style="display:none; position:fixed; z-index:2000; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); justify-content:center; align-items:center;">
+    <span id="closeModalBtn" style="position:absolute; top:20px; right:30px; font-size:40px; color:white; cursor:pointer;">&times;</span>
+    <img id="img01" src="" style="max-width:90%; max-height:90%; border-radius:6px; box-shadow:0 0 25px rgba(125,122,255,0.7); pointer-events:none;">
+</div>
+
     <script>
          // FORCER LE RETOUR EN HAUT AU RAFRAÎCHISSEMENT
         // On utilise 'beforeunload' pour s'assurer que le navigateur ne garde pas la position
@@ -1307,7 +881,7 @@ video::-webkit-media-controls-panel {
             history.scrollRestoration = 'manual';
         }
 
-         const burgerBtn = document.getElementById('burgerBtn');
+        const burgerBtn = document.getElementById('burgerBtn');
 const navMenu = document.querySelector('nav');
 
 burgerBtn.addEventListener('click', () => {
@@ -1340,44 +914,49 @@ document.querySelectorAll('nav a').forEach(link => {
     });
 });
 
+// Animation au scroll pour les étapes du projet
+        const observerOptions = {
+            threshold: 0.2
+        };
 
-function openLightbox(img) {
-    const lightbox = document.getElementById("lightbox");
-    const lightboxImg = document.getElementById("lightbox-img");
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
 
-    lightbox.style.display = "flex";
-    lightboxImg.src = img.src;
+        document.querySelectorAll('.project-step').forEach(step => {
+            observer.observe(step);
+        });
+
+    function openModal(src) {
+    const modal = document.getElementById("myModal");
+    const modalImg = document.getElementById("img01");
+    modalImg.src = src;
+    modal.style.display = "flex"; // flex pour centrer l'image
+    document.body.style.overflow = 'hidden'; // bloque scroll
 }
 
-function closeLightbox() {
-    document.getElementById("lightbox").style.display = "none";
+function closeModal() {
+    const modal = document.getElementById("myModal");
+    modal.style.display = "none";
+    document.body.style.overflow = 'auto';
 }
 
-document.addEventListener("keydown", function(e) {
-    if (e.key === "Escape") {
-        closeLightbox();
-    }
+// Clic sur la croix
+document.getElementById("closeModalBtn").addEventListener('click', closeModal);
+
+// Clic sur le fond sombre (mais pas sur l'image)
+document.getElementById("myModal").addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
 });
 
-const videoWrapper = document.getElementById('videoWrapper');
-const video = document.getElementById('myProjectVideo');
-
-// 1. Quand on clique sur le conteneur
-videoWrapper.addEventListener('click', () => {
-    if (video.paused) {
-        video.play();
-        videoWrapper.classList.add('is-playing');
-        video.controls = true; // Affiche les contrôles seulement quand ça joue
-    }
+// Fermer avec Échap
+document.addEventListener('keydown', function(e) {
+    if (e.key === "Escape") closeModal();
 });
-
     </script>
-
-<!-- LIGHTBOX -->
-<div id="lightbox" onclick="closeLightbox()">
-    <img id="lightbox-img">
-</div>
-
-</div>
 </body>
 </html>
