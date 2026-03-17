@@ -253,15 +253,30 @@
             padding: 20px 0 100px 0;
             width: 100%;
         }
+        
 
-    /* --- DESIGN PREMIUM AMÉLIORÉ --- */
-.gallery-container {
+  .gallery-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr); 
     gap: 30px;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 40px;
+}
+
+/* TABLETTE */
+@media (max-width: 1024px) {
+    .gallery-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* TELEPHONE */
+@media (max-width: 768px) {
+    .gallery-container {
+        grid-template-columns: 1fr; /* 1 colonne */
+        padding: 0 20px;
+    }
 }
 .gallery-item a.project-link {
     display: block;
